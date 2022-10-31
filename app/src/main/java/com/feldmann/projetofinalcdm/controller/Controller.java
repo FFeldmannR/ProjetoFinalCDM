@@ -8,4 +8,8 @@ public class Controller {
         public Activity getActivity();
         public Context getContext();
     }
+    public interface msg{
+        public void messageToast(String msg);
+        public void logD(String msg);
+    }
 }
