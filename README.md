@@ -7,7 +7,7 @@
 - Sistema de Lista de Compras
 
 #### Requisitos
-- banco de dados de user
+- Sistema de login de usuarios
 - RecyclerView
 - Intent-filter
 - MVC
