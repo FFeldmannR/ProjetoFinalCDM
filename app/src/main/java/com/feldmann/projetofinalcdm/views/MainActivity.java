@@ -1,9 +1,10 @@
-package com.feldmann.projetofinalcdm;
+package com.feldmann.projetofinalcdm.views;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
+import com.feldmann.projetofinalcdm.R;
 import com.feldmann.projetofinalcdm.controller.Controller;
 import com.feldmann.projetofinalcdm.controller.MsgController;
 
