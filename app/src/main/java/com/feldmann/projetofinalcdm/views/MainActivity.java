@@ -11,7 +11,7 @@ import com.feldmann.projetofinalcdm.controller.MsgController;
 public class MainActivity extends AppCompatActivity implements Controller.view {
     private final String tagLog = this.getClass().getName().toString();
     private Controller.msg msg;
-    //
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -19,7 +19,13 @@ public class MainActivity extends AppCompatActivity implements Controller.view {
         this.msg = new MsgController(getContext(), tagLog);
         msg.logD("onCreate");
     }
-    //
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        msg.logD("onResume");
+    }
+
     @Override
     public Activity getActivity() { return this; }
     @Override
