@@ -22,6 +22,12 @@ public class ListaDeCompras extends AppCompatActivity implements Controller.view
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        msg.logD("onResume");
+    }
+
+    @Override
     public Activity getActivity() { return this; }
     @Override
     public Context getContext() { return this; }
