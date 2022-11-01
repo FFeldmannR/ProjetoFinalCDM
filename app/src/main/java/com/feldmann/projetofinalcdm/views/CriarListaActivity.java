@@ -7,7 +7,7 @@ import com.feldmann.projetofinalcdm.controller.Controller;
 import com.feldmann.projetofinalcdm.controller.MsgController;
 import com.feldmann.projetofinalcdm.controller.ViewController;
 
-public class ListaDeCompras extends AppCompatActivity{
+public class CriarListaActivity extends AppCompatActivity{
     private final String tagLog = this.getClass().getName().toString();
     private Controller.msg msg;
     private Controller.view view;
@@ -15,7 +15,7 @@ public class ListaDeCompras extends AppCompatActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_lista_de_compras);
+        setContentView(R.layout.activity_criar_lista);
         this.view = new ViewController(this, this);
         this.msg = new MsgController(view.getContext(), tagLog);
         msg.logD("onCreate");

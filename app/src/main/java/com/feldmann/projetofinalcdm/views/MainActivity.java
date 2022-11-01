@@ -1,26 +1,29 @@
-package com.feldmann.projetofinalcdm;
+package com.feldmann.projetofinalcdm.views;
 
 import androidx.appcompat.app.AppCompatActivity;
-import android.app.Activity;
-import android.content.Context;
 import android.os.Bundle;
+import com.feldmann.projetofinalcdm.R;
 import com.feldmann.projetofinalcdm.controller.Controller;
 import com.feldmann.projetofinalcdm.controller.MsgController;
+import com.feldmann.projetofinalcdm.controller.ViewController;
 
-public class MainActivity extends AppCompatActivity implements Controller.view {
+public class MainActivity extends AppCompatActivity{
     private final String tagLog = this.getClass().getName().toString();
     private Controller.msg msg;
-    //
+    private Controller.view view;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        this.msg = new MsgController(getContext(), tagLog);
+        this.view = new ViewController(this, this);
+        this.msg = new MsgController(view.getContext(), tagLog);
         msg.logD("onCreate");
     }
-    //
+
     @Override
-    public Activity getActivity() { return this; }
-    @Override
-    public Context getContext() { return this; }
+    protected void onResume() {
+        super.onResume();
+        msg.logD("onResume");
+    }
 }
