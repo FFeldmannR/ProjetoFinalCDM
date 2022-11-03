@@ -43,9 +43,4 @@ public class ListasRepository {
     public List<Lista> getListas() {
         return listas;
     }
-
-    private void SelectSQL(SQLiteDatabase sqlRead){
-        //
-
-    }
 }
