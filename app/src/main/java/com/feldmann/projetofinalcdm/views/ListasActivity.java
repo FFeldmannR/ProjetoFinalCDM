@@ -36,8 +36,8 @@ public class ListasActivity extends AppCompatActivity{
     }
 
     private void instanceController(){
-        db = new DBListas(view.getContext());
         this.view = new ViewController(this, this);
+        db = new DBListas(view.getContext());
         this.msg = new MsgController(view.getContext(), tagLog);
         this.listas = new ListasController(view.getContext(), db.getWritableDatabase());
     }
