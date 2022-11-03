@@ -18,13 +18,14 @@ public class ListasActivity extends AppCompatActivity{
     private Controller.msg msg;
     private Controller.view view;
     private Controller.controllerListas listas;
+    private DBListas db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_listas);
-        DBListas db = new DBListas(view.getContext());
-        this.instanceController(db.getWritableDatabase());
+        this.instanceController();
+        db = new DBListas(view.getContext());
         msg.logD("onCreate");
     }
 
@@ -35,9 +36,9 @@ public class ListasActivity extends AppCompatActivity{
         listas.paraListaDeCompras( ((ImageButton) findViewById(R.id.imgBtnAddList)) );
     }
 
-    private void instanceController(SQLiteDatabase sqlWrite){
+    private void instanceController(){
         this.view = new ViewController(this, this);
         this.msg = new MsgController(view.getContext(), tagLog);
-        this.listas = new ListasController(view.getContext(), sqlWrite);
+        this.listas = new ListasController(view.getContext(), db.getWritableDatabase());
     }
 }
