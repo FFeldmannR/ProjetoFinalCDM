@@ -17,8 +17,7 @@ public class MainActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        this.view = new ViewController(this, this);
-        this.msg = new MsgController(view.getContext(), tagLog);
+        this.instanceController();
         msg.logD("onCreate");
         //carregar banco de dados
         Intent in = new Intent(view.getActivity(), ListasActivity.class);
@@ -29,5 +28,10 @@ public class MainActivity extends AppCompatActivity{
     protected void onResume() {
         super.onResume();
         msg.logD("onResume");
+    }
+
+    private void instanceController(){
+        this.view = new ViewController(this, this);
+        this.msg = new MsgController(view.getContext(), tagLog);
     }
 }
