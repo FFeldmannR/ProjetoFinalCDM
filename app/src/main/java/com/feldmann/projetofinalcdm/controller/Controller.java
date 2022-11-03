@@ -2,6 +2,7 @@ package com.feldmann.projetofinalcdm.controller;
 
 import android.app.Activity;
 import android.content.Context;
+import android.widget.ImageButton;
 
 public class Controller {
     public interface view{
@@ -13,6 +14,6 @@ public class Controller {
         public void logD(String msg);
     }
     public interface controllerListas {
-        public void paraListaDeCompras();
+        public void paraListaDeCompras(ImageButton imgBtn);
     }
 }
