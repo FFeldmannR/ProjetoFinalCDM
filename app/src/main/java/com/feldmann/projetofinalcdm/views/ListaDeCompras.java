@@ -1,6 +1,8 @@
 package com.feldmann.projetofinalcdm.views;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.app.Activity;
 import android.os.Bundle;
 import com.feldmann.projetofinalcdm.R;
 import com.feldmann.projetofinalcdm.controller.Controller;
@@ -24,6 +26,8 @@ public class ListaDeCompras extends AppCompatActivity{
     protected void onResume() {
         super.onResume();
         msg.logD("onResume");
+        Activity ac = this;
+        ac.setTitle("Lista "+ getIntent().getStringExtra("ID") );
     }
 
     private void instanceController(){
