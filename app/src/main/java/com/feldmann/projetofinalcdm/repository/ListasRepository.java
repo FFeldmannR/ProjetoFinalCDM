@@ -18,22 +18,14 @@ public class ListasRepository {
         }
     }
 
-    public static ListasRepository getInstance(){
+    public static ListasRepository getInstance(SQLiteDatabase sqlRead){
         instance = new ListasRepository();
-        return instance;
-    }
-
-    public List<Lista> getListas() {
-        return listas;
-    }
-
-    private void SelectSQL(SQLiteDatabase sqlRead){
         //
         Cursor cursor = sqlRead.rawQuery("SELECT * FROM listas", null);
         if (cursor.moveToFirst()){
             do {
                 //
-                listas.add( new Lista(
+                this.listas.add( new Lista(
                         Integer.parseInt( cursor.getString(0) ),
                         cursor.getString(1)
                 ));
@@ -45,5 +37,16 @@ public class ListasRepository {
         }else{
             Log.d("ContatoRepository", "NÃO TEM REGISTROS");
         }
+        //
+        return instance;
+    }
+
+    public List<Lista> getListas() {
+        return listas;
+    }
+
+    private void SelectSQL(SQLiteDatabase sqlRead){
+        //
+
     }
 }
