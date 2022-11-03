@@ -1,5 +1,9 @@
 package com.feldmann.projetofinalcdm.repository;
 
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
+
 import com.feldmann.projetofinalcdm.model.Lista;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,5 +25,25 @@ public class ListasRepository {
 
     public List<Lista> getListas() {
         return listas;
+    }
+
+    private void SelectSQL(SQLiteDatabase sqlRead){
+        //
+        Cursor cursor = sqlRead.rawQuery("SELECT * FROM listas", null);
+        if (cursor.moveToFirst()){
+            do {
+                //
+                listas.add( new Lista(
+                        Integer.parseInt( cursor.getString(0) ),
+                        cursor.getString(1)
+                ));
+                //
+                Log.d("ListasRepository", ""+
+                        "(" + cursor.getString(0) + ") " + cursor.getString(1) );
+                //
+            }while (cursor.moveToNext());
+        }else{
+            Log.d("ContatoRepository", "NÃO TEM REGISTROS");
+        }
     }
 }
