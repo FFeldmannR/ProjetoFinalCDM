@@ -3,7 +3,6 @@ package com.feldmann.projetofinalcdm.repository;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
-
 import com.feldmann.projetofinalcdm.model.Lista;
 import java.util.ArrayList;
 import java.util.List;
