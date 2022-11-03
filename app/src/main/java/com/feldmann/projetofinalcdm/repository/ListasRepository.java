@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ListasRepository {
-    private List<Lista> listas;
+    private static List<Lista> listas;
     private static ListasRepository instance = null;
 
     public ListasRepository() {
@@ -25,7 +25,7 @@ public class ListasRepository {
         if (cursor.moveToFirst()){
             do {
                 //
-                this.listas.add( new Lista(
+                listas.add( new Lista(
                         Integer.parseInt( cursor.getString(0) ),
                         cursor.getString(1)
                 ));
