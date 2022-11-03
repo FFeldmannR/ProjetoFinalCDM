@@ -27,6 +27,8 @@ public class ListasController implements Controller.controllerListas{
                 ctv.put("nome", "lista "+ ListasRepository.getListas().size()+1 );
                 sqlWrite.insert("listas", null, ctv);
                 Intent in = new Intent(context, ListaDeCompras.class);
+                // enviando para ListadeCompras
+                in.putExtra("ID", ListasRepository.getListas().size()+1);
                 context.startActivity(in);
             }//fim onClick
         });//fim listener
