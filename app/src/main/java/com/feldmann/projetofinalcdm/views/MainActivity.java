@@ -1,6 +1,7 @@
 package com.feldmann.projetofinalcdm.views;
 
 import androidx.appcompat.app.AppCompatActivity;
+import android.content.Intent;
 import android.os.Bundle;
 import com.feldmann.projetofinalcdm.R;
 import com.feldmann.projetofinalcdm.controller.Controller;
@@ -20,6 +21,8 @@ public class MainActivity extends AppCompatActivity{
         this.msg = new MsgController(view.getContext(), tagLog);
         msg.logD("onCreate");
         //carregar banco de dados
+        Intent in = new Intent(view.getActivity(), ListasActivity.class);
+        view.getActivity().startActivity(in);
     }
 
     @Override
