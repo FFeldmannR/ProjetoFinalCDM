@@ -40,7 +40,7 @@ public class ListasRepository {
         return instance;
     }
 
-    public List<Lista> getListas() {
+    public static List<Lista> getListas() {
         return listas;
     }
 }
