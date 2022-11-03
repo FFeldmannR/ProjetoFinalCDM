@@ -19,6 +19,7 @@ public class MainActivity extends AppCompatActivity{
         this.view = new ViewController(this, this);
         this.msg = new MsgController(view.getContext(), tagLog);
         msg.logD("onCreate");
+        //carregar banco de dados
     }
 
     @Override
