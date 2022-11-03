@@ -12,4 +12,7 @@ public class Controller {
         public void messageToast(String msg);
         public void logD(String msg);
     }
+    public interface controllerListas {
+        public void paraListaDeCompras();
+    }
 }
