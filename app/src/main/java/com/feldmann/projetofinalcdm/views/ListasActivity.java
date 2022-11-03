@@ -25,7 +25,6 @@ public class ListasActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_listas);
         this.instanceController();
-        db = new DBListas(view.getContext());
         msg.logD("onCreate");
     }
 
@@ -37,6 +36,7 @@ public class ListasActivity extends AppCompatActivity{
     }
 
     private void instanceController(){
+        db = new DBListas(view.getContext());
         this.view = new ViewController(this, this);
         this.msg = new MsgController(view.getContext(), tagLog);
         this.listas = new ListasController(view.getContext(), db.getWritableDatabase());
