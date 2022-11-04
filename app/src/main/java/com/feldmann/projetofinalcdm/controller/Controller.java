@@ -22,6 +22,10 @@ public class Controller {
         public void messageToast(String msg);
         public void logD(String msg);
     }
+    public interface controllerDataBase{
+        public String criarTabelaUsers();
+        public String criarTabelaListas();
+    }
     public interface controllerLogin{
         public void setLoginField(String nomeUser, EditText etLoginL);
         public void setTvEMS(TextView tvEMS);
