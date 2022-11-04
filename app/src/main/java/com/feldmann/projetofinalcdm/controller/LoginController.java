@@ -80,6 +80,7 @@ public class LoginController implements Controller.controllerLogin{
         }else{
             msg.logD("NÃO TEM REGISTROS");
         }//fim if else
+        cursor.close();
     }//fim verificaUser
     //
     @Override
