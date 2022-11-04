@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import com.feldmann.projetofinalcdm.repository.ListasRepository;
@@ -24,12 +25,20 @@ public class ListasController implements Controller.controllerListas{
             @Override
             public void onClick(View v) {
                 ContentValues ctv = new ContentValues();
-                ctv.put("nome", "lista "+ ListasRepository.getListas().size()+1 );
-                sqlWrite.insert("listas", null, ctv);
-                Intent in = new Intent(context, ListaDeCompras.class);
-                // enviando para ListadeCompras
-                in.putExtra("ID", ListasRepository.getListas().size()+1);
-                context.startActivity(in);
+                try{
+                    ctv.put("nome", "lista "+ ListasRepository.getListas().size()+1 );
+                    sqlWrite.insert("listas", null, ctv);
+                    try{
+                        // enviando para ListadeCompras
+                        Intent in = new Intent(context, ListaDeCompras.class);
+                        in.putExtra("ID", ListasRepository.getListas().size()+1);
+                        context.startActivity(in);
+                    }catch (Exception e){
+                        Log.d("EXCEPTION", "falha ao mudar de activity:\n"+e.getMessage() );
+                    }
+                }catch (Exception e){
+                    Log.d("EXCEPTION", "falha ao adicionar no banco:\n"+e.getMessage() );
+                }
             }//fim onClick
         });//fim listener
     }//fim metodo
