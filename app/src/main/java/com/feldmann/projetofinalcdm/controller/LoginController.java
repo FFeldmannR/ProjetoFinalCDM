@@ -4,9 +4,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import com.feldmann.projetofinalcdm.views.CadastroActivity;
 import com.feldmann.projetofinalcdm.views.ListaActivity;
 //
@@ -18,6 +21,26 @@ public class LoginController implements Controller.controllerLogin{
         this.msg = new MsgController(context, this.getClass().getName().toString() );
         this.sqlRead = sqlRead;
     }
+
+    @Override
+    public void setLoginField(String nomeUser, EditText etLoginL) {
+        if (nomeUser != null){
+            etLoginL.setText(nomeUser);
+        }
+    }
+
+    @Override
+    public void setTvEMS(TextView tvEMS) {
+        tvEMS.setTextColor(Color.BLUE);
+        tvEMS.setTypeface(null, Typeface.BOLD);
+        tvEMS.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                msg.messageToast("btn EMS clicado :D");
+            }
+        });
+    }
+
     //
     @Override
     public void Login(Button btn, EditText etLogin, EditText etSenha) {

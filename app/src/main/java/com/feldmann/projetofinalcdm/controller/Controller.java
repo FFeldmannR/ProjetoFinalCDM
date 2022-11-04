@@ -20,7 +20,7 @@ public class Controller {
         public void logD(String msg);
     }
     public interface controllerLogin{
-        public void setLoginField(String nomeUser);
+        public void setLoginField(String nomeUser, EditText etLoginL);
         public void setTvEMS(TextView tvEMS);
         public void Login(Button btn, EditText etLogin, EditText etSenha);
         public void cadastrarUser(Button btn);

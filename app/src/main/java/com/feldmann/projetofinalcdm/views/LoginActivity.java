@@ -39,14 +39,14 @@ public class LoginActivity extends AppCompatActivity {
         super.onResume();
         msg.logD("onResume");
         //
-        this.setLoginField(getIntent().getStringExtra("NOMEUSER"));
+        login.setLoginField(getIntent().getStringExtra("NOMEUSER"), ((EditText) findViewById(R.id.etLoginL)));
         login.Login(
                 (Button) findViewById(R.id.btnEntrar),
                 (EditText) findViewById(R.id.etLoginL),
                 (EditText) findViewById(R.id.etSenhaL)
         );
         login.cadastrarUser((Button) findViewById(R.id.btnCadastrarL));
-        this.textViewEMS(((TextView) findViewById(R.id.tvEMS)));
+        login.setTvEMS(((TextView) findViewById(R.id.tvEMS)));
     }//fim onResume
     //
     private void instanceController() {
@@ -56,19 +56,4 @@ public class LoginActivity extends AppCompatActivity {
         this.login = new LoginController(view.getContext(), db.getReadableDatabase());
     }//fim instanceController
     //
-    private void setLoginField(String nomeUser){
-        if (nomeUser != null){
-            ((EditText) findViewById(R.id.etLoginL)).setText(nomeUser);
-        }
-    }
-    private void textViewEMS(TextView tvEMS){
-        tvEMS.setTextColor(Color.BLUE);
-        tvEMS.setTypeface(null, Typeface.BOLD);
-        tvEMS.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                msg.messageToast("btn EMS clicado :D");
-            }
-        });
-    }
 }//fim class
