@@ -17,8 +17,7 @@ public class DBListas extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         Log.d("DBListas", "onCreate");
-        db.execSQL( this.criarTabelaListas() );
-        db.execSQL( this.criarTabelaListaItens() );
+        db.execSQL( this.criarTabelaUsers() );
         //
     }
     @Override
@@ -27,10 +26,11 @@ public class DBListas extends SQLiteOpenHelper {
         //
     }
 
-    private String criarTabelaListas(){
-        String sqlStatement = "CREATE TABLE IF NOT EXISTS listas("+
+    private String criarTabelaUsers(){
+        String sqlStatement = "CREATE TABLE IF NOT EXISTS users("+
                 "_id INTEGER PRIMARY KEY AUTOINCREMENT," +
-                "nome TEXT " +
+                "nome TEXT, " +
+                "senha TEXT " +
                 ");";
         return sqlStatement;
     }
