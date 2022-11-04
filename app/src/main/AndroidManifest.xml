@@ -20,22 +20,6 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".views.ListasActivity"
-            android:exported="false"
-            android:label="Listas">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name=".views.ListaDeCompras"
-            android:exported="false"
-            android:label="Lista X">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
             android:name=".views.MainActivity"
             android:exported="true"
             android:label="Lista de Compras">
