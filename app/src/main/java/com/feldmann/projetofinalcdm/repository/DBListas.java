@@ -35,7 +35,7 @@ public class DBListas extends SQLiteOpenHelper {
         return sqlStatement;
     }
     private String criarTabelaListaItens(){
-        String sqlStatement = "CREATE TABLE IF NOT EXISTS listaItens("+
+        String sqlStatement = "CREATE TABLE IF NOT EXISTS itemList("+
                 "_id INTEGER PRIMARY KEY AUTOINCREMENT,"+
                 "lista TEXT " +
                 ");";
