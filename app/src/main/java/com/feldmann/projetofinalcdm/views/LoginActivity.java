@@ -10,11 +10,13 @@ import com.feldmann.projetofinalcdm.controller.Controller;
 import com.feldmann.projetofinalcdm.controller.LoginController;
 import com.feldmann.projetofinalcdm.controller.MsgController;
 import com.feldmann.projetofinalcdm.controller.ViewController;
+import com.feldmann.projetofinalcdm.repository.DBListas;
 
 public class LoginActivity extends AppCompatActivity {
     private final String tagLog = this.getClass().getName().toString();
     private Controller.msg msg;
     private Controller.view view;
+    private DBListas db;
     private Controller.controllerLogin login;
 
     @Override
@@ -29,17 +31,24 @@ public class LoginActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         msg.logD("onResume");
-        login.cadastrarUser((Button) findViewById(R.id.btnCadastrarL));
-
+        //
         String nomeUser = getIntent().getStringExtra("NOMEUSER");
         if (nomeUser != null){
             ((EditText) findViewById(R.id.etLoginL)).setText(nomeUser);
         }
+        //
+        login.Login(
+                (Button) findViewById(R.id.btnEntrar),
+                (EditText) findViewById(R.id.etLoginL),
+                (EditText) findViewById(R.id.etSenhaL)
+        );
+        login.cadastrarUser((Button) findViewById(R.id.btnCadastrarL));
     }
 
     private void instanceController() {
         this.view = new ViewController(this, this);
         this.msg = new MsgController(view.getContext(), tagLog);
-        this.login = new LoginController(msg);
+        db = new DBListas(view.getContext());
+        this.login = new LoginController(view.getContext(), db.getReadableDatabase());
     }
 }

@@ -18,6 +18,7 @@ public class Controller {
         public void logD(String msg);
     }
     public interface controllerLogin{
+        public void Login(Button btn, EditText etLogin, EditText etSenha);
         public void cadastrarUser(Button btn);
     }
     public interface controllerCadastro{
