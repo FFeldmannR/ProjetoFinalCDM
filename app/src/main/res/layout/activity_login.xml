@@ -18,7 +18,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <EditText
-            android:id="@+id/etLogin"
+            android:id="@+id/etLoginL"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
@@ -29,7 +29,7 @@
             android:inputType="textPersonName" />
 
         <EditText
-            android:id="@+id/etSenha"
+            android:id="@+id/etSenhaL"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
