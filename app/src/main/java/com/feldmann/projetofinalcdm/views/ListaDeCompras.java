@@ -27,7 +27,7 @@ public class ListaDeCompras extends AppCompatActivity{
         this.setTitulo();
     }
 
-    public void setTitulo(){
+    private void setTitulo(){
         if(getIntent().getStringExtra("ID") != null){
             //recebendo de listasController
             this.setTitle("Lista "+getIntent().getStringExtra("NOMELISTA") );
