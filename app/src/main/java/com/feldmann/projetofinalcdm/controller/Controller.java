@@ -21,6 +21,9 @@ public class Controller {
         public void verificaUser(Button btn);
         public void paraTelaLista(EditText etLogin, EditText etSenha);
     }
+    public interface controllerCadastro{
+        public void addToDB();
+    }
     public interface controllerListas {
         public void addList(ImageButton imgBtn);
         public void setAdapterListas(RecyclerView rv);
