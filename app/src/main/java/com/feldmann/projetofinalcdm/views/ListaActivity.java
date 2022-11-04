@@ -16,7 +16,7 @@ public class ListaActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_lista);
+        setContentView(R.layout.activity_listas);
         this.instanceController();
         db = new DBListas(view.getContext());
         msg.logD("onCreate");
