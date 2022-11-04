@@ -17,6 +17,13 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         this.instanceController();
+        msg.logD("onCreate");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        msg.logD("onResume");
     }
 
     private void instanceController() {
