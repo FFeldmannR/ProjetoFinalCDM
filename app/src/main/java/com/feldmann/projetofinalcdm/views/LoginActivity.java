@@ -12,7 +12,6 @@ import com.feldmann.projetofinalcdm.controller.ViewController;
 import com.feldmann.projetofinalcdm.repository.DBListas;
 //
 public class LoginActivity extends AppCompatActivity {
-    private final String tagLog = this.getClass().getName().toString();
     private Controller.msg msg;
     private Controller.view view;
     private DBListas db;
@@ -45,7 +44,7 @@ public class LoginActivity extends AppCompatActivity {
     //
     private void instanceController() {
         this.view = new ViewController(this, this);
-        this.msg = new MsgController(view.getContext(), tagLog);
+        this.msg = new MsgController(view.getContext(), this.getClass().getName().toString() );
         db = new DBListas(view.getContext());
         this.login = new LoginController(view.getContext(), db.getReadableDatabase());
     }//fim instanceController

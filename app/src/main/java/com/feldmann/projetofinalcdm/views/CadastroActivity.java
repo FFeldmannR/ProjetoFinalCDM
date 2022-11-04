@@ -12,7 +12,6 @@ import com.feldmann.projetofinalcdm.controller.ViewController;
 import com.feldmann.projetofinalcdm.repository.DBListas;
 //
 public class CadastroActivity extends AppCompatActivity {
-    private final String tagLog = this.getClass().getName().toString();
     private Controller.msg msg;
     private Controller.view view;
     private DBListas db;
@@ -37,7 +36,7 @@ public class CadastroActivity extends AppCompatActivity {
     //
     private void instanceController() {
         this.view = new ViewController(this, this);
-        this.msg = new MsgController(view.getContext(), tagLog);
+        this.msg = new MsgController(view.getContext(), this.getClass().getName().toString() );
         this.cadastro = new CadastroController(view.getContext());
     }//fim instanceController
 }//fim class
