@@ -3,6 +3,7 @@ package com.feldmann.projetofinalcdm.adapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -22,18 +23,19 @@ public class AdapterListas  extends RecyclerView.Adapter<RecyclerView.ViewHolder
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View layoutViewHolder = LayoutInflater.from(parent.getContext()).inflate(R.layout.modelo_item_layout, parent, false);
+        View layoutViewHolder = LayoutInflater.from(parent.getContext()).inflate(R.layout.modelo_lista_layout, parent, false);
         return new ListasViewHolder(layoutViewHolder);
     }
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-
+        Lista objLista = listas.get(position);
+        ((TextView)((ListasViewHolder) holder).itemView.findViewById(R.id.tvNomeLista)).setText( objLista.getNome() );
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return listas.size();
     }
 }
 class ListasViewHolder extends RecyclerView.ViewHolder{

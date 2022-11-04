@@ -7,6 +7,11 @@ import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
+
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.feldmann.projetofinalcdm.adapter.AdapterListas;
 import com.feldmann.projetofinalcdm.repository.ListasRepository;
 import com.feldmann.projetofinalcdm.views.ListaDeCompras;
 
@@ -42,5 +47,12 @@ public class ListasController implements Controller.controllerListas{
             }//fim onClick
         });//fim listener
     }//fim metodo
+
+    @Override
+    public void setAdapterListas(RecyclerView rv) {
+        AdapterListas adapter = new AdapterListas(ListasRepository.getListas());
+        rv.setAdapter(adapter);
+        rv.setLayoutManager(new LinearLayoutManager(context) );
+    }
 
 }//fim class

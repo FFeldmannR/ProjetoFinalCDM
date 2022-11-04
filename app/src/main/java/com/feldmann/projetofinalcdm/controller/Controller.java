@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.Context;
 import android.widget.ImageButton;
 
+import androidx.recyclerview.widget.RecyclerView;
+
 public class Controller {
     public interface view{
         public Activity getActivity();
@@ -15,5 +17,6 @@ public class Controller {
     }
     public interface controllerListas {
         public void paraListaDeCompras(ImageButton imgBtn);
+        public void setAdapterListas(RecyclerView rv);
     }
 }
