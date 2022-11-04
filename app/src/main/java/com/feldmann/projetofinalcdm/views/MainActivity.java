@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity{
         this.instanceController();
         msg.logD("onCreate");
         try {
-            Intent in = new Intent(view.getActivity(), ListasActivity.class);
+            Intent in = new Intent(view.getActivity(), LoginActivity.class);
             view.getActivity().startActivity(in);
         }catch (Exception e){
             msg.logD("!!! ERRO !!! : "+e.getMessage() );
