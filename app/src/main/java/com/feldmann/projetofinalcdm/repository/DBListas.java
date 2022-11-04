@@ -23,7 +23,6 @@ public class DBListas extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         Log.d("DBListas", "onUpgrade");
     }//fim onUpgrade
-    //
     private String criarTabelaUsers(){
         String sqlStatement = "CREATE TABLE IF NOT EXISTS users("+
                 "_id INTEGER PRIMARY KEY AUTOINCREMENT," +
