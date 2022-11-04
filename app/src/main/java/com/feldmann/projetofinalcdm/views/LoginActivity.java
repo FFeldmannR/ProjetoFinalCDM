@@ -9,6 +9,7 @@ import com.feldmann.projetofinalcdm.controller.Controller;
 import com.feldmann.projetofinalcdm.controller.LoginController;
 import com.feldmann.projetofinalcdm.controller.MsgController;
 import com.feldmann.projetofinalcdm.controller.ViewController;
+import com.feldmann.projetofinalcdm.model.User;
 import com.feldmann.projetofinalcdm.repository.DBListas;
 //
 public class LoginActivity extends AppCompatActivity {
@@ -30,10 +31,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onResume();
         msg.logD("onResume");
         //
-        String nomeUser = getIntent().getStringExtra("NOMEUSER");
-        if (nomeUser != null){
-            ((EditText) findViewById(R.id.etLoginL)).setText(nomeUser);
-        }
+        this.setLogin(getIntent().getStringExtra("NOMEUSER"));
         login.Login(
                 (Button) findViewById(R.id.btnEntrar),
                 (EditText) findViewById(R.id.etLoginL),
@@ -48,4 +46,10 @@ public class LoginActivity extends AppCompatActivity {
         db = new DBListas(view.getContext());
         this.login = new LoginController(view.getContext(), db.getReadableDatabase());
     }//fim instanceController
+    //
+    private void setLogin(String nomeUser){
+        if (nomeUser != null){
+            ((EditText) findViewById(R.id.etLoginL)).setText(nomeUser);
+        }
+    }
 }//fim class
