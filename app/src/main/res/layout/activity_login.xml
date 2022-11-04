@@ -53,10 +53,20 @@
             android:id="@+id/btnCadastrarL"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
             android:layout_gravity="center"
             android:gravity="center"
             android:ems="10"
             android:text="Cadastrar" />
+
+        <TextView
+            android:id="@+id/tvForgetPass"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:ems="10"
+            android:text="Esqueci minha senha" />
 
     </LinearLayout>
 
