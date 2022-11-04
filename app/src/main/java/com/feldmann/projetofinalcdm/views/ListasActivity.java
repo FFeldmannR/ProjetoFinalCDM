@@ -2,7 +2,6 @@ package com.feldmann.projetofinalcdm.views;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
-
 import android.os.Bundle;
 import android.widget.ImageButton;
 import com.feldmann.projetofinalcdm.R;
