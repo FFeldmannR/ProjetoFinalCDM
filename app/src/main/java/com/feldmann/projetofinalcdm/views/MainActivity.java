@@ -24,7 +24,6 @@ public class MainActivity extends AppCompatActivity{
         }catch (Exception e){
             msg.logD("!!! ERRO !!! : "+e.getMessage() );
             msg.messageToast("ERRO NA INSTANCIA");
-            System.exit(0);
         }//fim try catch
     }//fim onCreate
     @Override
