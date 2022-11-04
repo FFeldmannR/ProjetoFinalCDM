@@ -1,6 +1,7 @@
 package com.feldmann.projetofinalcdm.controller;
 
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.view.View;
@@ -13,8 +14,8 @@ public class CadastroController implements Controller.controllerCadastro{
     private Controller.msg msg;
     private EditText nome, senha;
 
-    public CadastroController(Controller.msg msg) {
-        this.msg = msg;
+    public CadastroController(Context context) {
+        this.msg = new MsgController(context, this.getClass().getName().toString() );
     }
 
     @Override

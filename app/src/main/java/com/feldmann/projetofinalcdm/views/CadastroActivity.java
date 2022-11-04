@@ -38,6 +38,6 @@ public class CadastroActivity extends AppCompatActivity {
     private void instanceController() {
         this.view = new ViewController(this, this);
         this.msg = new MsgController(view.getContext(), tagLog);
-        this.cadastro = new CadastroController(msg);
+        this.cadastro = new CadastroController(view.getContext());
     }
 }
