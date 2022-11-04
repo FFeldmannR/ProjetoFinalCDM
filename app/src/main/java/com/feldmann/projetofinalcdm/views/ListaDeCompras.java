@@ -24,7 +24,17 @@ public class ListaDeCompras extends AppCompatActivity{
     protected void onResume() {
         super.onResume();
         msg.logD("onResume");
-        this.setTitle("Lista "+ getIntent().getStringExtra("ID") );//recebendo de listasController
+        this.setTitulo();
+    }
+
+    public void setTitulo(){
+        if(getIntent().getStringExtra("ID") != null){
+            //recebendo de listasController
+            this.setTitle("Lista "+getIntent().getStringExtra("NOMELISTA") );
+        }else if (getIntent().getStringExtra("NOMELISTA") != null){
+            //recebendo de adapter
+            this.setTitle(getIntent().getStringExtra("NOMELISTA") );
+        }
     }
 
     private void instanceController(){

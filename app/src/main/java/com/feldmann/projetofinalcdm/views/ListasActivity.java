@@ -3,7 +3,6 @@ package com.feldmann.projetofinalcdm.views;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.widget.ImageButton;
 import com.feldmann.projetofinalcdm.R;
@@ -27,13 +26,15 @@ public class ListasActivity extends AppCompatActivity{
         setContentView(R.layout.activity_listas);
         this.instanceController();
         msg.logD("onCreate");
+
     }
 
     @Override
     protected void onResume() {
         super.onResume();
         msg.logD("onResume");
-        listas.paraListaDeCompras( ((ImageButton) findViewById(R.id.imgBtnAddList)) );
+        ListasRepository.getInstance(db.getReadableDatabase());
+        listas.addList( ((ImageButton) findViewById(R.id.imgBtnAddList)) );
         listas.setAdapterListas( (RecyclerView) findViewById(R.id.RVListas) );
     }
 

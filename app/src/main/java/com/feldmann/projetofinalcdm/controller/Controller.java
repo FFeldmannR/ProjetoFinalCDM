@@ -16,7 +16,7 @@ public class Controller {
         public void logD(String msg);
     }
     public interface controllerListas {
-        public void paraListaDeCompras(ImageButton imgBtn);
+        public void addList(ImageButton imgBtn);
         public void setAdapterListas(RecyclerView rv);
     }
 }

@@ -19,6 +19,8 @@ public class ListasRepository {
 
     public static ListasRepository getInstance(SQLiteDatabase sqlRead){
         instance = new ListasRepository();
+        listas.removeAll(getListas());
+
         //
         Cursor cursor = sqlRead.rawQuery("SELECT * FROM listas", null);
         if (cursor.moveToFirst()){
@@ -30,16 +32,20 @@ public class ListasRepository {
                 ));
                 //
                 Log.d("ListasRepository", ""+
-                        "(" + cursor.getString(0) + ") " + cursor.getString(1) );
+                        "(" + cursor.getString(0) + ") " + cursor.getString(1)+"\n" );
                 //
             }while (cursor.moveToNext());
         }else{
-            Log.d("ContatoRepository", "NÃO TEM REGISTROS");
+            Log.d("ListasRepository", "NÃO TEM REGISTROS");
         }
         //
+        cursor.close();
         return instance;
     }
 
+    private void removeFromList(){
+
+    }
     public static List<Lista> getListas() {
         return listas;
     }

@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.feldmann.projetofinalcdm.adapter.AdapterListas;
 import com.feldmann.projetofinalcdm.repository.ListasRepository;
 import com.feldmann.projetofinalcdm.views.ListaDeCompras;
+import com.feldmann.projetofinalcdm.views.ListasActivity;
 
 public class ListasController implements Controller.controllerListas{
     private Context context;
@@ -25,18 +26,17 @@ public class ListasController implements Controller.controllerListas{
     }
 
     @Override
-    public void paraListaDeCompras(ImageButton imgBtn) {
+    public void addList(ImageButton imgBtn) {
         imgBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ContentValues ctv = new ContentValues();
                 try{
-                    ctv.put("nome", "lista "+ ListasRepository.getListas().size()+1 );
+                    ctv.put("nome", "lista "+ ( (Integer.valueOf(ListasRepository.getListas().size())) + 1) );
                     sqlWrite.insert("listas", null, ctv);
                     try{
-                        // enviando para ListadeCompras
-                        Intent in = new Intent(context, ListaDeCompras.class);
-                        in.putExtra("ID", ListasRepository.getListas().size()+1);
+                        // resetando activity ListasActivity
+                        Intent in = new Intent(context, ListasActivity.class);
                         context.startActivity(in);
                     }catch (Exception e){
                         Log.d("EXCEPTION", "falha ao mudar de activity:\n"+e.getMessage() );
