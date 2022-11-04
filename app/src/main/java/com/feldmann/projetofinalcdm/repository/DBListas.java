@@ -23,6 +23,7 @@ public class DBListas extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         Log.d("DBListas", "onCreate");
         db.execSQL( dataBase.criarTabelaUsers() );
+        db.execSQL( dataBase.criarTabelaListas() );
     }//fim onCreate
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
