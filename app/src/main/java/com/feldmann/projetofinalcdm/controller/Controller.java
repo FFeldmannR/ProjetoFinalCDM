@@ -19,8 +19,6 @@ public class Controller {
     }
     public interface controllerLogin{
         public void cadastrarUser(Button btn);
-        public void verificaUser(Button btn);
-        public void paraTelaLista(EditText etLogin, EditText etSenha);
     }
     public interface controllerCadastro{
         public void getCampos(EditText etNome, EditText etSenha);

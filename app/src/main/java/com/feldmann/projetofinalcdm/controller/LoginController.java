@@ -3,7 +3,6 @@ package com.feldmann.projetofinalcdm.controller;
 import android.content.Intent;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import com.feldmann.projetofinalcdm.views.CadastroActivity;
 
 public class LoginController implements Controller.controllerLogin{
@@ -24,17 +23,4 @@ public class LoginController implements Controller.controllerLogin{
         });
     }
 
-    @Override
-    public void verificaUser(Button btn) {
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-    }
-
-    @Override
-    public void paraTelaLista(EditText etLogin, EditText etSenha) {
-    }
 }
