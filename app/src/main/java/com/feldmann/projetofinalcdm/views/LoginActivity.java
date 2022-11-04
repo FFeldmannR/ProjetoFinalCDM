@@ -3,6 +3,7 @@ package com.feldmann.projetofinalcdm.views;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.EditText;
 
 import com.feldmann.projetofinalcdm.R;
 import com.feldmann.projetofinalcdm.controller.Controller;
@@ -29,6 +30,11 @@ public class LoginActivity extends AppCompatActivity {
         super.onResume();
         msg.logD("onResume");
         login.cadastrarUser((Button) findViewById(R.id.btnCadastrarL));
+
+        String nomeUser = getIntent().getStringExtra("NOMEUSER");
+        if (nomeUser != null){
+            ((EditText) findViewById(R.id.etLoginL)).setText(nomeUser);
+        }
     }
 
     private void instanceController() {
