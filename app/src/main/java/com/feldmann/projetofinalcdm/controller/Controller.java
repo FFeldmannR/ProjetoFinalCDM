@@ -1,5 +1,5 @@
 package com.feldmann.projetofinalcdm.controller;
-
+//
 import android.app.Activity;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
@@ -7,7 +7,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import androidx.recyclerview.widget.RecyclerView;
-
+//
 public class Controller {
     public interface view{
         public Activity getActivity();

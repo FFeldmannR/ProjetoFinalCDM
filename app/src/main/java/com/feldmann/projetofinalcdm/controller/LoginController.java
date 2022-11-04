@@ -1,5 +1,5 @@
 package com.feldmann.projetofinalcdm.controller;
-
+//
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
@@ -9,16 +9,16 @@ import android.widget.Button;
 import android.widget.EditText;
 import com.feldmann.projetofinalcdm.views.CadastroActivity;
 import com.feldmann.projetofinalcdm.views.ListaActivity;
-
+//
 public class LoginController implements Controller.controllerLogin{
     private Controller.msg msg;
     private SQLiteDatabase sqlRead;
-
+    //
     public LoginController(Context context, SQLiteDatabase sqlRead) {
         this.msg = new MsgController(context, this.getClass().getName().toString() );
         this.sqlRead = sqlRead;
     }
-
+    //
     @Override
     public void Login(Button btn, EditText etLogin, EditText etSenha) {
         btn.setOnClickListener(new View.OnClickListener() {
@@ -28,12 +28,13 @@ public class LoginController implements Controller.controllerLogin{
             }
         });
     }
+    //
     private void verificaUser(Context context, EditText login, EditText senha){
         String etNome = login.getText().toString();
         String etSenha = senha.getText().toString();
         //
         Cursor cursor = sqlRead.rawQuery("SELECT * FROM users", null);
-
+        //
         if (cursor.moveToFirst()){
             do {
                 String dbNome = cursor.getString(1);
@@ -51,13 +52,13 @@ public class LoginController implements Controller.controllerLogin{
                     msg.logD(""+
                             "etNome: "+etNome+" | etSenha: "+etSenha+
                             "\ndbNome: "+dbNome+" | dbSenha: "+dbSenha);
-                }
+                }//fim if else
             }while (cursor.moveToNext());
         }else{
             msg.logD("NÃO TEM REGISTROS");
-        }
-    }
-
+        }//fim if else
+    }//fim verificaUser
+    //
     @Override
     public void cadastrarUser(Button btn) {
         btn.setOnClickListener(new View.OnClickListener() {
@@ -65,8 +66,7 @@ public class LoginController implements Controller.controllerLogin{
             public void onClick(View v) {
                 Intent in = new Intent(v.getContext(), CadastroActivity.class);
                 v.getContext().startActivity(in);
-            }
-        });
-    }
-
-}
+            }//fim onClick
+        }); //fim ClickListener
+    }//fim cadastrarUser
+}//fim class
