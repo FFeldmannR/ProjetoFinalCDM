@@ -8,7 +8,7 @@ import com.feldmann.projetofinalcdm.controller.MsgController;
 import com.feldmann.projetofinalcdm.controller.ViewController;
 import com.feldmann.projetofinalcdm.repository.DBListas;
 //
-public class ListaActivity extends AppCompatActivity {
+public class ListaActivity extends AppCompatActivity implements Controller.controllerInstance{
     private Controller.msg msg;
     private Controller.view view;
     private DBListas db;
@@ -27,7 +27,8 @@ public class ListaActivity extends AppCompatActivity {
         super.onResume();
         msg.logD("onResume");
     }//fim onResume
-    private void instanceController() {
+    @Override
+    public void instanceController() {
         this.view = new ViewController(this, this);
         this.msg = new MsgController(view.getContext(), this.getClass().getName().toString() );
     }//fim instanceController

@@ -11,7 +11,7 @@ import com.feldmann.projetofinalcdm.controller.MsgController;
 import com.feldmann.projetofinalcdm.controller.ViewController;
 import com.feldmann.projetofinalcdm.repository.DBListas;
 //
-public class CadastroActivity extends AppCompatActivity {
+public class CadastroActivity extends AppCompatActivity implements Controller.controllerInstance{
     private Controller.msg msg;
     private Controller.view view;
     private DBListas db;
@@ -34,7 +34,8 @@ public class CadastroActivity extends AppCompatActivity {
         cadastro.addToDB((Button) findViewById(R.id.btnCadastrarC), db.getWritableDatabase());
     }//fim onResume
     //
-    private void instanceController() {
+    @Override
+    public void instanceController() {
         this.view = new ViewController(this, this);
         this.msg = new MsgController(view.getContext(), this.getClass().getName().toString() );
         this.cadastro = new CadastroController(view.getContext());

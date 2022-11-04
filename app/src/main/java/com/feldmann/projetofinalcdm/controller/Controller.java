@@ -11,6 +11,9 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 //
 public class Controller {
+    public interface controllerInstance{
+        public void instanceController();
+    }
     public interface view{
         public Activity getActivity();
         public Context getContext();

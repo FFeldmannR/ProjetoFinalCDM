@@ -8,7 +8,7 @@ import com.feldmann.projetofinalcdm.controller.Controller;
 import com.feldmann.projetofinalcdm.controller.MsgController;
 import com.feldmann.projetofinalcdm.controller.ViewController;
 //
-public class MainActivity extends AppCompatActivity{
+public class MainActivity extends AppCompatActivity implements Controller.controllerInstance{
     private Controller.msg msg;
     private Controller.view view;
     //
@@ -31,7 +31,8 @@ public class MainActivity extends AppCompatActivity{
         super.onResume();
         msg.logD("onResume");
     }//fim onResume
-    private void instanceController(){
+    @Override
+    public void instanceController(){
         this.view = new ViewController(this, this);
         this.msg = new MsgController(view.getContext(), this.getClass().getName().toString() );
     }//fim instanceController

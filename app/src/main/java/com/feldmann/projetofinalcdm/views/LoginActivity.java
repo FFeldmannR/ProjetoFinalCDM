@@ -2,14 +2,10 @@ package com.feldmann.projetofinalcdm.views;
 //
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.graphics.Color;
-import android.graphics.Typeface;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-
 import com.feldmann.projetofinalcdm.R;
 import com.feldmann.projetofinalcdm.controller.Controller;
 import com.feldmann.projetofinalcdm.controller.LoginController;
@@ -17,10 +13,8 @@ import com.feldmann.projetofinalcdm.controller.MsgController;
 import com.feldmann.projetofinalcdm.controller.ViewController;
 import com.feldmann.projetofinalcdm.repository.DBListas;
 
-import org.w3c.dom.Text;
-
 //
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity implements Controller.controllerInstance{
     private Controller.msg msg;
     private Controller.view view;
     private DBListas db;
@@ -49,7 +43,8 @@ public class LoginActivity extends AppCompatActivity {
         login.setTvEMS(((TextView) findViewById(R.id.tvEMS)));
     }//fim onResume
     //
-    private void instanceController() {
+    @Override
+    public void instanceController() {
         this.view = new ViewController(this, this);
         this.msg = new MsgController(view.getContext(), this.getClass().getName().toString() );
         db = new DBListas(view.getContext());
