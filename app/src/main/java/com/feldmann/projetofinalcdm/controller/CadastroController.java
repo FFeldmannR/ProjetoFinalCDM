@@ -1,10 +1,13 @@
 package com.feldmann.projetofinalcdm.controller;
 
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+
+import com.feldmann.projetofinalcdm.views.LoginActivity;
 
 public class CadastroController implements Controller.controllerCadastro{
     private Controller.msg msg;
@@ -28,11 +31,16 @@ public class CadastroController implements Controller.controllerCadastro{
                 ContentValues ctv = new ContentValues();
                 try{
                     //
-                    ctv.put("nome", nome.getText().toString() );
+                    String nomeUser = nome.getText().toString();
+                    ctv.put("nome", nomeUser );
                     ctv.put("senha", senha.getText().toString() );
                     sqlWrite.insert("users", null, ctv);
-                    msg.messageToast(nome.getText() + " ADICIONADO");
+                    msg.messageToast(nomeUser + " ADICIONADO");
+                    Intent in = new Intent(v.getContext(), LoginActivity.class);
+                    in.putExtra("NOMEUSER", nomeUser);
+                    v.getContext().startActivity(in);
                 }catch (Exception e){
+                    msg.messageToast("ERRO AO ADICIONAR USUARIO");
                     msg.logD("ERRO!!! "+e.getMessage() );
                 }
             }
