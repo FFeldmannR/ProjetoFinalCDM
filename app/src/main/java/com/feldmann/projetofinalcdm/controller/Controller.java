@@ -3,6 +3,7 @@ package com.feldmann.projetofinalcdm.controller;
 import android.app.Activity;
 import android.content.Context;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -16,7 +17,9 @@ public class Controller {
         public void logD(String msg);
     }
     public interface controllerLogin{
-        public void paraTelaLista(Button btn);
+        public void cadastrarUser(Button btn);
+        public void verificaUser(Button btn);
+        public void paraTelaLista(EditText etLogin, EditText etSenha);
     }
     public interface controllerListas {
         public void addList(ImageButton imgBtn);
