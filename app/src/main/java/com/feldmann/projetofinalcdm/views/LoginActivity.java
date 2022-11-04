@@ -39,7 +39,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onResume();
         msg.logD("onResume");
         //
-        this.setLogin(getIntent().getStringExtra("NOMEUSER"));
+        this.setLoginField(getIntent().getStringExtra("NOMEUSER"));
         login.Login(
                 (Button) findViewById(R.id.btnEntrar),
                 (EditText) findViewById(R.id.etLoginL),
@@ -56,13 +56,12 @@ public class LoginActivity extends AppCompatActivity {
         this.login = new LoginController(view.getContext(), db.getReadableDatabase());
     }//fim instanceController
     //
-    private void setLogin(String nomeUser){
+    private void setLoginField(String nomeUser){
         if (nomeUser != null){
             ((EditText) findViewById(R.id.etLoginL)).setText(nomeUser);
         }
     }
     private void textViewEMS(TextView tvEMS){
-        //
         tvEMS.setTextColor(Color.BLUE);
         tvEMS.setTypeface(null, Typeface.BOLD);
         tvEMS.setOnClickListener(new View.OnClickListener() {

@@ -6,6 +6,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.TextView;
+
 import androidx.recyclerview.widget.RecyclerView;
 //
 public class Controller {
@@ -18,6 +20,8 @@ public class Controller {
         public void logD(String msg);
     }
     public interface controllerLogin{
+        public void setLoginField(String nomeUser);
+        public void setTvEMS(TextView tvEMS);
         public void Login(Button btn, EditText etLogin, EditText etSenha);
         public void cadastrarUser(Button btn);
     }
