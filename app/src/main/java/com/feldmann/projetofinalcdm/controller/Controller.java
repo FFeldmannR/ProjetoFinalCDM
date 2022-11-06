@@ -7,7 +7,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
-
 import androidx.recyclerview.widget.RecyclerView;
 //
 public class Controller {
@@ -37,7 +36,7 @@ public class Controller {
         public void addToDB(Button btnCadastrar, SQLiteDatabase sqlWrite);
     }
     public interface controllerListas {
-        public void addList(ImageButton imgBtn);
+        public void addToDB(ImageButton imgBtn, String donoLista, String tamanhoDB);
         public void setAdapterListas(RecyclerView rv);
     }
 }
