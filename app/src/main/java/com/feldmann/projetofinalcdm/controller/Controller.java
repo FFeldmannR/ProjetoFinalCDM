@@ -14,6 +14,7 @@ public class Controller {
     public interface view{
         public Activity getActivity();
         public Context getContext();
+        public void getDataBase(String nomeLista, SQLiteDatabase sqlWrite);
     }
     public interface msg{
         public void messageToast(String msg);

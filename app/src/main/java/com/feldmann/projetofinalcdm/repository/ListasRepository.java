@@ -38,6 +38,7 @@ public class ListasRepository {
         Cursor cursor = sqlWrite.rawQuery("SELECT * FROM listas", null);
         if (cursor.moveToFirst()){
             do {
+                msg.logD("cursor Pos: "+cursor.getPosition() );
                 if ( userLogado.equals(cursor.getString(1) ) ){
                     listas.add(new Listas(
                             Integer.parseInt( cursor.getString(0) ),

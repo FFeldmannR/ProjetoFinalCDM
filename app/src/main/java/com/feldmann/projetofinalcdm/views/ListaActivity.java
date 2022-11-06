@@ -29,12 +29,14 @@ public class ListaActivity extends AppCompatActivity implements Controller.contr
     protected void onResume() {
         super.onResume();
         msg.logD("onResume");
+        view.getDataBase("listas", db.getReadableDatabase() );
+
         String usuario = getIntent().getStringExtra("NOMEUSER");
         ListasRepository.getInstanceListas(view.getContext(), db.getWritableDatabase(), usuario );
         ListasRepository.insertToDB(
                 ((ImageButton) findViewById(R.id.imgBtnAddList)),
                 usuario,
-                getNomeLista(),//tamanho db
+                getNomeLista(),//Lista + (databaseSize+1)
                 db.getWritableDatabase()
         );
         //
