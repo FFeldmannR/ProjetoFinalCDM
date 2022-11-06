@@ -1,7 +1,6 @@
 package com.feldmann.projetofinalcdm.views;
 //
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -12,7 +11,6 @@ import com.feldmann.projetofinalcdm.controller.LoginController;
 import com.feldmann.projetofinalcdm.controller.MsgController;
 import com.feldmann.projetofinalcdm.controller.ViewController;
 import com.feldmann.projetofinalcdm.repository.DBListas;
-
 //
 public class LoginActivity extends AppCompatActivity implements Controller.controllerInstance{
     private Controller.msg msg;
@@ -41,6 +39,7 @@ public class LoginActivity extends AppCompatActivity implements Controller.contr
         );
         login.cadastrarUser((Button) findViewById(R.id.btnCadastrarL));
         login.setTvEMS(((TextView) findViewById(R.id.tvEMS)));
+        //
     }//fim onResume
     //
     @Override
