@@ -19,19 +19,18 @@
             android:textStyle="bold"
             android:text="nomeItem" />
 
-        <EditText
-            android:id="@+id/etQuantidade"
+        <TextView
+            android:id="@+id/tvQuantidade"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="number"
-            android:gravity="center"
+            android:layout_height="match_parent"
             android:layout_weight="1"
-            android:hint="Quantidade" />
+            android:gravity="center"
+            android:text="Quantidade" />
 
         <CheckBox
             android:id="@+id/checkBoxItem"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:ems="5" />
 
     </LinearLayout>
