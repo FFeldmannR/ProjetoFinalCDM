@@ -1,6 +1,7 @@
 package com.feldmann.projetofinalcdm.adapters;
 //
 import android.content.Context;
+import android.content.Intent;
 import android.os.Build;
 import android.util.Log;
 import android.util.TypedValue;
@@ -57,6 +58,8 @@ public class ListaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             context.getTheme().resolveAttribute(android.R.attr.selectableItemBackground, outValue, true);
             holder.itemView.setBackgroundResource(outValue.resourceId);
         }
+    }//fim buttonEffect
+    private void paraListadeCompras(Context context, String nomeLista){
     }
 }
 class ListaViewHolder extends RecyclerView.ViewHolder{
