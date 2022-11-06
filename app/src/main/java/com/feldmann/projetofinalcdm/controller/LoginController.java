@@ -65,13 +65,18 @@ public class LoginController implements Controller.controllerLogin{
                 //
                 if (etNome.equals(dbNome) && etSenha.equals(dbSenha)){
                     //válido
-                    msg.messageToast("Bem Vindo(a) "+dbNome);
-                    Intent toListActivity = new Intent(context, ListaActivity.class);
-                    toListActivity.putExtra("NOMEUSER", dbNome);
-                    context.startActivity(toListActivity);
+                    try{
+                        Intent toListActivity = new Intent(context, ListaActivity.class);
+                        toListActivity.putExtra("NOMEUSER", dbNome);
+                        msg.messageToast("Bem Vindo(a) "+dbNome);
+                        context.startActivity(toListActivity);
+                    }catch (Exception e){
+                        msg.logD("ERRO AO MUDAR DE ACTIVITY\n"+e.getMessage() );
+                    }
+                    break;
                 }else{
                     //inválido
-                    msg.messageToast("USUARIO INVÁLIDO\nTENTE NOVAMENTE");
+                    //msg.messageToast("USUARIO INVÁLIDO\nTENTE NOVAMENTE");
                     msg.logD(""+
                             "etNome: "+etNome+" | etSenha: "+etSenha+
                             "\ndbNome: "+dbNome+" | dbSenha: "+dbSenha);

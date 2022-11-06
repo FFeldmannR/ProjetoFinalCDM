@@ -8,7 +8,6 @@ import com.feldmann.projetofinalcdm.controller.MsgController;
 import com.feldmann.projetofinalcdm.controller.ViewController;
 import com.feldmann.projetofinalcdm.repository.DBListas;
 import com.feldmann.projetofinalcdm.repository.ListasRepository;
-
 //
 public class ListaActivity extends AppCompatActivity implements Controller.controllerInstance{
     private Controller.msg msg;
@@ -21,7 +20,7 @@ public class ListaActivity extends AppCompatActivity implements Controller.contr
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_listas);
         this.instanceController();
-        this.listas = new ListasRepository(view.getContext(), db.getWritableDatabase() );
+        this.listas = new ListasRepository(view.getContext() );
         db = new DBListas(view.getContext());
         msg.logD("onCreate");
     }//fim onCreate
