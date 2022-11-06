@@ -2,7 +2,6 @@ package com.feldmann.projetofinalcdm.views;
 //
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
-import android.database.Cursor;
 import android.os.Bundle;
 import android.widget.ImageButton;
 import com.feldmann.projetofinalcdm.R;
@@ -48,7 +47,8 @@ public class ListaActivity extends AppCompatActivity implements Controller.contr
         this.msg = new MsgController(view.getContext(), this.getClass().getName().toString() );
     }//fim instanceController
     private String getNomeLista(){
-        Cursor cursor = db.getReadableDatabase().rawQuery("SELECT * FROM listas", null);
-        return "Lista "+( Integer.valueOf( ( cursor.getCount() )+1 ).toString() );
+        //Cursor cursor = db.getReadableDatabase().rawQuery("SELECT * FROM listas", null);
+        //String nomeLista = "Lista "+( Integer.valueOf( ( cursor.getCount() )+1 ).toString() );
+        return "Lista "+Integer.toString( ( ListasRepository.getListas().size() ) +1 );
     }
 }//fim class
