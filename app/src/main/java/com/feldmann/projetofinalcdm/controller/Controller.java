@@ -35,8 +35,4 @@ public class Controller {
         public void getCampos(EditText etNome, EditText etSenha);
         public void addToDB(Button btnCadastrar, SQLiteDatabase sqlWrite);
     }
-    public interface controllerListas {
-        public void addToDB(ImageButton imgBtn, String donoLista, String tamanhoDB);
-        public void setAdapterListas(RecyclerView rv);
-    }
 }
