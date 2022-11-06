@@ -29,7 +29,15 @@ public class ListaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         Listas objListas = listas.get(position);
-        ((TextView)((ListaViewHolder) holder).view.findViewById(R.id.tvNomeLista)).setText( "Lista "+objListas.getId() );
+        //
+        ((TextView)((ListaViewHolder) holder).view.findViewById(R.id.tvNomeLista)).setText( objListas.getNomeLista() );
+        //
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(v.getContext(), objListas.getNomeLista()+" clicada", Toast.LENGTH_SHORT).show();
+            }
+        });
         //
     }
     //
