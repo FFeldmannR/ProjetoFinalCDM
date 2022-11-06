@@ -14,8 +14,9 @@ public class DataBaseController implements Controller.controllerDataBase{
     @Override
     public String criarTabelaListas() {
         String sqlStatement = "CREATE TABLE IF NOT EXISTS listas("+
-                "_id INTEGET PRIMARY KEY AUTOINCREMENT, "+
-                "nomeLista"+
+                "_id INTEGER PRIMARY KEY AUTOINCREMENT, "+
+                "donoLista TEXT, " +
+                "nomeLista TEXT" +
                 ");";
         return sqlStatement;
     }
