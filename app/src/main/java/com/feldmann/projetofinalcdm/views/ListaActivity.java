@@ -29,9 +29,9 @@ public class ListaActivity extends AppCompatActivity implements Controller.contr
     protected void onResume() {
         super.onResume();
         msg.logD("onResume");
-        view.getDataBase("listas", db.getReadableDatabase() );
-
         String usuario = getIntent().getStringExtra("NOMEUSER");
+        setTitle(usuario);
+
         ListasRepository.getInstanceListas(view.getContext(), db.getWritableDatabase(), usuario );
         ListasRepository.insertToDB(
                 ((ImageButton) findViewById(R.id.imgBtnAddList)),
@@ -49,8 +49,6 @@ public class ListaActivity extends AppCompatActivity implements Controller.contr
         this.msg = new MsgController(view.getContext(), this.getClass().getName().toString() );
     }//fim instanceController
     private String getNomeLista(){
-        //Cursor cursor = db.getReadableDatabase().rawQuery("SELECT * FROM listas", null);
-        //String nomeLista = "Lista "+( Integer.valueOf( ( cursor.getCount() )+1 ).toString() );
         return "Lista "+Integer.toString( ( ListasRepository.getListas().size() ) +1 );
     }
 }//fim class
