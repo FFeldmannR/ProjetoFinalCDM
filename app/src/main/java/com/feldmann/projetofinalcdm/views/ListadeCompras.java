@@ -14,7 +14,7 @@ public class ListadeCompras extends AppCompatActivity implements Controller.cont
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_listade_compras);
+        setContentView(R.layout.activity_lista_de_compras);
         this.instanceController();
         msg.logD("onCreate");
     }
