@@ -1,5 +1,9 @@
 package com.feldmann.projetofinalcdm.adapters;
 //
+import android.content.Context;
+import android.os.Build;
+import android.util.Log;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,6 +39,7 @@ public class ListaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                buttonEffect(v.getContext(), holder);
                 Toast.makeText(v.getContext(), objListas.getNomeLista()+" clicada", Toast.LENGTH_SHORT).show();
             }
         });
@@ -44,6 +49,14 @@ public class ListaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     @Override
     public int getItemCount() {
         return listas.size();
+    }
+    //
+    private void buttonEffect(Context context, RecyclerView.ViewHolder holder){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+            TypedValue outValue = new TypedValue();
+            context.getTheme().resolveAttribute(android.R.attr.selectableItemBackground, outValue, true);
+            holder.itemView.setBackgroundResource(outValue.resourceId);
+        }
     }
 }
 class ListaViewHolder extends RecyclerView.ViewHolder{
