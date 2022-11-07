@@ -24,6 +24,7 @@ public class DBListas extends SQLiteOpenHelper {
         Log.d("DBListas", "onCreate");
         db.execSQL( dataBase.criarTabelaUsers() );
         db.execSQL( dataBase.criarTabelaListas() );
+        db.execSQL( dataBase.criarTabelaCompras() );
     }//fim onCreate
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
