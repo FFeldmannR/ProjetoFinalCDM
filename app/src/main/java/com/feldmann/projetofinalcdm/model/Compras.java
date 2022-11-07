@@ -5,9 +5,9 @@ public class Compras {
     private String nomeLista;
     private String nomeItem;
     private String quantidade;
-    private boolean completed;
+    private String completed;
     //
-    public Compras(int id, String nomeLista, String nomeItem, String quantidade, boolean completed) {
+    public Compras(int id, String nomeLista, String nomeItem, String quantidade, String completed) {
         this.id = id;
         this.nomeLista = nomeLista;
         this.nomeItem = nomeItem;
@@ -27,7 +27,7 @@ public class Compras {
     public String getQuantidade() { return quantidade; }
     public void setQuantidade(String quantidade) { this.quantidade = quantidade; }
     //
-    public boolean isCompleted() { return completed; }
-    public void setCompleted(boolean completed) { this.completed = completed; }
+    public String isCompleted() { return completed; }
+    public void setCompleted(String completed) { this.completed = completed; }
     //
 }//fim classe
