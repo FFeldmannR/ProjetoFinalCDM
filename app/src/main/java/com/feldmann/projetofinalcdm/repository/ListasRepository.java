@@ -38,7 +38,8 @@ public class ListasRepository {
         Cursor cursor = sqlWrite.rawQuery("SELECT * FROM listas", null);
         if (cursor.moveToFirst()){
             do {
-                msg.logD("cursor Pos: "+cursor.getPosition() );
+                //verifica usuario logado, para preencher o
+                // arraylist apenas com as listas desse usuario
                 if ( userLogado.equals(cursor.getString(1) ) ){
                     listas.add(new Listas(
                             Integer.parseInt( cursor.getString(0) ),
@@ -46,6 +47,7 @@ public class ListasRepository {
                             cursor.getString(2) )
                     );
                 }
+                //
                 msg.logD(cursor.getString(2)+" adicionado no arrayList" );
             }while (cursor.moveToNext());
         }else{
@@ -60,7 +62,7 @@ public class ListasRepository {
         return listas;
     }
     //
-    public static void insertToDB(ImageButton imgBtn, String donoLista, String nomeLista, SQLiteDatabase sqlWrite){
+    public static void insertListToDB(ImageButton imgBtn, String donoLista, String nomeLista, SQLiteDatabase sqlWrite){
         imgBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

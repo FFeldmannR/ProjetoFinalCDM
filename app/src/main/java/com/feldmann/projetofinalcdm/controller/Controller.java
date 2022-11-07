@@ -31,6 +31,6 @@ public class Controller {
     }
     public interface controllerCadastro{
         public void getCampos(EditText etNome, EditText etSenha);
-        public void addToDB(Button btnCadastrar, SQLiteDatabase sqlWrite);
+        public void addUserToDB(Button btnCadastrar, SQLiteDatabase sqlWrite);
     }
 }

@@ -24,7 +24,7 @@ public class CadastroController implements Controller.controllerCadastro{
     }
     //
     @Override
-    public void addToDB(Button btnCadastrar, SQLiteDatabase sqlWrite) {
+    public void addUserToDB(Button btnCadastrar, SQLiteDatabase sqlWrite) {
         btnCadastrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -35,7 +35,7 @@ public class CadastroController implements Controller.controllerCadastro{
                     ctv.put("nome", nomeUser );
                     ctv.put("senha", senha.getText().toString() );
                     sqlWrite.insert("users", null, ctv);
-                    msg.messageToast(nomeUser + " ADICIONADO");
+                    msg.logD(nomeUser + " ADICIONADO");
                     Intent in = new Intent(v.getContext(), LoginActivity.class);
                     in.putExtra("NOMEUSER", nomeUser);
                     v.getContext().startActivity(in);

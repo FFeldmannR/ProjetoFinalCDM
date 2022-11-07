@@ -31,7 +31,7 @@ public class CadastroActivity extends AppCompatActivity implements Controller.co
         super.onResume();
         msg.logD("onResume");
         cadastro.getCampos((EditText) findViewById(R.id.etLoginC), (EditText) findViewById(R.id.etSenhaC));
-        cadastro.addToDB((Button) findViewById(R.id.btnCadastrarC), db.getWritableDatabase());
+        cadastro.addUserToDB((Button) findViewById(R.id.btnCadastrarC), db.getWritableDatabase());
     }//fim onResume
     //
     @Override
