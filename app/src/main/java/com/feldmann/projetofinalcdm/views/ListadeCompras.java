@@ -32,6 +32,7 @@ public class ListadeCompras extends AppCompatActivity implements Controller.cont
         //
         ListadeComprasRepository.getInstanceCompras(
                 view.getContext(), db.getWritableDatabase(), nomeLista );
+        //metodo para activity de criar item
     }
     //
     @Override
