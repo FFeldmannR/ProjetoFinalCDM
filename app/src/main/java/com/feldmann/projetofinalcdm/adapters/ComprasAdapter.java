@@ -1,5 +1,6 @@
 package com.feldmann.projetofinalcdm.adapters;
-
+//
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Build;
@@ -9,16 +10,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.feldmann.projetofinalcdm.R;
 import com.feldmann.projetofinalcdm.model.Compras;
-import com.feldmann.projetofinalcdm.model.Listas;
-
 import java.util.List;
-
+//
 public class ComprasAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     //
     private List<Compras> compras;
@@ -43,7 +40,12 @@ public class ComprasAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         ((TextView)((ComprasViewHolder) holder).view.findViewById(R.id.tvNomeItem)).setText( objCompras.getNomeItem() );
         ((TextView)((ComprasViewHolder) holder).view.findViewById(R.id.tvQuantidade)).setText( objCompras.getQuantidade() );
         //checkbox
-        this.itemClick(holder);
+            if ( objCompras.isCompleted().equals("1") ){
+                ((CheckBox)((ComprasViewHolder) holder).view.findViewById(R.id.checkBoxItem)).setChecked(true);
+            }else{
+                ((CheckBox)((ComprasViewHolder) holder).view.findViewById(R.id.checkBoxItem)).setChecked(false);
+            }
+            this.itemClick(holder, objCompras.getNomeLista() );
         //
     }
     //
@@ -52,12 +54,15 @@ public class ComprasAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         return compras.size();
     }
     //
-    private void itemClick(RecyclerView.ViewHolder holder){
+    private void itemClick(RecyclerView.ViewHolder holder, String nomeLista){
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                ContentValues ctv = new ContentValues();
                 ((CheckBox)((ComprasViewHolder) holder).view.findViewById(R.id.checkBoxItem)).setChecked(true);
                 // update no db
+                ctv.put("completed", "1");
+                sqlWrite.update("compras", ctv,"nomeLista = "+nomeLista, null);
             }
         });
     }
