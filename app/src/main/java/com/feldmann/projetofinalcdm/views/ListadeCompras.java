@@ -1,7 +1,12 @@
 package com.feldmann.projetofinalcdm.views;
 //
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageButton;
+
 import com.feldmann.projetofinalcdm.R;
 import com.feldmann.projetofinalcdm.controller.Controller;
 import com.feldmann.projetofinalcdm.controller.MsgController;
@@ -33,6 +38,17 @@ public class ListadeCompras extends AppCompatActivity implements Controller.cont
         ComprasRepository.getInstanceCompras(
                 view.getContext(), db.getWritableDatabase(), nomeLista );
         //metodo para activity de criar item
+        this.cadastrarItem((ImageButton) findViewById(R.id.imgBtnAddItem), nomeLista );
+    }
+    private void cadastrarItem(ImageButton imgBtn, String nomeLista){
+        imgBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent in = new Intent(v.getContext(), CadastrarItemActivity.class);
+                in.putExtra("NOMELISTA", nomeLista);
+                v.getContext().startActivity(in);
+            }
+        });
     }
     //
     @Override
