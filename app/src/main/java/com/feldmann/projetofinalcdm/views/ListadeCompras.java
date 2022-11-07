@@ -23,6 +23,7 @@ public class ListadeCompras extends AppCompatActivity implements Controller.cont
     protected void onResume() {
         super.onResume();
         msg.logD("onResume");
+        setTitle(getIntent().getStringExtra("NOMELISTA"));
     }
     //
     @Override
