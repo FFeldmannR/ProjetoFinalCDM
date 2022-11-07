@@ -14,6 +14,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.feldmann.projetofinalcdm.R;
 import com.feldmann.projetofinalcdm.model.Listas;
+import com.feldmann.projetofinalcdm.views.ListadeCompras;
+
 import java.util.List;
 //
 public class ListaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
@@ -61,6 +63,9 @@ public class ListaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
         }
     }//fim buttonEffect
     private void paraListadeCompras(Context context, String nomeLista){
+        Intent in = new Intent(context, ListadeCompras.class);
+        in.putExtra("NOMELISTA", nomeLista);
+        context.startActivity(in);
     }
 }
 class ListaViewHolder extends RecyclerView.ViewHolder{
