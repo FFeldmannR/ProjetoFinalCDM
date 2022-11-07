@@ -1,6 +1,7 @@
 package com.feldmann.projetofinalcdm.views;
 //
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -39,7 +40,12 @@ public class ListadeCompras extends AppCompatActivity implements Controller.cont
                 view.getContext(), db.getWritableDatabase(), nomeLista );
         //metodo para activity de criar item
         this.cadastrarItem((ImageButton) findViewById(R.id.imgBtnAddItem), nomeLista );
-    }
+        //
+        ComprasRepository.setAdapterItemList(
+                (RecyclerView) findViewById(R.id.RVCompras),
+                db.getWritableDatabase()
+        );
+    }//fim onResume
     private void cadastrarItem(ImageButton imgBtn, String nomeLista){
         imgBtn.setOnClickListener(new View.OnClickListener() {
             @Override
