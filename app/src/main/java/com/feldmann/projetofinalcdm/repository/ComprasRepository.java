@@ -17,13 +17,13 @@ import com.feldmann.projetofinalcdm.views.ListadeCompras;
 import java.util.ArrayList;
 import java.util.List;
 //
-public class ListadeComprasRepository {
-    private static ListadeComprasRepository instance = null;
+public class ComprasRepository {
+    private static ComprasRepository instance = null;
     private Context contexto;
     private static List<Compras> compras;
     private static Controller.msg msg;
     //
-    public ListadeComprasRepository(Context contexto) {
+    public ComprasRepository(Context contexto) {
         this.msg = new MsgController(contexto, this.getClass().getName() );
         this.contexto = contexto;
         if (instance == null){
@@ -31,8 +31,8 @@ public class ListadeComprasRepository {
         }
     }//fim construtor
     //
-    public static ListadeComprasRepository getInstanceCompras(Context context, SQLiteDatabase sqlWrite, String nomeLista){
-        instance = new ListadeComprasRepository(context);
+    public static ComprasRepository getInstanceCompras(Context context, SQLiteDatabase sqlWrite, String nomeLista){
+        instance = new ComprasRepository(context);
         compras.removeAll( getCompras() );
         //
         Cursor cursor = sqlWrite.rawQuery("SELECT * FROM compras", null);

@@ -7,7 +7,7 @@ import com.feldmann.projetofinalcdm.controller.Controller;
 import com.feldmann.projetofinalcdm.controller.MsgController;
 import com.feldmann.projetofinalcdm.controller.ViewController;
 import com.feldmann.projetofinalcdm.repository.DBListas;
-import com.feldmann.projetofinalcdm.repository.ListadeComprasRepository;
+import com.feldmann.projetofinalcdm.repository.ComprasRepository;
 //
 public class ListadeCompras extends AppCompatActivity implements Controller.controllerInstance{
     private Controller.msg msg;
@@ -30,7 +30,7 @@ public class ListadeCompras extends AppCompatActivity implements Controller.cont
         String nomeLista = getIntent().getStringExtra("NOMELISTA");
         setTitle(nomeLista);
         //
-        ListadeComprasRepository.getInstanceCompras(
+        ComprasRepository.getInstanceCompras(
                 view.getContext(), db.getWritableDatabase(), nomeLista );
         //metodo para activity de criar item
     }
