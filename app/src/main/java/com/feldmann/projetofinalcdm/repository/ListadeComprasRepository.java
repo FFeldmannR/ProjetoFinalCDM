@@ -88,9 +88,9 @@ public class ListadeComprasRepository {
         });//fim clickListener
     }//fim metodo insertItemToDB
     //
-    public static void setAdapterItemList(RecyclerView rv){
+    public static void setAdapterItemList(RecyclerView rv, SQLiteDatabase sqlWrite){
         msg.logD("setAdapterListas");
-        ComprasAdapter comprasAdapter = new ComprasAdapter( getCompras() );
+        ComprasAdapter comprasAdapter = new ComprasAdapter( getCompras(), sqlWrite );
         rv.setAdapter(comprasAdapter);
         rv.setLayoutManager( new LinearLayoutManager(instance.contexto ) );
     }
