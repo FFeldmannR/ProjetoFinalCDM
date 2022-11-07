@@ -58,6 +58,7 @@ public class ComprasAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                buttonEffect(v.getContext(), holder);
                 ContentValues ctv = new ContentValues();
                 ((CheckBox)((ComprasViewHolder) holder).view.findViewById(R.id.checkBoxItem)).setChecked(true);
                 // update no db
