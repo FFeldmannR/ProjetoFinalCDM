@@ -3,7 +3,6 @@ package com.feldmann.projetofinalcdm.adapters;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,7 +14,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.feldmann.projetofinalcdm.R;
 import com.feldmann.projetofinalcdm.model.Listas;
 import com.feldmann.projetofinalcdm.views.ListadeCompras;
-
 import java.util.List;
 //
 public class ListaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
