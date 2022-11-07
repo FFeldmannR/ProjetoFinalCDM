@@ -22,6 +22,7 @@ public class Controller {
     public interface controllerDataBase{
         public String criarTabelaUsers();
         public String criarTabelaListas();
+        public String criarTabelaCompras();
     }
     public interface controllerLogin{
         public void setLoginField(String nomeUser, EditText etLoginL);

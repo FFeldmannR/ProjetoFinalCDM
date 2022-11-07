@@ -20,4 +20,16 @@ public class DataBaseController implements Controller.controllerDataBase{
                 ");";
         return sqlStatement;
     }
+
+    @Override
+    public String criarTabelaCompras() {
+        String sqlStatement = "CREATE TABLE IF NOT EXISTS compras("+
+                "_id INTEGER PRIMARY KEY AUTOINCREMENT, "+
+                "nomeLista TEXT, " +
+                "nomeItem TEXT," +
+                "quantidade TEXT," +
+                "completed TEXT" +
+                ");";
+        return sqlStatement;
+    }
 }
