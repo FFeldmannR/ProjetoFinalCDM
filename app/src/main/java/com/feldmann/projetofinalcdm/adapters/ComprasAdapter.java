@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Build;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -58,12 +59,31 @@ public class ComprasAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                buttonEffect(v.getContext(), holder);
-                ContentValues ctv = new ContentValues();
-                ((CheckBox)((ComprasViewHolder) holder).view.findViewById(R.id.checkBoxItem)).setChecked(true);
-                // update no db
-                ctv.put("completed", "1");
-                sqlWrite.update("compras", ctv,"nomeLista = "+nomeLista, null);
+                CheckBox cb = ((CheckBox)((ComprasViewHolder) holder).view.findViewById(R.id.checkBoxItem));
+                try{
+                    buttonEffect(v.getContext(), holder);
+                }catch (Exception e){
+                    Log.d("itemClick", "FALHA NO EFEITO");
+                }
+                try{
+                    if (cb.isChecked()){
+                        sqlWrite.execSQL("UPDATE TABLE compras SET completed = '0' WHERE nomeLista = "+nomeLista );
+                    }else{
+                        sqlWrite.execSQL("UPDATE TABLE compras SET completed = '1' WHERE nomeLista = "+nomeLista );
+                    }
+                }catch (Exception e){
+                    Log.d("itemClick", "FALHA AO ATUALIZAR NO BANCO");
+                }
+                try{
+                    if (cb.isChecked()){
+                        cb.setChecked(false);
+                    }else{
+                        cb.setChecked(true);
+                    }
+                }catch (Exception e){
+                    Log.d("itemClick", "FALHA AO MARCAR CHECKBOX");
+                }
+                //Log.d("teste click", )
             }
         });
     }
