@@ -33,7 +33,7 @@ public class ListaActivity extends AppCompatActivity implements Controller.contr
         setTitle(usuario);
 
         ListasRepository.getInstanceListas(view.getContext(), db.getWritableDatabase(), usuario );
-        ListasRepository.insertListToDB(
+        ListasRepository.insertNewListToDB(
                 ((ImageButton) findViewById(R.id.imgBtnAddList)),
                 usuario,
                 getNomeLista(),//Lista + (databaseSize+1)
