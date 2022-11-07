@@ -7,18 +7,13 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.view.View;
 import android.widget.ImageButton;
-
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.feldmann.projetofinalcdm.adapters.ListaAdapter;
+import com.feldmann.projetofinalcdm.adapters.ComprasAdapter;
 import com.feldmann.projetofinalcdm.controller.Controller;
 import com.feldmann.projetofinalcdm.controller.MsgController;
 import com.feldmann.projetofinalcdm.model.Compras;
-import com.feldmann.projetofinalcdm.model.Listas;
-import com.feldmann.projetofinalcdm.views.ListaActivity;
 import com.feldmann.projetofinalcdm.views.ListadeCompras;
-
 import java.util.ArrayList;
 import java.util.List;
 //
