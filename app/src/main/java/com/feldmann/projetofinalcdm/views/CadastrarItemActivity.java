@@ -1,5 +1,5 @@
 package com.feldmann.projetofinalcdm.views;
-
+//
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import com.feldmann.projetofinalcdm.R;
@@ -7,7 +7,7 @@ import com.feldmann.projetofinalcdm.controller.Controller;
 import com.feldmann.projetofinalcdm.controller.MsgController;
 import com.feldmann.projetofinalcdm.controller.ViewController;
 import com.feldmann.projetofinalcdm.repository.DBListas;
-
+//
 public class CadastrarItemActivity extends AppCompatActivity implements Controller.controllerInstance {
     private Controller.msg msg;
     private Controller.view view;
@@ -21,13 +21,14 @@ public class CadastrarItemActivity extends AppCompatActivity implements Controll
         db = new DBListas(view.getContext());
         msg.logD("onCreate");
     }
-
+    //
     @Override
     protected void onResume() {
         super.onResume();
         msg.logD("onResume");
+        setTitle("Cadastrar Item");
     }
-
+    //
     @Override
     public void instanceController() {
         this.view = new ViewController(this, this);
