@@ -62,7 +62,7 @@ public class ListasRepository {
         return listas;
     }
     //
-    public static void insertListToDB(ImageButton imgBtn, String donoLista, String nomeLista, SQLiteDatabase sqlWrite){
+    public static void insertNewListToDB(ImageButton imgBtn, String donoLista, String nomeLista, SQLiteDatabase sqlWrite){
         imgBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
