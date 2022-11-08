@@ -12,6 +12,7 @@ import com.feldmann.projetofinalcdm.R;
 import com.feldmann.projetofinalcdm.controller.Controller;
 import com.feldmann.projetofinalcdm.controller.MsgController;
 import com.feldmann.projetofinalcdm.controller.ViewController;
+import com.feldmann.projetofinalcdm.repository.ComprasRepository;
 import com.feldmann.projetofinalcdm.repository.DBListas;
 //
 public class CadastrarItemActivity extends AppCompatActivity implements Controller.controllerInstance {
@@ -34,33 +35,16 @@ public class CadastrarItemActivity extends AppCompatActivity implements Controll
         msg.logD("onResume");
         String nomeLista = getIntent().getStringExtra("NOMELISTA");
         setTitle("Adicionar item em "+nomeLista);
-        addItemToDB(
+        ComprasRepository.addItemToDB(
                 db.getWritableDatabase(),
                 (Button) findViewById(R.id.btnSalvar),
                 nomeLista,
                 (EditText) findViewById(R.id.etNomeItem),
-                (EditText) findViewById(R.id.etQuantidade)
+                (EditText) findViewById(R.id.etQuantidade),
+                0
         );
     }
     //
-    private void addItemToDB(SQLiteDatabase sqlWrite, Button btnSalvar, String nomeLista, EditText etNomeItem, EditText etQntdItem){
-        btnSalvar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //
-                ContentValues ctv = new ContentValues();
-                ctv.put("nomeLista", nomeLista);
-                ctv.put("nomeItem", etNomeItem.getText().toString() );
-                ctv.put("quantidade", etQntdItem.getText().toString() );
-                ctv.put("completed", "0");
-                sqlWrite.insert("compras", null, ctv);
-                //
-                Intent in = new Intent(v.getContext(), ListadeCompras.class);
-                in.putExtra("NOMELISTA", nomeLista);
-                v.getContext().startActivity(in);
-            }
-        });
-    }
     @Override
     public void instanceController() {
         this.view = new ViewController(this, this);
