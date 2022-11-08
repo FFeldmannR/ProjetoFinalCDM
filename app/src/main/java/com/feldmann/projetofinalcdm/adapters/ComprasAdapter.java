@@ -1,5 +1,6 @@
 package com.feldmann.projetofinalcdm.adapters;
 //
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Build;
@@ -76,25 +77,37 @@ public class ComprasAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                 }catch (Exception e){
                     Log.d("itemClick", "FALHA NO EFEITO");
                 }
+                //
                 try{
+                    ContentValues ctv = new ContentValues();
                     if (cb.isChecked()){ //se esta marcado, mude para 0
+                        /* ctv.put("completed", 0);
+                        sqlWrite.update("compras", ctv,
+                                "nomeLista="+nomeListaAtual+" AND nomeItem="+nomeItem,
+                                null); */
                         sqlWrite.execSQL(
-                                "UPDATE TABLE compras "+
+                                "UPDATE compras "+
                                 "SET completed=0 "+
                                 "WHERE nomeLista="+nomeListaAtual+
-                                ", nomeItem="+nomeItem
+                                " AND nomeItem="+nomeItem
                         );
                     }else{//se NÃO esta marcado, mude para 1
+                        /* ctv.put("completed", 1);
+                        sqlWrite.update("compras", ctv,
+                                "nomeLista="+nomeListaAtual+" AND nomeItem="+nomeItem,
+                                null); */
                         sqlWrite.execSQL(
-                                "UPDATE TABLE compras "+
+                                "UPDATE compras "+
                                 "SET completed=1 "+
                                 "WHERE nomeLista="+nomeListaAtual+
-                                ", nomeItem="+nomeItem
+                                " AND nomeItem="+nomeItem
                         );
                     }
                 }catch (Exception e){
                     Log.d("itemClick", "FALHA AO ATUALIZAR NO BANCO");
+                    Log.d("itemClick", ""+e.getMessage());
                 }
+                //
                 try{
                     if (cb.isChecked()){
                         cb.setChecked(false);
