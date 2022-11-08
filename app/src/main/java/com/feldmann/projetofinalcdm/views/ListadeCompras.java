@@ -43,7 +43,8 @@ public class ListadeCompras extends AppCompatActivity implements Controller.cont
         //
         ComprasRepository.setAdapterItemList(
                 (RecyclerView) findViewById(R.id.RVCompras),
-                db.getWritableDatabase()
+                db.getWritableDatabase(),
+                nomeLista
         );
     }//fim onResume
     private void cadastrarItem(ImageButton imgBtn, String nomeLista){
