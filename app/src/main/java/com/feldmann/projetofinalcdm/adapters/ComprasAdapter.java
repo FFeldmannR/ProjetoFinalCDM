@@ -1,6 +1,5 @@
 package com.feldmann.projetofinalcdm.adapters;
 //
-import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Build;
@@ -21,10 +20,12 @@ public class ComprasAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     //
     private List<Compras> compras;
     private SQLiteDatabase sqlWrite;
+    private String nomeListaAtual;
     //
-    public ComprasAdapter(List<Compras> compras, SQLiteDatabase sqlWrite) {
+    public ComprasAdapter(List<Compras> compras, SQLiteDatabase sqlWrite, String nomeListaAtual) {
         this.compras = compras;
         this.sqlWrite = sqlWrite;
+        this.nomeListaAtual = nomeListaAtual;
     }
     //
     @NonNull
@@ -41,24 +42,34 @@ public class ComprasAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         ((TextView)((ComprasViewHolder) holder).view.findViewById(R.id.tvNomeItem)).setText( objCompras.getNomeItem() );
         ((TextView)((ComprasViewHolder) holder).view.findViewById(R.id.tvQuantidade)).setText( objCompras.getQuantidade() );
         //checkbox
-            if ( objCompras.isCompleted().equals("1") ){
+            if ( objCompras.isCompleted() == 1 ){
                 ((CheckBox)((ComprasViewHolder) holder).view.findViewById(R.id.checkBoxItem)).setChecked(true);
             }else{
                 ((CheckBox)((ComprasViewHolder) holder).view.findViewById(R.id.checkBoxItem)).setChecked(false);
             }
-            this.itemClick(holder, objCompras.getNomeLista() );
+            this.itemClick(holder, objCompras.getNomeItem(), objCompras );
         //
-    }
+    }//fim bindView
     //
     @Override
     public int getItemCount() {
         return compras.size();
     }
     //
-    private void itemClick(RecyclerView.ViewHolder holder, String nomeLista){
+    private void selectList(Compras objCompras){
+        //
+        Log.d("SELECT_TABLE","_id | nomeLista | nomeItem | quantidade | completed"+
+                "("+objCompras.getId()+") "+
+                objCompras.getNomeLista()+" | "+
+                objCompras.getNomeItem()+" | "+
+                objCompras.getQuantidade()+" | "+
+                objCompras.isCompleted() );
+    }
+    private void itemClick(RecyclerView.ViewHolder holder, String nomeItem, Compras objCompras){
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                selectList(objCompras);
                 CheckBox cb = ((CheckBox)((ComprasViewHolder) holder).view.findViewById(R.id.checkBoxItem));
                 try{
                     buttonEffect(v.getContext(), holder);
@@ -66,10 +77,20 @@ public class ComprasAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                     Log.d("itemClick", "FALHA NO EFEITO");
                 }
                 try{
-                    if (cb.isChecked()){
-                        sqlWrite.execSQL("UPDATE TABLE compras SET completed = '0' WHERE nomeLista = "+nomeLista );
-                    }else{
-                        sqlWrite.execSQL("UPDATE TABLE compras SET completed = '1' WHERE nomeLista = "+nomeLista );
+                    if (cb.isChecked()){ //se esta marcado, mude para 0
+                        sqlWrite.execSQL(
+                                "UPDATE TABLE compras "+
+                                "SET completed=0 "+
+                                "WHERE nomeLista="+nomeListaAtual+
+                                ", nomeItem="+nomeItem
+                        );
+                    }else{//se NÃO esta marcado, mude para 1
+                        sqlWrite.execSQL(
+                                "UPDATE TABLE compras "+
+                                "SET completed=1 "+
+                                "WHERE nomeLista="+nomeListaAtual+
+                                ", nomeItem="+nomeItem
+                        );
                     }
                 }catch (Exception e){
                     Log.d("itemClick", "FALHA AO ATUALIZAR NO BANCO");
