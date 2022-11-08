@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -38,7 +40,7 @@ public class ComprasRepository {
         Cursor cursor = sqlWrite.rawQuery("SELECT * FROM compras", null);
         if (cursor.moveToFirst()){
             do {
-                //verifica em qual lista esta, para preencher o
+                //verifica qual a lista atual, para preencher o
                 // arraylist apenas com as compras dessa lista
                 if ( nomeLista.equals(cursor.getString(1) ) ){
                     compras.add(new Compras(
@@ -46,7 +48,8 @@ public class ComprasRepository {
                             cursor.getString(1),
                             cursor.getString(2),
                             cursor.getString(3),
-                            cursor.getString(4) )
+                            Integer.parseInt( cursor.getString(4) )
+                            )
                     );
                 }
                 //
@@ -64,22 +67,20 @@ public class ComprasRepository {
         return compras;
     }
     //
-    public static void insertItemToDB(
-            ImageButton imgBtn, SQLiteDatabase sqlWrite,
-            String nomeLista, String nomeItem,
-            String qntd, String completed )
+    public static void addItemToDB(
+            SQLiteDatabase sqlWrite, Button btnSalvar,
+            String nomeLista, EditText etNomeItem,
+            EditText etQntdItem, int completed)
     {
-        imgBtn.setOnClickListener(new View.OnClickListener() {
+        btnSalvar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //
                 ContentValues ctv = new ContentValues();
-                ctv.put("donoLista", nomeLista);
-                ctv.put("nomeLista", nomeItem);
-                ctv.put("donoLista", qntd);
-                ctv.put("nomeLista", completed);
+                ctv.put("nomeLista", nomeLista);
+                ctv.put("nomeItem", etNomeItem.getText().toString() );
+                ctv.put("quantidade", etQntdItem.getText().toString() );
+                ctv.put("completed", completed);
                 sqlWrite.insert("compras", null, ctv);
-                msg.logD(nomeItem+" adicionado na lista de compras: "+nomeLista);
                 //
                 Intent in = new Intent(v.getContext(), ListadeCompras.class);
                 in.putExtra("NOMELISTA", nomeLista);
@@ -88,9 +89,9 @@ public class ComprasRepository {
         });//fim clickListener
     }//fim metodo insertItemToDB
     //
-    public static void setAdapterItemList(RecyclerView rv, SQLiteDatabase sqlWrite){
+    public static void setAdapterItemList(RecyclerView rv, SQLiteDatabase sqlWrite, String lista){
         msg.logD("setAdapterListas");
-        ComprasAdapter comprasAdapter = new ComprasAdapter( getCompras(), sqlWrite );
+        ComprasAdapter comprasAdapter = new ComprasAdapter( getCompras(), sqlWrite, lista );
         rv.setAdapter(comprasAdapter);
         rv.setLayoutManager( new LinearLayoutManager(instance.contexto ) );
     }
