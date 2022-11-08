@@ -23,6 +23,7 @@ public class Controller {
         public String criarTabelaUsers();
         public String criarTabelaListas();
         public String criarTabelaCompras();
+        public void selectTable(SQLiteDatabase sqlRead, String nomeTabela);
     }
     public interface controllerLogin{
         public void setLoginField(String nomeUser, EditText etLoginL);
