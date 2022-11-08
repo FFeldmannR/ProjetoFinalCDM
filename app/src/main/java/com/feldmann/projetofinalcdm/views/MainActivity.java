@@ -18,13 +18,8 @@ public class MainActivity extends AppCompatActivity implements Controller.contro
         setContentView(R.layout.activity_main);
         this.instanceController();
         msg.logD("onCreate");
-        try {
-            Intent in = new Intent(view.getActivity(), LoginActivity.class);
-            view.getActivity().startActivity(in);
-        }catch (Exception e){
-            msg.logD("!!! ERRO !!! : "+e.getMessage() );
-            msg.messageToast("ERRO NA INSTANCIA");
-        }//fim try catch
+        Intent in = new Intent(view.getActivity(), LoginActivity.class);
+        view.getActivity().startActivity(in);
     }//fim onCreate
     @Override
     protected void onResume() {
