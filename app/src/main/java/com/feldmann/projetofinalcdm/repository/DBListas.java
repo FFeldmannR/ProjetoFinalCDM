@@ -7,7 +7,6 @@ import android.util.Log;
 import androidx.annotation.Nullable;
 import com.feldmann.projetofinalcdm.controller.Controller;
 import com.feldmann.projetofinalcdm.controller.DataBaseController;
-
 //
 public class DBListas extends SQLiteOpenHelper {
     private static final String NOME_BANCO = "listas.db";
