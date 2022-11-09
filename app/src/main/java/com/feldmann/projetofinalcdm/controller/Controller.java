@@ -4,8 +4,14 @@ import android.app.Activity;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.feldmann.projetofinalcdm.model.Compras;
+
 //
 public class Controller {
     public interface controllerInstance{
@@ -34,5 +40,13 @@ public class Controller {
     public interface controllerCadastro{
         public void getCampos(EditText etNome, EditText etSenha);
         public void addUserToDB(Button btnCadastrar, SQLiteDatabase sqlWrite);
+    }
+    public interface controllerComprasAdapter{
+        public void selectList(Compras objCompras);
+        public void itemClick(RecyclerView.ViewHolder holder,
+                              SQLiteDatabase sqlWrite,
+                              CheckBox cb, String nomeItem,
+                              Compras objCompras, String nomeListaAtual);
+        public void buttonEffect(Context context, RecyclerView.ViewHolder holder);
     }
 }

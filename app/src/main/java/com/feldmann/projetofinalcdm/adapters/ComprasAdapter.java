@@ -14,6 +14,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.feldmann.projetofinalcdm.R;
+import com.feldmann.projetofinalcdm.controller.ComprasAdapterController;
+import com.feldmann.projetofinalcdm.controller.Controller;
 import com.feldmann.projetofinalcdm.model.Compras;
 import java.util.List;
 //
@@ -22,11 +24,13 @@ public class ComprasAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     private List<Compras> compras;
     private SQLiteDatabase sqlWrite;
     private String nomeListaAtual;
+    private ComprasAdapterController CAC;
     //
     public ComprasAdapter(List<Compras> compras, SQLiteDatabase sqlWrite, String nomeListaAtual) {
         this.compras = compras;
         this.sqlWrite = sqlWrite;
         this.nomeListaAtual = nomeListaAtual;
+        this.CAC = new ComprasAdapterController();
     }
     //
     @NonNull
@@ -48,7 +52,11 @@ public class ComprasAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             }else{
                 ((CheckBox)((ComprasViewHolder) holder).view.findViewById(R.id.checkBoxItem)).setChecked(false);
             }
-            this.itemClick(holder, objCompras.getNomeItem(), objCompras );
+            CAC.itemClick(holder, sqlWrite,
+                    ((CheckBox)((ComprasViewHolder) holder).view.findViewById(R.id.checkBoxItem)),
+                    objCompras.getNomeItem(),
+                    objCompras, nomeListaAtual
+            );
         //
     }//fim bindView
     //
@@ -57,65 +65,8 @@ public class ComprasAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         return compras.size();
     }
     //
-    private void selectList(Compras objCompras){
-        //
-        Log.d("SELECT_TABLE","_id | nomeLista | nomeItem | quantidade | completed\n"+
-                "("+objCompras.getId()+") "+
-                objCompras.getNomeLista()+" | "+
-                objCompras.getNomeItem()+" | "+
-                objCompras.getQuantidade()+" | "+
-                objCompras.isCompleted() );
-    }
-    private void itemClick(RecyclerView.ViewHolder holder, String nomeItem, Compras objCompras){
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                selectList(objCompras);
-
-                try{
-                    buttonEffect(v.getContext(), holder);
-                }catch (Exception e){
-                    Log.d("itemClick", "FALHA NO EFEITO");
-                }
-                //
-                try{
-                    CheckBox cb = ((CheckBox)((ComprasViewHolder) holder).view.findViewById(R.id.checkBoxItem));
-                    if (cb.isChecked()){ //se esta marcado, mude para 0
-                        cb.setChecked(false);
-                        sqlWrite.execSQL(
-                                "UPDATE compras"+
-                                " SET completed="+0+
-                                " WHERE nomeLista='"+nomeListaAtual+"'"+
-                                " AND nomeItem='"+nomeItem+"'"
-                        );
-                    }else{//se NÃO esta marcado, mude para 1
-                        cb.setChecked(true);
-                        sqlWrite.execSQL(
-                                "UPDATE compras"+
-                                " SET completed="+1+
-                                " WHERE nomeLista='"+nomeListaAtual+"'"+
-                                " AND nomeItem='"+nomeItem+"'"
-                        );
-                    }
-                }catch (Exception e){
-                    Log.d("itemClick", "FALHA AO ATUALIZAR NO BANCO");
-                    Log.d("itemClick", ""+e.getMessage());
-                }
-            }
-        });
-    }
-    //
-    private void buttonEffect(Context context, RecyclerView.ViewHolder holder){
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-            TypedValue outValue = new TypedValue();
-            context.getTheme().resolveAttribute(android.R.attr.selectableItemBackground, outValue, true);
-            holder.itemView.setBackgroundResource(outValue.resourceId);
-        }
-    }//fim buttonEffect
-    //
 }// fim classe
-//
-//
+
 class ComprasViewHolder extends RecyclerView.ViewHolder{
     public View view;
     public ComprasViewHolder(@NonNull View itemView){
