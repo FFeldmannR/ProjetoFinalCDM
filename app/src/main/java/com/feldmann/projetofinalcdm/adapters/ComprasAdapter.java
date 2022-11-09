@@ -59,7 +59,7 @@ public class ComprasAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     //
     private void selectList(Compras objCompras){
         //
-        Log.d("SELECT_TABLE","_id | nomeLista | nomeItem | quantidade | completed"+
+        Log.d("SELECT_TABLE","_id | nomeLista | nomeItem | quantidade | completed\n"+
                 "("+objCompras.getId()+") "+
                 objCompras.getNomeLista()+" | "+
                 objCompras.getNomeItem()+" | "+
@@ -81,26 +81,18 @@ public class ComprasAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                 try{
                     ContentValues ctv = new ContentValues();
                     if (cb.isChecked()){ //se esta marcado, mude para 0
-                        /* ctv.put("completed", 0);
-                        sqlWrite.update("compras", ctv,
-                                "nomeLista="+nomeListaAtual+" AND nomeItem="+nomeItem,
-                                null); */
                         sqlWrite.execSQL(
-                                "UPDATE compras "+
-                                "SET completed=0 "+
-                                "WHERE nomeLista="+nomeListaAtual+
-                                " AND nomeItem="+nomeItem
+                                "UPDATE compras"+
+                                " SET completed="+0+
+                                " WHERE nomeLista='"+nomeListaAtual+"'"+
+                                " AND nomeItem='"+nomeItem+"'"
                         );
                     }else{//se NÃO esta marcado, mude para 1
-                        /* ctv.put("completed", 1);
-                        sqlWrite.update("compras", ctv,
-                                "nomeLista="+nomeListaAtual+" AND nomeItem="+nomeItem,
-                                null); */
                         sqlWrite.execSQL(
-                                "UPDATE compras "+
-                                "SET completed=1 "+
-                                "WHERE nomeLista="+nomeListaAtual+
-                                " AND nomeItem="+nomeItem
+                                "UPDATE compras"+
+                                " SET completed="+1+
+                                " WHERE nomeLista='"+nomeListaAtual+"'"+
+                                " AND nomeItem='"+nomeItem+"'"
                         );
                     }
                 }catch (Exception e){
@@ -117,7 +109,6 @@ public class ComprasAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                 }catch (Exception e){
                     Log.d("itemClick", "FALHA AO MARCAR CHECKBOX");
                 }
-                //Log.d("teste click", )
             }
         });
     }
