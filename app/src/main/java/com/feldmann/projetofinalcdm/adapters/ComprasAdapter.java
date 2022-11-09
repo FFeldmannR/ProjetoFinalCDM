@@ -57,12 +57,6 @@ public class ComprasAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                     objCompras, nomeListaAtual
             );
         //
-        holder.itemView.setOnCreateContextMenuListener(new View.OnCreateContextMenuListener() {
-            @Override
-            public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
-                menu.add(Menu.NONE, 1, Menu.NONE, "Deletar");
-            }
-        });
         //
     }//fim bindView
     //
