@@ -1,7 +1,9 @@
 package com.feldmann.projetofinalcdm.adapters;
 //
 import android.database.sqlite.SQLiteDatabase;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
@@ -19,6 +21,7 @@ public class ComprasAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     private SQLiteDatabase sqlWrite;
     private String nomeListaAtual;
     private ComprasAdapterController CAC;
+    private static View viewHolder;
     //
     public ComprasAdapter(List<Compras> compras, SQLiteDatabase sqlWrite, String nomeListaAtual) {
         this.compras = compras;
@@ -37,6 +40,7 @@ public class ComprasAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         Compras objCompras = compras.get(position);
+        this.viewHolder = holder.itemView;
         //
         ((TextView)((ComprasViewHolder) holder).view.findViewById(R.id.tvNomeItem)).setText( objCompras.getNomeItem() );
         ((TextView)((ComprasViewHolder) holder).view.findViewById(R.id.tvQuantidade)).setText( objCompras.getQuantidade() );
@@ -53,6 +57,13 @@ public class ComprasAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                     objCompras, nomeListaAtual
             );
         //
+        holder.itemView.setOnCreateContextMenuListener(new View.OnCreateContextMenuListener() {
+            @Override
+            public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+                menu.add(Menu.NONE, 1, Menu.NONE, "Deletar");
+            }
+        });
+        //
     }//fim bindView
     //
     @Override
@@ -60,6 +71,9 @@ public class ComprasAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         return compras.size();
     }
     //
+    public static View getItem(){
+        return viewHolder;
+    }
 }// fim classe
 
 class ComprasViewHolder extends RecyclerView.ViewHolder{
