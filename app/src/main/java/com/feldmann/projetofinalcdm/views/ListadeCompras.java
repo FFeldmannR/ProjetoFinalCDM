@@ -61,4 +61,4 @@ public class ListadeCompras extends AppCompatActivity implements Controller.cont
         this.view = new ViewController(this, this);
         this.msg = new MsgController(view.getContext(), this.getClass().getName() );
     }
-}
+}//fim class
