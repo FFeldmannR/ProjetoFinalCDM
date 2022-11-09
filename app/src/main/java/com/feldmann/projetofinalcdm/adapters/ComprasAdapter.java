@@ -1,11 +1,6 @@
 package com.feldmann.projetofinalcdm.adapters;
 //
-import android.content.ContentValues;
-import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
-import android.os.Build;
-import android.util.Log;
-import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,7 +10,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.feldmann.projetofinalcdm.R;
 import com.feldmann.projetofinalcdm.controller.ComprasAdapterController;
-import com.feldmann.projetofinalcdm.controller.Controller;
 import com.feldmann.projetofinalcdm.model.Compras;
 import java.util.List;
 //
@@ -52,6 +46,7 @@ public class ComprasAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             }else{
                 ((CheckBox)((ComprasViewHolder) holder).view.findViewById(R.id.checkBoxItem)).setChecked(false);
             }
+            // metodo está em ComprasAdapterController
             CAC.itemClick(holder, sqlWrite,
                     ((CheckBox)((ComprasViewHolder) holder).view.findViewById(R.id.checkBoxItem)),
                     objCompras.getNomeItem(),
