@@ -71,7 +71,7 @@ public class ComprasAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             @Override
             public void onClick(View v) {
                 selectList(objCompras);
-                CheckBox cb = ((CheckBox)((ComprasViewHolder) holder).view.findViewById(R.id.checkBoxItem));
+
                 try{
                     buttonEffect(v.getContext(), holder);
                 }catch (Exception e){
@@ -79,8 +79,9 @@ public class ComprasAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                 }
                 //
                 try{
-                    ContentValues ctv = new ContentValues();
+                    CheckBox cb = ((CheckBox)((ComprasViewHolder) holder).view.findViewById(R.id.checkBoxItem));
                     if (cb.isChecked()){ //se esta marcado, mude para 0
+                        cb.setChecked(false);
                         sqlWrite.execSQL(
                                 "UPDATE compras"+
                                 " SET completed="+0+
@@ -88,6 +89,7 @@ public class ComprasAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                                 " AND nomeItem='"+nomeItem+"'"
                         );
                     }else{//se NÃO esta marcado, mude para 1
+                        cb.setChecked(true);
                         sqlWrite.execSQL(
                                 "UPDATE compras"+
                                 " SET completed="+1+
@@ -98,16 +100,6 @@ public class ComprasAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                 }catch (Exception e){
                     Log.d("itemClick", "FALHA AO ATUALIZAR NO BANCO");
                     Log.d("itemClick", ""+e.getMessage());
-                }
-                //
-                try{
-                    if (cb.isChecked()){
-                        cb.setChecked(false);
-                    }else{
-                        cb.setChecked(true);
-                    }
-                }catch (Exception e){
-                    Log.d("itemClick", "FALHA AO MARCAR CHECKBOX");
                 }
             }
         });
