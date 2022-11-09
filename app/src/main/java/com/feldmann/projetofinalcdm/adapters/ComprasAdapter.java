@@ -1,9 +1,7 @@
 package com.feldmann.projetofinalcdm.adapters;
 //
 import android.database.sqlite.SQLiteDatabase;
-import android.view.ContextMenu;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
@@ -21,7 +19,6 @@ public class ComprasAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     private SQLiteDatabase sqlWrite;
     private String nomeListaAtual;
     private ComprasAdapterController CAC;
-    private static View viewHolder;
     //
     public ComprasAdapter(List<Compras> compras, SQLiteDatabase sqlWrite, String nomeListaAtual) {
         this.compras = compras;
@@ -40,24 +37,21 @@ public class ComprasAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         Compras objCompras = compras.get(position);
-        this.viewHolder = holder.itemView;
         //
         ((TextView)((ComprasViewHolder) holder).view.findViewById(R.id.tvNomeItem)).setText( objCompras.getNomeItem() );
         ((TextView)((ComprasViewHolder) holder).view.findViewById(R.id.tvQuantidade)).setText( objCompras.getQuantidade() );
         //checkbox
-            if ( objCompras.isCompleted() == 1 ){
-                ((CheckBox)((ComprasViewHolder) holder).view.findViewById(R.id.checkBoxItem)).setChecked(true);
-            }else{
-                ((CheckBox)((ComprasViewHolder) holder).view.findViewById(R.id.checkBoxItem)).setChecked(false);
-            }
-            // metodo está em ComprasAdapterController
-            CAC.itemClick(holder, sqlWrite,
-                    ((CheckBox)((ComprasViewHolder) holder).view.findViewById(R.id.checkBoxItem)),
-                    objCompras.getNomeItem(),
-                    objCompras, nomeListaAtual
-            );
-        //
-        //
+        if ( objCompras.isCompleted() == 1 ){
+            ((CheckBox)((ComprasViewHolder) holder).view.findViewById(R.id.checkBoxItem)).setChecked(true);
+        }else{
+            ((CheckBox)((ComprasViewHolder) holder).view.findViewById(R.id.checkBoxItem)).setChecked(false);
+        }
+        // metodo está em ComprasAdapterController
+        CAC.itemClick(holder, sqlWrite,
+                ((CheckBox)((ComprasViewHolder) holder).view.findViewById(R.id.checkBoxItem)),
+                objCompras.getNomeItem(),
+                objCompras, nomeListaAtual
+        );
     }//fim bindView
     //
     @Override
@@ -65,9 +59,6 @@ public class ComprasAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         return compras.size();
     }
     //
-    public static View getItem(){
-        return viewHolder;
-    }
 }// fim classe
 
 class ComprasViewHolder extends RecyclerView.ViewHolder{
