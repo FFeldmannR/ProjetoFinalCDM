@@ -1,5 +1,5 @@
 package com.feldmann.projetofinalcdm.controller;
-
+//
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Build;
@@ -9,7 +9,7 @@ import android.view.View;
 import android.widget.CheckBox;
 import androidx.recyclerview.widget.RecyclerView;
 import com.feldmann.projetofinalcdm.model.Compras;
-
+//
 public class ComprasAdapterController implements Controller.controllerComprasAdapter{
     @Override
     public void selectList(Compras objCompras){
@@ -29,8 +29,6 @@ public class ComprasAdapterController implements Controller.controllerComprasAda
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                selectList(objCompras);
-
                 try{
                     buttonEffect(v.getContext(), holder);
                 }catch (Exception e){
@@ -59,9 +57,10 @@ public class ComprasAdapterController implements Controller.controllerComprasAda
                     Log.d("itemClick", "FALHA AO ATUALIZAR NO BANCO");
                     Log.d("itemClick", ""+e.getMessage());
                 }
-            }
-        });
-    }
+                selectList(objCompras);
+            }//fim onClick
+        });//fim clickListener
+    }//fim metodo itemClick
     //
     @Override
     public void buttonEffect(Context context, RecyclerView.ViewHolder holder){
