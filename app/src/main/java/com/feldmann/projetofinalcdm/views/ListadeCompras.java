@@ -79,7 +79,7 @@ public class ListadeCompras extends AppCompatActivity implements Controller.cont
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
             case android.R.id.home:
-                startActivity(new Intent(this, LoginActivity.class) );
+                startActivity(new Intent(this, ListaActivity.class) );
                 finish();
                 break;
         }
