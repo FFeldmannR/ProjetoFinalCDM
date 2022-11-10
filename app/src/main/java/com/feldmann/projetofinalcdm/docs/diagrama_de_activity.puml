@@ -1,0 +1,17 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+start
+    :MainActivity;
+    :LoginActivity;
+    if () then ( cadastrar() )
+        :CadastrarActivity;
+    else ( login() )
+        :ListaActivity();
+        if ( lista.itemClick() )
+          :ListadeCompras;
+        endif
+    endif
+stop
+
+@enduml
