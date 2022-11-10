@@ -13,33 +13,40 @@
         android:theme="@style/Theme.ProjetoFinalCDM"
         tools:targetApi="31">
         <activity
-            android:name=".views.CadastrarItemActivity"
-            android:parentActivityName=".views.ListadeCompras"
+            android:name=".views.EditarItemActivity"
             android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".views.CadastrarItemActivity"
+            android:exported="false"
+            android:parentActivityName=".views.ListadeCompras">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
             android:name=".views.ListadeCompras"
-            android:parentActivityName=".views.ListaActivity"
-            android:exported="false">
+            android:exported="false"
+            android:parentActivityName=".views.ListaActivity">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
             android:name=".views.CadastroActivity"
-            android:parentActivityName=".views.LoginActivity"
-            android:exported="false">
+            android:exported="false"
+            android:parentActivityName=".views.LoginActivity">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
             android:name=".views.ListaActivity"
-            android:parentActivityName=".views.LoginActivity"
-            android:exported="false">
+            android:exported="false"
+            android:parentActivityName=".views.LoginActivity">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />

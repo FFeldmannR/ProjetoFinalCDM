@@ -6,10 +6,10 @@
     <string name="btnCadastrar">Cadastrar</string>
     <string name="EMS">Esqueci minha senha</string>
     <!-- MODELOS -->
-        <!-- LISTA LAYOUT -->
-        <string name="nomeLista">NOME_LISTA</string>
-        <!-- ITEM LAYOUT -->
-        <string name="nomeItem">NOME_ITEM</string>
-        <string name="quantidade">QNTD</string>
+    <!-- LISTA LAYOUT -->
+    <string name="nomeLista">NOME_LISTA</string>
+    <!-- ITEM LAYOUT -->
+    <string name="nomeItem">NOME_ITEM</string>
+    <string name="quantidade">QNTD</string>
     <!--  -->
 </resources>
