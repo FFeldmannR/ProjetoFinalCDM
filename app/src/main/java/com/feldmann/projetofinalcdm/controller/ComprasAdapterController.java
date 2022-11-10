@@ -29,34 +29,9 @@ public class ComprasAdapterController implements Controller.controllerComprasAda
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                try{
-                    buttonEffect(v.getContext(), holder);
-                }catch (Exception e){
-                    Log.d("itemClick", "FALHA NO EFEITO");
-                }
-                //
-                try{
-                    if (cb.isChecked()){ //se esta marcado, mude para 0
-                        cb.setChecked(false);
-                        sqlWrite.execSQL(
-                                "UPDATE compras"+
-                                " SET completed="+0+
-                                " WHERE nomeLista='"+nomeListaAtual+"'"+
-                                " AND nomeItem='"+nomeItem+"'"
-                        );
-                    }else{//se NÃO esta marcado, mude para 1
-                        cb.setChecked(true);
-                        sqlWrite.execSQL(
-                                "UPDATE compras"+
-                                " SET completed="+1+
-                                " WHERE nomeLista='"+nomeListaAtual+"'"+
-                                " AND nomeItem='"+nomeItem+"'"
-                        );
-                    }
-                }catch (Exception e){
-                    Log.d("itemClick", "FALHA AO ATUALIZAR NO BANCO");
-                    Log.d("itemClick", ""+e.getMessage());
-                }
+                Log.d("teste", "item clicado");
+                buttonEffect(v.getContext(), holder);
+                updateSQL(sqlWrite, cb, nomeListaAtual, nomeItem, objCompras);
                 selectList(objCompras);
             }//fim onClick
         });//fim clickListener
@@ -70,4 +45,32 @@ public class ComprasAdapterController implements Controller.controllerComprasAda
             holder.itemView.setBackgroundResource(outValue.resourceId);
         }
     }//fim buttonEffect
+    private void updateSQL(SQLiteDatabase sqlWrite,
+                           CheckBox cb, String nomeListaAtual, String nomeItem,
+                           Compras objCompras){
+        try{
+            if (cb.isChecked()){ //se esta marcado, mude para 0
+                cb.setChecked(false);
+                objCompras.setCompleted(0);
+                sqlWrite.execSQL(
+                        "UPDATE compras"+
+                                " SET completed="+0+
+                                " WHERE nomeLista='"+nomeListaAtual+"'"+
+                                " AND nomeItem='"+nomeItem+"'"
+                );
+            }else{//se NÃO esta marcado, mude para 1
+                cb.setChecked(true);
+                objCompras.setCompleted(1);
+                sqlWrite.execSQL(
+                        "UPDATE compras"+
+                                " SET completed="+1+
+                                " WHERE nomeLista='"+nomeListaAtual+"'"+
+                                " AND nomeItem='"+nomeItem+"'"
+                );
+            }
+        }catch (Exception e){
+            Log.d("itemClick", "FALHA AO ATUALIZAR NO BANCO");
+            Log.d("itemClick", ""+e.getMessage());
+        }
+    }
 }
