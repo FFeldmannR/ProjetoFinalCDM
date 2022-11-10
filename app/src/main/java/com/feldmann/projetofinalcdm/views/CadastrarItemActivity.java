@@ -1,10 +1,12 @@
 package com.feldmann.projetofinalcdm.views;
 //
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -33,6 +35,7 @@ public class CadastrarItemActivity extends AppCompatActivity implements Controll
     protected void onResume() {
         super.onResume();
         msg.logD("onResume");
+        this.toolBar();
         String nomeLista = getIntent().getStringExtra("NOMELISTA");
         setTitle("Adicionar item em "+nomeLista);
         ComprasRepository.addItemToDB(
@@ -55,4 +58,18 @@ public class CadastrarItemActivity extends AppCompatActivity implements Controll
         this.view = new ViewController(this, this);
         this.msg = new MsgController(view.getContext(), this.getClass().getName() );
     }
-}
+    private void toolBar(){
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
+    }
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case android.R.id.home:
+                startActivity(new Intent(this, ListadeCompras.class) );
+                finishAffinity();
+                break;
+        }
+        return true;
+    }
+}//fim class
