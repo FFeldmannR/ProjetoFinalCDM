@@ -32,7 +32,7 @@ public class ComprasRepository {
         }
     }//fim construtor
     //
-    public static ComprasRepository getInstanceCompras(Context context, SQLiteDatabase sqlWrite, String nomeLista){
+    public static ComprasRepository getInstanceCompras(Context context, SQLiteDatabase sqlWrite, String nomeLista, String usuarioLogado){
         instance = new ComprasRepository(context);
         compras.removeAll( getCompras() );
         //
@@ -41,18 +41,26 @@ public class ComprasRepository {
             do {
                 //verifica qual a lista atual, para preencher o
                 // arraylist apenas com as compras dessa lista
-                if ( nomeLista.equals(cursor.getString(1) ) ){
+                int idDB = Integer.parseInt( cursor.getString(0) );
+                String donoListaDB = cursor.getString(1);
+                String nomeListaDB = cursor.getString(2);
+                String nomeItemDB = cursor.getString(3);
+                String quantidadeDB = cursor.getString(4);
+                int completedDB = Integer.parseInt( cursor.getString(5) );
+                if ( nomeLista.equals( nomeListaDB ) && usuarioLogado.equals( donoListaDB ) ){
                     compras.add(new Compras(
-                            Integer.parseInt( cursor.getString(0) ),
-                            cursor.getString(1),
-                            cursor.getString(2),
-                            cursor.getString(3),
-                            Integer.parseInt( cursor.getString(4) )
+                            idDB,         // _id (INTEGER)
+                            donoListaDB,  // donoLista (TEXT)
+                            nomeListaDB,  // nomeLista (TEXT)
+                            nomeItemDB,   // nomeItem (TEXT)
+                            quantidadeDB,   // quantidade (TEXT)
+                            completedDB     // completed (INTEGER)
                             )
-                    );
+                    );//fim compras.add
+                    msg.logD("Adicionado no arrayList Compras: "+
+                            "("+idDB+") dono: "+donoListaDB+" | Lista: "+nomeListaDB+" | Item: "+nomeItemDB+" ("+quantidadeDB+") "+"("+completedDB+")" );
                 }
-                //
-                msg.logD(cursor.getString(2)+" adicionado no arrayList" );
+
             }while (cursor.moveToNext());
         }else{
             msg.logD("NÃO TEM REGISTROS EM listas");
@@ -67,14 +75,14 @@ public class ComprasRepository {
     }
     //
     public static void addItemToDB(
-            SQLiteDatabase sqlWrite, Button btnSalvar,
+            SQLiteDatabase sqlWrite, Button btnSalvar, String usuarioLogado,
             String nomeLista, EditText etNomeItem,
-            EditText etQntdItem, int completed)
-    {
+            EditText etQntdItem, int completed) {
         btnSalvar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ContentValues ctv = new ContentValues();
+                ctv.put("donoLista", usuarioLogado);
                 ctv.put("nomeLista", nomeLista);
                 ctv.put("nomeItem", etNomeItem.getText().toString() );
                 ctv.put("quantidade", etQntdItem.getText().toString() );
@@ -83,6 +91,7 @@ public class ComprasRepository {
                 //
                 Intent in = new Intent(v.getContext(), ListadeCompras.class);
                 in.putExtra("NOMELISTA", nomeLista);
+                in.putExtra("USUARIO", usuarioLogado);
                 v.getContext().startActivity(in);
             }//fim onClick
         });//fim clickListener
