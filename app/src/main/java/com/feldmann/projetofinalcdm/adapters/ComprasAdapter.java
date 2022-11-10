@@ -1,7 +1,6 @@
 package com.feldmann.projetofinalcdm.adapters;
 //
 import android.database.sqlite.SQLiteDatabase;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,7 +42,7 @@ public class ComprasAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         CAC.updateCheckbox( holder, sqlWrite,
                 ((CheckBox)((ComprasViewHolder) holder).view.findViewById(R.id.checkBoxItem)),
                 nomeListaAtual, objCompras );
-        CAC.clickInfoItemToEdit( ((LinearLayout)((ComprasViewHolder) holder).itemView.findViewById(R.id.LLinfoItem)) );
+        CAC.clickInfoItemToEdit( ((LinearLayout)((ComprasViewHolder) holder).itemView.findViewById(R.id.LLinfoItem)), holder, objCompras );
     }//fim bindView
     //
     @Override public int getItemCount() {
