@@ -43,7 +43,6 @@ public class ListaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             @Override
             public void onClick(View v) {
                 buttonEffect(v.getContext(), holder);
-                Toast.makeText(v.getContext(), objListas.getNomeLista()+" clicada", Toast.LENGTH_SHORT).show();
                 paraListadeCompras(v.getContext(), objListas.getNomeLista());
             }
         });//fim onClick
