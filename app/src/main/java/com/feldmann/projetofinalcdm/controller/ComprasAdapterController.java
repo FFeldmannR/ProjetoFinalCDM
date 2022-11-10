@@ -7,12 +7,37 @@ import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 import android.widget.CheckBox;
+import android.widget.LinearLayout;
 import androidx.recyclerview.widget.RecyclerView;
 import com.feldmann.projetofinalcdm.model.Compras;
 //
 public class ComprasAdapterController implements Controller.controllerComprasAdapter{
-    @Override
-    public void selectList(Compras objCompras){
+
+    public void updateCheckbox(RecyclerView.ViewHolder holder,
+                               SQLiteDatabase sqlWrite, CheckBox checkBox,
+                               String nomeListaAtual, Compras compras){
+        if ( compras.isCompleted() == 1 ){
+            checkBox.setChecked(true);
+        }else{
+            checkBox.setChecked(false); }
+        checkBox.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                buttonEffect(v.getContext(), holder);
+                updateSQL(sqlWrite, checkBox, nomeListaAtual, compras);
+            }
+        });
+    }
+    public void clickInfoItemToEdit(LinearLayout infoItem){
+        infoItem.setOnClickListener(new View.OnClickListener() {
+            @Override public void onClick(View v) {
+                Log.d("teste", "info clicado");
+                //ir para tela de edit item
+            }
+        });
+        //
+    }
+    @Override public void selectList(Compras objCompras){
         Log.d("SELECT_LIST","_id | nomeLista | nomeItem | quantidade | completed\n"+
                 "("+objCompras.getId()+") "+
                 objCompras.getNomeLista()+" | "+
@@ -21,55 +46,41 @@ public class ComprasAdapterController implements Controller.controllerComprasAda
                 objCompras.isCompleted() );
     }
     //
-    @Override
-    public void itemClick(RecyclerView.ViewHolder holder,
-                          SQLiteDatabase sqlWrite,
-                          CheckBox cb, String nomeItem,
-                          Compras objCompras, String nomeListaAtual){
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                buttonEffect(v.getContext(), holder);
-                updateSQL(sqlWrite, cb, nomeListaAtual, nomeItem, objCompras);
-                selectList(objCompras);
-            }//fim onClick
-        });//fim clickListener
-    }//fim metodo itemClick
-    //
-    @Override
-    public void buttonEffect(Context context, RecyclerView.ViewHolder holder){
+    private void buttonEffect(Context context, RecyclerView.ViewHolder holder){
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
             TypedValue outValue = new TypedValue();
             context.getTheme().resolveAttribute(android.R.attr.selectableItemBackground, outValue, true);
             holder.itemView.setBackgroundResource(outValue.resourceId);
         }
     }//fim buttonEffect
-    private void updateSQL(SQLiteDatabase sqlWrite,
-                           CheckBox cb, String nomeListaAtual, String nomeItem,
-                           Compras objCompras){
+    private void updateSQL(SQLiteDatabase sqlWrite, CheckBox cb,
+                           String nomeListaAtual, Compras objCompras){
+        String tag = "UPDATE";
         try{
-            if (cb.isChecked()){ //se esta marcado, mude para 0
-                cb.setChecked(false);
-                objCompras.setCompleted(0);
-                sqlWrite.execSQL(
-                        "UPDATE compras"+
-                        " SET completed="+0+
-                        " WHERE nomeLista='"+nomeListaAtual+"'"+
-                        " AND nomeItem='"+nomeItem+"'"
-                );
-            }else{//se NÃO esta marcado, mude para 1
-                cb.setChecked(true);
+            if (cb.isChecked()){ //se esta marcado, mude para 1
+                //cb.setChecked(false);
                 objCompras.setCompleted(1);
                 sqlWrite.execSQL(
                         "UPDATE compras"+
                         " SET completed="+1+
                         " WHERE nomeLista='"+nomeListaAtual+"'"+
-                        " AND nomeItem='"+nomeItem+"'"
+                        " AND nomeItem='"+objCompras.getNomeItem()+"'"
                 );
+                Log.d(tag, "checkBox atualizado no banco para 1");
+            }else{//se NÃO esta marcado, mude para 0
+                //cb.setChecked(true);
+                objCompras.setCompleted(0);
+                sqlWrite.execSQL(
+                        "UPDATE compras"+
+                        " SET completed="+0+
+                        " WHERE nomeLista='"+nomeListaAtual+"'"+
+                        " AND nomeItem='"+objCompras.getNomeItem()+"'"
+                );
+                Log.d(tag, "checkBox atualizado no banco para 0");
             }
         }catch (Exception e){
-            Log.d("itemClick", "FALHA AO ATUALIZAR NO BANCO");
-            Log.d("itemClick", ""+e.getMessage());
-        }
-    }
-}
+            Log.d(tag, "FALHA AO ATUALIZAR NO BANCO");
+            Log.d(tag, ""+e.getMessage());
+        }//fim try catch
+    }//fim updateSQL
+}//fim classe

@@ -7,30 +7,39 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="horizontal"
-        android:background="@drawable/customborder">
+        android:background="@drawable/customborder"
+        android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/tvNomeItem"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:layout_weight="1"
-            android:textStyle="bold"
-            android:text="@string/nomeItem" />
-
-        <TextView
-            android:id="@+id/tvQuantidade"
+        <LinearLayout
+            android:id="@+id/LLinfoItem"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:gravity="center"
-            android:text="@string/quantidade" />
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tvNomeItem"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/nomeItem"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvQuantidade"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/quantidade" />
+        </LinearLayout>
 
         <CheckBox
             android:id="@+id/checkBoxItem"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:background="@drawable/customborder"
             android:ems="5" />
 
     </LinearLayout>

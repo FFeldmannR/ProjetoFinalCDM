@@ -43,10 +43,8 @@ public class Controller {
     }
     public interface controllerComprasAdapter{
         public void selectList(Compras objCompras);
-        public void itemClick(RecyclerView.ViewHolder holder,
-                              SQLiteDatabase sqlWrite,
-                              CheckBox cb, String nomeItem,
-                              Compras objCompras, String nomeListaAtual);
-        public void buttonEffect(Context context, RecyclerView.ViewHolder holder);
+        public void updateCheckbox(RecyclerView.ViewHolder holder,
+                                   SQLiteDatabase sqlWrite, CheckBox checkBox,
+                                   String nomeListaAtual, Compras compras);
     }
 }
