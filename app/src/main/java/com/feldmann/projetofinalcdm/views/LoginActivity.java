@@ -1,7 +1,11 @@
 package com.feldmann.projetofinalcdm.views;
 //
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -18,18 +22,17 @@ public class LoginActivity extends AppCompatActivity implements Controller.contr
     private DBListas db;
     private Controller.controllerLogin login;
     //
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         this.instanceController();
         msg.logD("onCreate");
     }//fim onCreate
     //
-    @Override
-    protected void onResume() {
+    @Override protected void onResume() {
         super.onResume();
         msg.logD("onResume");
+        this.toolBar();
         //
         login.setLoginField(getIntent().getStringExtra("NOMEUSER"), ((EditText) findViewById(R.id.etLoginL)));
         login.Login(
@@ -41,18 +44,33 @@ public class LoginActivity extends AppCompatActivity implements Controller.contr
         login.setTvEMS(((TextView) findViewById(R.id.tvEMS)));
         //
     }//fim onResume
-    @Override
-    protected void onDestroy() {
+    @Override protected void onDestroy() {
         super.onDestroy();
         msg.logD("onDestroy");
     }
     //
-    @Override
-    public void instanceController() {
+    @Override public void instanceController() {
         this.view = new ViewController(this, this);
         this.msg = new MsgController(view.getContext(), this.getClass().getName().toString() );
         db = new DBListas(view.getContext());
         this.login = new LoginController(view.getContext(), db.getReadableDatabase());
     }//fim instanceController
     //
+    private void toolBar(){
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
+    }
+    //
+    @Override public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case android.R.id.home:
+                finishAffinity();
+                break;
+        }
+        return true;
+    }
+    @Override public void onBackPressed() {
+        finishAffinity();
+        return;
+    }
 }//fim class
