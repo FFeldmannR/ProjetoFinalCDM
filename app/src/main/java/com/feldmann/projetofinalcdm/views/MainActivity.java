@@ -18,8 +18,7 @@ public class MainActivity extends AppCompatActivity implements Controller.contro
         setContentView(R.layout.activity_main);
         this.instanceController();
         msg.logD("onCreate");
-        Intent in = new Intent(view.getActivity(), LoginActivity.class);
-        view.getActivity().startActivity(in);
+        view.getActivity().startActivity( new Intent(view.getActivity(), LoginActivity.class) );
     }//fim onCreate
     @Override
     protected void onDestroy() {
