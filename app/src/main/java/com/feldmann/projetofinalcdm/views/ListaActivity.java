@@ -20,8 +20,7 @@ public class ListaActivity extends AppCompatActivity implements Controller.contr
     private Controller.view view;
     private DBListas db;
     //
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_listas);
         this.instanceController();
@@ -29,8 +28,7 @@ public class ListaActivity extends AppCompatActivity implements Controller.contr
         msg.logD("onCreate");
     }//fim onCreate
 
-    @Override
-    protected void onResume() {
+    @Override protected void onResume() {
         super.onResume();
         msg.logD("onResume");
         this.toolBar();
@@ -48,14 +46,12 @@ public class ListaActivity extends AppCompatActivity implements Controller.contr
         ListasRepository.setAdapterListas( (RecyclerView) findViewById(R.id.RVListas) );
         //
     }//fim onResume
-    @Override
-    protected void onDestroy() {
+    @Override protected void onDestroy() {
         super.onDestroy();
         msg.logD("onDestroy");
     }
     //
-    @Override
-    public void instanceController() {
+    @Override public void instanceController() {
         this.view = new ViewController(this, this);
         this.msg = new MsgController(view.getContext(), this.getClass().getName().toString() );
     }//fim instanceController
@@ -67,8 +63,7 @@ public class ListaActivity extends AppCompatActivity implements Controller.contr
         getSupportActionBar().setHomeButtonEnabled(true);
     }
     //
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+    @Override public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
             case android.R.id.home:
                 startActivity(new Intent(this, LoginActivity.class) );

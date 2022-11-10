@@ -12,22 +12,19 @@ public class MainActivity extends AppCompatActivity implements Controller.contro
     private Controller.msg msg;
     private Controller.view view;
     //
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         this.instanceController();
         msg.logD("onCreate");
         view.getActivity().startActivity( new Intent(view.getActivity(), LoginActivity.class) );
     }//fim onCreate
-    @Override
-    protected void onDestroy() {
+    @Override protected void onDestroy() {
         super.onDestroy();
         msg.logD("onDestroy");
     }
     //
-    @Override
-    public void instanceController(){
+    @Override public void instanceController(){
         this.view = new ViewController(this, this);
         this.msg = new MsgController(view.getContext(), this.getClass().getName().toString() );
     }//fim instanceController

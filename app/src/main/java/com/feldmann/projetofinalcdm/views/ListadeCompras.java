@@ -21,8 +21,7 @@ public class ListadeCompras extends AppCompatActivity implements Controller.cont
     private Controller.view view;
     private DBListas db;
     //
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista_de_compras);
         this.instanceController();
@@ -30,8 +29,7 @@ public class ListadeCompras extends AppCompatActivity implements Controller.cont
         msg.logD("onCreate");
     }
     //
-    @Override
-    protected void onResume() {
+    @Override protected void onResume() {
         super.onResume();
         msg.logD("onResume");
         this.toolBar();
@@ -49,8 +47,7 @@ public class ListadeCompras extends AppCompatActivity implements Controller.cont
                 nomeLista
         );
     }//fim onResume
-    @Override
-    protected void onDestroy() {
+    @Override protected void onDestroy() {
         super.onDestroy();
         msg.logD("onDestroy");
     }
@@ -65,8 +62,7 @@ public class ListadeCompras extends AppCompatActivity implements Controller.cont
             }
         });
     }//fim cadastrarItem
-    @Override
-    public void instanceController() {
+    @Override public void instanceController() {
         this.view = new ViewController(this, this);
         this.msg = new MsgController(view.getContext(), this.getClass().getName() );
     }
@@ -75,8 +71,7 @@ public class ListadeCompras extends AppCompatActivity implements Controller.cont
         getSupportActionBar().setHomeButtonEnabled(true);
     }
     //
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+    @Override public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
             case android.R.id.home:
                 startActivity(new Intent(this, ListaActivity.class) );

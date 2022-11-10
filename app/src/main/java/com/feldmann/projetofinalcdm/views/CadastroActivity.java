@@ -22,8 +22,7 @@ public class CadastroActivity extends AppCompatActivity implements Controller.co
     private DBListas db;
     private Controller.controllerCadastro cadastro;
     //
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastro);
         this.instanceController();
@@ -31,8 +30,7 @@ public class CadastroActivity extends AppCompatActivity implements Controller.co
         msg.logD("onCreate");
     }//fim onCreate
     //
-    @Override
-    protected void onResume() {
+    @Override protected void onResume() {
         super.onResume();
         msg.logD("onResume");
         this.toolBar();
@@ -40,14 +38,12 @@ public class CadastroActivity extends AppCompatActivity implements Controller.co
         cadastro.addUserToDB((Button) findViewById(R.id.btnCadastrarC), db.getWritableDatabase());
     }//fim onResume
     //
-    @Override
-    protected void onDestroy() {
+    @Override protected void onDestroy() {
         super.onDestroy();
         msg.logD("onDestroy");
     }
     //
-    @Override
-    public void instanceController() {
+    @Override public void instanceController() {
         this.view = new ViewController(this, this);
         this.msg = new MsgController(view.getContext(), this.getClass().getName().toString() );
         this.cadastro = new CadastroController(view.getContext());
@@ -57,8 +53,7 @@ public class CadastroActivity extends AppCompatActivity implements Controller.co
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
     }
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+    @Override public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
             case android.R.id.home:
                 startActivity(new Intent(this, LoginActivity.class) );

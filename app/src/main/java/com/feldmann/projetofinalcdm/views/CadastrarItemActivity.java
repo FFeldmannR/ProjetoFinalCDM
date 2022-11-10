@@ -22,8 +22,7 @@ public class CadastrarItemActivity extends AppCompatActivity implements Controll
     private Controller.view view;
     private DBListas db;
     //
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastrar_item);
         this.instanceController();
@@ -31,8 +30,7 @@ public class CadastrarItemActivity extends AppCompatActivity implements Controll
         msg.logD("onCreate");
     }
     //
-    @Override
-    protected void onResume() {
+    @Override protected void onResume() {
         super.onResume();
         msg.logD("onResume");
         this.toolBar();
@@ -47,14 +45,12 @@ public class CadastrarItemActivity extends AppCompatActivity implements Controll
                 0
         );
     }//fim onResume
-    @Override
-    protected void onDestroy() {
+    @Override protected void onDestroy() {
         super.onDestroy();
         msg.logD("onDestroy");
     }
     //
-    @Override
-    public void instanceController() {
+    @Override public void instanceController() {
         this.view = new ViewController(this, this);
         this.msg = new MsgController(view.getContext(), this.getClass().getName() );
     }
@@ -62,8 +58,7 @@ public class CadastrarItemActivity extends AppCompatActivity implements Controll
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
     }
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+    @Override public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
             case android.R.id.home:
                 startActivity(new Intent(this, ListadeCompras.class) );
