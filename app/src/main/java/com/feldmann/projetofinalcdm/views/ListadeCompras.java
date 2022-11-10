@@ -1,9 +1,12 @@
 package com.feldmann.projetofinalcdm.views;
 //
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 import com.feldmann.projetofinalcdm.R;
@@ -31,6 +34,7 @@ public class ListadeCompras extends AppCompatActivity implements Controller.cont
     protected void onResume() {
         super.onResume();
         msg.logD("onResume");
+        this.toolBar();
         String nomeLista = getIntent().getStringExtra("NOMELISTA");
         setTitle(nomeLista);
         //
@@ -65,5 +69,20 @@ public class ListadeCompras extends AppCompatActivity implements Controller.cont
     public void instanceController() {
         this.view = new ViewController(this, this);
         this.msg = new MsgController(view.getContext(), this.getClass().getName() );
+    }
+    private void toolBar(){
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
+    }
+    //
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case android.R.id.home:
+                startActivity(new Intent(this, LoginActivity.class) );
+                finish();
+                break;
+        }
+        return true;
     }
 }//fim class
