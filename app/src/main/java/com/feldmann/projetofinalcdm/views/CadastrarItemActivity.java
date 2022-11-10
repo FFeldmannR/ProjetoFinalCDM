@@ -43,6 +43,11 @@ public class CadastrarItemActivity extends AppCompatActivity implements Controll
                 (EditText) findViewById(R.id.etQuantidade),
                 0
         );
+    }//fim onResume
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        msg.logD("onDestroy");
     }
     //
     @Override

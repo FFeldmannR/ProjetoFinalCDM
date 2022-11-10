@@ -45,6 +45,12 @@ public class ListadeCompras extends AppCompatActivity implements Controller.cont
                 nomeLista
         );
     }//fim onResume
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        msg.logD("onDestroy");
+    }
+    //
     private void cadastrarItem(ImageButton imgBtn, String nomeLista){
         imgBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,8 +60,7 @@ public class ListadeCompras extends AppCompatActivity implements Controller.cont
                 v.getContext().startActivity(in);
             }
         });
-    }
-    //
+    }//fim cadastrarItem
     @Override
     public void instanceController() {
         this.view = new ViewController(this, this);

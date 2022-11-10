@@ -44,6 +44,12 @@ public class ListaActivity extends AppCompatActivity implements Controller.contr
         //
     }//fim onResume
     @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        msg.logD("onDestroy");
+    }
+    //
+    @Override
     public void instanceController() {
         this.view = new ViewController(this, this);
         this.msg = new MsgController(view.getContext(), this.getClass().getName().toString() );

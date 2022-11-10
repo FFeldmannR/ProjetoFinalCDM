@@ -22,10 +22,11 @@ public class MainActivity extends AppCompatActivity implements Controller.contro
         view.getActivity().startActivity(in);
     }//fim onCreate
     @Override
-    protected void onResume() {
-        super.onResume();
-        msg.logD("onResume");
-    }//fim onResume
+    protected void onDestroy() {
+        super.onDestroy();
+        msg.logD("onDestroy");
+    }
+    //
     @Override
     public void instanceController(){
         this.view = new ViewController(this, this);

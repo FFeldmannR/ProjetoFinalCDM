@@ -41,6 +41,11 @@ public class LoginActivity extends AppCompatActivity implements Controller.contr
         login.setTvEMS(((TextView) findViewById(R.id.tvEMS)));
         //
     }//fim onResume
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        msg.logD("onDestroy");
+    }
     //
     @Override
     public void instanceController() {
