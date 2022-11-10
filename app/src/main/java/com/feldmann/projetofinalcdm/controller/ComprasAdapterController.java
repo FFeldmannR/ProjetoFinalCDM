@@ -29,7 +29,6 @@ public class ComprasAdapterController implements Controller.controllerComprasAda
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("teste", "item clicado");
                 buttonEffect(v.getContext(), holder);
                 updateSQL(sqlWrite, cb, nomeListaAtual, nomeItem, objCompras);
                 selectList(objCompras);
@@ -54,18 +53,18 @@ public class ComprasAdapterController implements Controller.controllerComprasAda
                 objCompras.setCompleted(0);
                 sqlWrite.execSQL(
                         "UPDATE compras"+
-                                " SET completed="+0+
-                                " WHERE nomeLista='"+nomeListaAtual+"'"+
-                                " AND nomeItem='"+nomeItem+"'"
+                        " SET completed="+0+
+                        " WHERE nomeLista='"+nomeListaAtual+"'"+
+                        " AND nomeItem='"+nomeItem+"'"
                 );
             }else{//se NÃO esta marcado, mude para 1
                 cb.setChecked(true);
                 objCompras.setCompleted(1);
                 sqlWrite.execSQL(
                         "UPDATE compras"+
-                                " SET completed="+1+
-                                " WHERE nomeLista='"+nomeListaAtual+"'"+
-                                " AND nomeItem='"+nomeItem+"'"
+                        " SET completed="+1+
+                        " WHERE nomeLista='"+nomeListaAtual+"'"+
+                        " AND nomeItem='"+nomeItem+"'"
                 );
             }
         }catch (Exception e){
