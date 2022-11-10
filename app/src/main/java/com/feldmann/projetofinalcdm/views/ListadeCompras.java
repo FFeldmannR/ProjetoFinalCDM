@@ -20,6 +20,7 @@ public class ListadeCompras extends AppCompatActivity implements Controller.cont
     private Controller.msg msg;
     private Controller.view view;
     private DBListas db;
+    private String usuarioLogado;
     //
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,6 +34,7 @@ public class ListadeCompras extends AppCompatActivity implements Controller.cont
         super.onResume();
         msg.logD("onResume");
         this.toolBar();
+        usuarioLogado = getIntent().getStringExtra("USUARIO");
         String nomeLista = getIntent().getStringExtra("NOMELISTA");
         setTitle(nomeLista);
         //
@@ -73,15 +75,24 @@ public class ListadeCompras extends AppCompatActivity implements Controller.cont
     @Override public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
             case android.R.id.home:
-                startActivity(new Intent(this, ListaActivity.class) );
+                Intent intent = new Intent(this, ListaActivity.class);
+                msg.logD("usuarioLogado: "+usuarioLogado);
+                intent.putExtra("NOMEUSER", usuarioLogado);
+                startActivity( intent );
                 finish();
                 break;
         }
         return true;
     }
     @Override public void onBackPressed() {
-        startActivity(new Intent(this, ListaActivity.class));
-        finishAffinity();
-        return;
+        try {
+            Intent intent = new Intent(this, ListaActivity.class);
+            msg.logD("usuarioLogado: "+usuarioLogado);
+            intent.putExtra("NOMEUSER", usuarioLogado);
+            startActivity( intent );
+            finishAffinity();
+        }catch (Exception e){
+            msg.logD("FALHA AO VOLTAR\nERRO::: "+e.getMessage());
+        }
     }
 }//fim class

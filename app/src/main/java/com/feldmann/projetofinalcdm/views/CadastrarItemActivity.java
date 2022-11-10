@@ -21,6 +21,7 @@ public class CadastrarItemActivity extends AppCompatActivity implements Controll
     private Controller.msg msg;
     private Controller.view view;
     private DBListas db;
+    String nomeLista;
     //
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,7 +35,7 @@ public class CadastrarItemActivity extends AppCompatActivity implements Controll
         super.onResume();
         msg.logD("onResume");
         this.toolBar();
-        String nomeLista = getIntent().getStringExtra("NOMELISTA");
+        nomeLista = getIntent().getStringExtra("NOMELISTA");
         setTitle("Adicionar item em "+nomeLista);
         ComprasRepository.addItemToDB(
                 db.getWritableDatabase(),
@@ -61,15 +62,29 @@ public class CadastrarItemActivity extends AppCompatActivity implements Controll
     @Override public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
             case android.R.id.home:
-                startActivity(new Intent(this, ListadeCompras.class) );
-                finishAffinity();
-                break;
+                try {
+                    Intent intent = new Intent(this, ListadeCompras.class);
+                    intent.putExtra("NOMELISTA", nomeLista);
+                    startActivity(intent);
+                    msg.logD("nova activity iniciada: ListadeCompras");
+                    finishAffinity();
+                    break;
+                }catch (Exception e){
+                    msg.logD("FALHA AO VOLTAR\nERRO::: "+e.getMessage());
+                }
+
         }
         return true;
     }
     @Override public void onBackPressed() {
-        startActivity(new Intent(this, ListadeCompras.class));
-        finishAffinity();
-        return;
+        try {
+            Intent intent = new Intent(this, ListadeCompras.class);
+            intent.putExtra("NOMELISTA", nomeLista);
+            startActivity(intent);
+            msg.logD("nova activity iniciada: ListadeCompras");
+            finishAffinity();
+        }catch (Exception e){
+            msg.logD("FALHA AO VOLTAR\nERRO::: "+e.getMessage());
+        }
     }
-}//fim class
+}//fim CadastrarItemActivity

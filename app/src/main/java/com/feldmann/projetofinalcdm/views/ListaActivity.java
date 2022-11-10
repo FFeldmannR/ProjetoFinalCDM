@@ -43,7 +43,7 @@ public class ListaActivity extends AppCompatActivity implements Controller.contr
                 db.getWritableDatabase()
         );
         //
-        ListasRepository.setAdapterListas( (RecyclerView) findViewById(R.id.RVListas) );
+        ListasRepository.setAdapterListas( (RecyclerView) findViewById(R.id.RVListas), usuario );
         //
     }//fim onResume
     @Override protected void onDestroy() {
@@ -66,15 +66,20 @@ public class ListaActivity extends AppCompatActivity implements Controller.contr
     @Override public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
             case android.R.id.home:
-                startActivity(new Intent(this, LoginActivity.class) );
-                finish();
+                Intent intent = new Intent(this, LoginActivity.class);
+                startActivity( intent );
+                finishAffinity();
                 break;
         }
         return true;
     }
     @Override public void onBackPressed() {
-        startActivity(new Intent(this, LoginActivity.class));
-        finishAffinity();
-        return;
+        try {
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivity( intent );
+            finishAffinity();
+        }catch (Exception e){
+            msg.logD("FALHA AO VOLTAR\nERRO::: "+e.getMessage());
+        }
     }
 }//fim class

@@ -80,9 +80,9 @@ public class ListasRepository {
         });
     }
     //
-    public static void setAdapterListas(RecyclerView rv){
+    public static void setAdapterListas(RecyclerView rv, String usuarioLogado){
         msg.logD("setAdapterListas");
-        ListaAdapter listaAdapter = new ListaAdapter( getListas() );
+        ListaAdapter listaAdapter = new ListaAdapter( getListas(), usuarioLogado );
         rv.setAdapter(listaAdapter);
         rv.setLayoutManager( new LinearLayoutManager(instance.contexto ) );
     }

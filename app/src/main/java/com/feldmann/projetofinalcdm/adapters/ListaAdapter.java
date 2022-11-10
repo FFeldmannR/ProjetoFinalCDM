@@ -19,9 +19,11 @@ import java.util.List;
 public class ListaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     //
     private List<Listas> listas;
+    private String usuarioLogado;
     //
-    public ListaAdapter(List<Listas> listas) {
+    public ListaAdapter(List<Listas> listas, String usuarioLogado) {
         this.listas = listas;
+        this.usuarioLogado = usuarioLogado;
     }
     //
     @NonNull
@@ -62,6 +64,7 @@ public class ListaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     }//fim buttonEffect
     private void paraListadeCompras(Context context, String nomeLista){
         Intent in = new Intent(context, ListadeCompras.class);
+        in.putExtra("USUARIO", usuarioLogado);
         in.putExtra("NOMELISTA", nomeLista);
         context.startActivity(in);
     }
