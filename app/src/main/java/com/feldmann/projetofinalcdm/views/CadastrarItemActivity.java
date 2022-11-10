@@ -2,12 +2,9 @@ package com.feldmann.projetofinalcdm.views;
 //
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import android.content.ContentValues;
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import com.feldmann.projetofinalcdm.R;
@@ -40,7 +37,7 @@ public class CadastrarItemActivity extends AppCompatActivity implements Controll
         ComprasRepository.addItemToDB(
                 db.getWritableDatabase(),
                 (Button) findViewById(R.id.btnSalvar),
-                nomeLista,
+                getIntent().getStringExtra("USUARIOLOGADO"), nomeLista,
                 (EditText) findViewById(R.id.etNomeItem),
                 (EditText) findViewById(R.id.etQuantidade),
                 0
