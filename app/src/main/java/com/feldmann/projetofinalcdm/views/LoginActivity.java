@@ -2,8 +2,6 @@ package com.feldmann.projetofinalcdm.views;
 //
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Button;
@@ -32,6 +30,10 @@ public class LoginActivity extends AppCompatActivity implements Controller.contr
     @Override protected void onResume() {
         super.onResume();
         msg.logD("onResume");
+
+        ((EditText) findViewById(R.id.etLoginL)).setText("fabio");
+        ((EditText) findViewById(R.id.etSenhaL)).setText("111");
+
         this.toolBar();
         //
         login.setLoginField(getIntent().getStringExtra("NOMEUSER"), ((EditText) findViewById(R.id.etLoginL)));
@@ -71,6 +73,5 @@ public class LoginActivity extends AppCompatActivity implements Controller.contr
     }
     @Override public void onBackPressed() {
         finishAffinity();
-        return;
     }
 }//fim class
