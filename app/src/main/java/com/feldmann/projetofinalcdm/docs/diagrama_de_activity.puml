@@ -10,8 +10,10 @@ start
         :ListaActivity();
         if ( lista.itemClick() )
           :ListadeCompras;
+          if ( btnAddItem() ) then
+            :CadastrarItemActivity;
+            endif
         endif
-    endif
 stop
 
 @enduml
