@@ -17,7 +17,7 @@
             android:gravity="center"
             android:layout_weight="1"
             android:textStyle="bold"
-            android:text="nomeItem" />
+            android:text="@string/nomeItem" />
 
         <TextView
             android:id="@+id/tvQuantidade"
@@ -25,7 +25,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="Quantidade" />
+            android:text="@string/quantidade" />
 
         <CheckBox
             android:id="@+id/checkBoxItem"
