@@ -1,6 +1,7 @@
 package com.feldmann.projetofinalcdm.controller;
 //
 import android.content.Context;
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Build;
 import android.util.Log;
@@ -10,6 +11,7 @@ import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import androidx.recyclerview.widget.RecyclerView;
 import com.feldmann.projetofinalcdm.model.Compras;
+import com.feldmann.projetofinalcdm.views.EditarItemActivity;
 //
 public class ComprasAdapterController implements Controller.controllerComprasAdapter{
 
@@ -28,11 +30,14 @@ public class ComprasAdapterController implements Controller.controllerComprasAda
             }
         });
     }
-    public void clickInfoItemToEdit(LinearLayout infoItem){
+    public void clickInfoItemToEdit(LinearLayout infoItem, RecyclerView.ViewHolder holder, Compras compras){
         infoItem.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
-                Log.d("teste", "info clicado");
                 //ir para tela de edit item
+                buttonEffect(v.getContext(), holder);
+                Intent intent = new Intent(v.getContext(), EditarItemActivity.class);
+                intent.putExtra("NOMEITEM", compras);
+                v.getContext().startActivity(intent);
             }
         });
         //
