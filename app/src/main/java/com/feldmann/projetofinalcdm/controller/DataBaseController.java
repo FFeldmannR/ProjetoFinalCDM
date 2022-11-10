@@ -29,6 +29,7 @@ public class DataBaseController implements Controller.controllerDataBase{
     public String criarTabelaCompras() {
         String sqlStatement = "CREATE TABLE IF NOT EXISTS compras("+
                 "_id INTEGER PRIMARY KEY AUTOINCREMENT, "+
+                "donoLista TEXT, " +
                 "nomeLista TEXT, " +
                 "nomeItem TEXT," +
                 "quantidade TEXT," +
