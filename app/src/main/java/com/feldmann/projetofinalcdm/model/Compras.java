@@ -2,13 +2,15 @@ package com.feldmann.projetofinalcdm.model;
 
 public class Compras {
     private int id;
+    private String donoLista;
     private String nomeLista;
     private String nomeItem;
     private String quantidade;
     private int completed;
     //
-    public Compras(int id, String nomeLista, String nomeItem, String quantidade, int completed) {
+    public Compras(int id, String donoLista, String nomeLista, String nomeItem, String quantidade, int completed) {
         this.id = id;
+        this.donoLista = donoLista;
         this.nomeLista = nomeLista;
         this.nomeItem = nomeItem;
         this.quantidade = quantidade;
@@ -17,6 +19,9 @@ public class Compras {
     //
     public int getId() { return id; }
     public void setId(int id) { this.id = id; }
+    //
+    public String getDonoLista() { return donoLista; }
+    public void setDonoLista(String donoLista) {this.donoLista = donoLista;}
     //
     public String getNomeLista() { return nomeLista; }
     public void setNomeLista(String nomeLista) { this.nomeLista = nomeLista; }
