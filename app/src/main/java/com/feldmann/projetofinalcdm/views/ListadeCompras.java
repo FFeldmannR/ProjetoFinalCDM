@@ -70,7 +70,6 @@ public class ListadeCompras extends AppCompatActivity implements Controller.cont
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
     }
-    //
     @Override public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
             case android.R.id.home:
@@ -79,5 +78,10 @@ public class ListadeCompras extends AppCompatActivity implements Controller.cont
                 break;
         }
         return true;
+    }
+    @Override public void onBackPressed() {
+        startActivity(new Intent(this, ListaActivity.class));
+        finishAffinity();
+        return;
     }
 }//fim class

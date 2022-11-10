@@ -62,4 +62,9 @@ public class CadastroActivity extends AppCompatActivity implements Controller.co
         }
         return true;
     }
+    @Override public void onBackPressed() {
+        startActivity(new Intent(this, LoginActivity.class));
+        finishAffinity();
+        return;
+    }
 }//fim class

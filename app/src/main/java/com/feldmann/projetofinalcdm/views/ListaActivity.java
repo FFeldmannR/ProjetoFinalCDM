@@ -72,4 +72,9 @@ public class ListaActivity extends AppCompatActivity implements Controller.contr
         }
         return true;
     }
+    @Override public void onBackPressed() {
+        startActivity(new Intent(this, LoginActivity.class));
+        finishAffinity();
+        return;
+    }
 }//fim class

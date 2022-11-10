@@ -67,4 +67,9 @@ public class CadastrarItemActivity extends AppCompatActivity implements Controll
         }
         return true;
     }
+    @Override public void onBackPressed() {
+        startActivity(new Intent(this, ListadeCompras.class));
+        finishAffinity();
+        return;
+    }
 }//fim class
