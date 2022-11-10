@@ -38,7 +38,7 @@ public class ListadeCompras extends AppCompatActivity implements Controller.cont
         setTitle(nomeLista);
         //
         ComprasRepository.getInstanceCompras(
-                view.getContext(), db.getWritableDatabase(), nomeLista );
+                view.getContext(), db.getWritableDatabase(), nomeLista, usuarioLogado );
         //metodo para activity de criar item
         this.cadastrarItem((ImageButton) findViewById(R.id.imgBtnAddItem), nomeLista );
         //
@@ -58,6 +58,7 @@ public class ListadeCompras extends AppCompatActivity implements Controller.cont
             @Override
             public void onClick(View v) {
                 Intent in = new Intent(v.getContext(), CadastrarItemActivity.class);
+                in.putExtra("USUARIOLOGADO", usuarioLogado);
                 in.putExtra("NOMELISTA", nomeLista);
                 v.getContext().startActivity(in);
             }
