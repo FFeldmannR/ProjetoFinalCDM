@@ -1,6 +1,9 @@
 package com.feldmann.projetofinalcdm.model;
 
-public class Compras {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class Compras implements Parcelable {
     private int id;
     private String donoLista;
     private String nomeLista;
@@ -34,5 +37,39 @@ public class Compras {
     //
     public int isCompleted() { return completed; }
     public void setCompleted(int completed) { this.completed = completed; }
+    //
+    //PARCELABLE METHODS
+    protected Compras(Parcel in) {
+        id = in.readInt();
+        donoLista = in.readString();
+        nomeLista = in.readString();
+        nomeItem = in.readString();
+        quantidade = in.readString();
+        completed = in.readInt();
+    }
+    public static final Creator<Compras> CREATOR = new Creator<Compras>() {
+        @Override
+        public Compras createFromParcel(Parcel in) {
+            return new Compras(in);
+        }
+
+        @Override
+        public Compras[] newArray(int size) {
+            return new Compras[size];
+        }
+    };
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(id);
+        dest.writeString(donoLista);
+        dest.writeString(nomeLista);
+        dest.writeString(nomeItem);
+        dest.writeString(quantidade);
+        dest.writeInt(completed);
+    }
     //
 }//fim classe
