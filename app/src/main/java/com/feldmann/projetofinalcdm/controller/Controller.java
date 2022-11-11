@@ -6,6 +6,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
@@ -46,5 +47,13 @@ public class Controller {
         public void updateCheckbox(RecyclerView.ViewHolder holder,
                                    SQLiteDatabase sqlWrite, CheckBox checkBox,
                                    String nomeListaAtual, Compras compras);
+        public void clickInfoItemToEdit(LinearLayout infoItem, RecyclerView.ViewHolder holder, Compras compras);
+    }
+    public interface controllerEditItem{
+        public void updateItem(Button btnSalvar, SQLiteDatabase sqlWrite,
+                               String novoNomeItem, String novaQuantidade,
+                               String donoLista, String nomeLista);
+        public void deleteItem(Button btnDeletar, SQLiteDatabase sqlWrite,
+                               String donoLista, String nomeLista, String nomeItem);
     }
 }
