@@ -1,7 +1,12 @@
 package com.feldmann.projetofinalcdm.views;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.widget.Button;
+import android.widget.EditText;
+
 import com.feldmann.projetofinalcdm.*;
 import com.feldmann.projetofinalcdm.controller.Controller;
 import com.feldmann.projetofinalcdm.controller.EditItemController;
@@ -28,6 +33,18 @@ public class EditarItemActivity extends AppCompatActivity implements Controller.
         super.onResume();
         msg.logD("onResume");
         Compras obj = getIntent().getParcelableExtra("OBJCOMPRAS");
+        EditText etNomeItem = (EditText) findViewById(R.id.etNomeItemEdit);
+        EditText etQntdItem = (EditText) findViewById(R.id.etQuantidadeEdit);
+        msg.logD("nomeItem: "+obj.getNomeItem() );
+        etNomeItem.setText( obj.getNomeItem() );
+        etQntdItem.setText( obj.getQuantidade() );
+        edit.updateItem( (Button) findViewById(R.id.btnSalvarEdit),
+                db.getWritableDatabase(),
+                etNomeItem, etQntdItem,
+                obj.getDonoLista(), obj.getNomeLista() );
+        edit.deleteItem( (Button) findViewById(R.id.btnDeleteItem),
+                db.getWritableDatabase(), obj.getDonoLista(),
+                obj.getNomeLista(), obj.getNomeItem() );
     }
     @Override protected void onDestroy() {
         super.onDestroy();
