@@ -33,7 +33,6 @@ public class ComprasAdapterController implements Controller.controllerComprasAda
     @Override public void clickInfoItemToEdit(LinearLayout infoItem, RecyclerView.ViewHolder holder, Compras compras){
         infoItem.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
-                //ir para tela de edit item
                 buttonEffect(v.getContext(), holder);
                 Intent intent = new Intent(v.getContext(), EditarItemActivity.class);
                 intent.putExtra("OBJCOMPRAS", compras);
@@ -59,7 +58,7 @@ public class ComprasAdapterController implements Controller.controllerComprasAda
         }
     }//fim buttonEffect
     private void updateSQL(SQLiteDatabase sqlWrite, CheckBox cb,
-                           String nomeListaAtual, Compras objCompras){
+                           String nomeListaAtual,Compras objCompras){
         String tag = "UPDATE";
         try{
             if (cb.isChecked()){ //se esta marcado, mude para 1
