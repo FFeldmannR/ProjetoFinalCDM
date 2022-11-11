@@ -15,7 +15,7 @@ import com.feldmann.projetofinalcdm.views.EditarItemActivity;
 //
 public class ComprasAdapterController implements Controller.controllerComprasAdapter{
 
-    public void updateCheckbox(RecyclerView.ViewHolder holder,
+    @Override public void updateCheckbox(RecyclerView.ViewHolder holder,
                                SQLiteDatabase sqlWrite, CheckBox checkBox,
                                String nomeListaAtual, Compras compras){
         if ( compras.isCompleted() == 1 ){
@@ -30,17 +30,17 @@ public class ComprasAdapterController implements Controller.controllerComprasAda
             }
         });
     }
-    public void clickInfoItemToEdit(LinearLayout infoItem, RecyclerView.ViewHolder holder, Compras compras){
+    @Override public void clickInfoItemToEdit(LinearLayout infoItem, RecyclerView.ViewHolder holder, Compras compras){
         infoItem.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
                 //ir para tela de edit item
                 buttonEffect(v.getContext(), holder);
                 Intent intent = new Intent(v.getContext(), EditarItemActivity.class);
-                intent.putExtra("NOMEITEM", compras);
+                intent.putExtra("OBJCOMPRAS", compras);
+                selectList( compras );
                 v.getContext().startActivity(intent);
             }
         });
-        //
     }
     @Override public void selectList(Compras objCompras){
         Log.d("SELECT_LIST","_id | nomeLista | nomeItem | quantidade | completed\n"+
