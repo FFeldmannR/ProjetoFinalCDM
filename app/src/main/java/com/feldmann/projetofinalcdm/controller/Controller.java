@@ -51,7 +51,7 @@ public class Controller {
     }
     public interface controllerEditItem{
         public void updateItem(Button btnSalvar, SQLiteDatabase sqlWrite,
-                               String novoNomeItem, String novaQuantidade,
+                               EditText novoNomeItem, EditText novaQuantidade,
                                String donoLista, String nomeLista);
         public void deleteItem(Button btnDeletar, SQLiteDatabase sqlWrite,
                                String donoLista, String nomeLista, String nomeItem);
