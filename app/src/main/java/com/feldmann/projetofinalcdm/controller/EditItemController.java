@@ -9,14 +9,15 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.feldmann.projetofinalcdm.model.Compras;
 import com.feldmann.projetofinalcdm.views.ListadeCompras;
 
 public class EditItemController implements Controller.controllerEditItem{
     //
     @Override public void updateItem(Button btnSalvar, SQLiteDatabase sqlWrite,
                                      EditText novoNomeItem, EditText novaQuantidade,
-                                     String donoLista, String nomeLista) {
-        Log.d("EDIT_ITEM", "antesdoBotao/SET: "+novoNomeItem.getText().toString()+" | "+novaQuantidade.getText().toString()+" WHERE "+donoLista+" | "+nomeLista);
+                                     Compras objCompras) {
+        Log.d("EDIT_ITEM", "antesdoBotao/SET: "+novoNomeItem.getText().toString()+" | "+novaQuantidade.getText().toString()+" WHERE "+objCompras.getDonoLista()+" | "+ objCompras.getNomeLista() );
         btnSalvar.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
                 if ( novoNomeItem.getText().toString().equals(null) || novaQuantidade.getText().toString().equals(null) ){
@@ -25,17 +26,16 @@ public class EditItemController implements Controller.controllerEditItem{
                     try{
                         String nomeItem = novoNomeItem.getText().toString();
                         String qntd = novaQuantidade.getText().toString();
-                        Log.d("EDIT_ITEM", "antesDoUpdateSET: "+nomeItem+" | "+qntd+" WHERE "+donoLista+" | "+nomeLista);
+                        Log.d("EDIT_ITEM", "antesDoUpdateSET: "+nomeItem+" | "+qntd+" WHERE "+objCompras.getDonoLista()+" | "+ objCompras.getNomeLista() );
                         sqlWrite.execSQL(
                             "UPDATE compras"+
                             " SET nomeItem='"+nomeItem+"'"+
                             " AND quantidade='"+qntd+"'"+
-                            " WHERE donoLista='"+donoLista+"'"+
-                            " AND nomeLista='"+nomeLista+"'" );
-                        Log.d("EDIT_ITEM", "depoisDoUpdateSET: "+nomeItem+" | "+qntd+" WHERE "+donoLista+" | "+nomeLista);
+                            " WHERE _id='"+objCompras.getId()+"'" );
+                        Log.d("EDIT_ITEM", "depoisDoUpdateSET: "+nomeItem+" | "+qntd+" WHERE "+objCompras.getDonoLista()+" | "+ objCompras.getNomeLista() );
                         Intent in = new Intent(v.getContext(), ListadeCompras.class);
-                        in.putExtra("USUARIO", donoLista);
-                        in.putExtra("NOMELISTA", nomeLista);
+                        in.putExtra("USUARIO", objCompras.getDonoLista() );
+                        in.putExtra("NOMELISTA", objCompras.getNomeLista() );
                         v.getContext().startActivity(in);
                     }catch (Exception e){ Log.d("EDIT_ITEM", "FALHA AO ATUALIZAR\n"+e.getMessage() ); }//fim try catch
 

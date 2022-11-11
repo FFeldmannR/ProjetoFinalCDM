@@ -52,7 +52,7 @@ public class Controller {
     public interface controllerEditItem{
         public void updateItem(Button btnSalvar, SQLiteDatabase sqlWrite,
                                EditText novoNomeItem, EditText novaQuantidade,
-                               String donoLista, String nomeLista);
+                               Compras objCompras);
         public void deleteItem(Button btnDeletar, SQLiteDatabase sqlWrite,
                                String donoLista, String nomeLista, String nomeItem);
     }

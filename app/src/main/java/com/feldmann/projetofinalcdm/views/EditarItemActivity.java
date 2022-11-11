@@ -41,7 +41,7 @@ public class EditarItemActivity extends AppCompatActivity implements Controller.
         edit.updateItem( (Button) findViewById(R.id.btnSalvarEdit),
                 db.getWritableDatabase(),
                 etNomeItem, etQntdItem,
-                obj.getDonoLista(), obj.getNomeLista() );
+                obj );
         edit.deleteItem( (Button) findViewById(R.id.btnDeleteItem),
                 db.getWritableDatabase(), obj.getDonoLista(),
                 obj.getNomeLista(), obj.getNomeItem() );
