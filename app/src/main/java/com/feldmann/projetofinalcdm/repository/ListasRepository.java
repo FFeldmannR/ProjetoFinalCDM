@@ -64,6 +64,14 @@ public class ListasRepository {
             msg.logD("ERRO AO CRIAR LISTA\n"+sqlE.getMessage() );
         }//fim try catch
     }//fim insertNewListToDB
+    public static void updateList( String donoLista, String nomeLista, String novoNomeLista ){
+        db.getWritableDatabase().execSQL(
+                "UPDATE listas "+
+                " SET nomeLista='"+novoNomeLista+"'"+
+                " WHERE donoLista='"+donoLista+"'"+
+                " AND nomeLista='"+nomeLista+"'"
+        );
+    }
     public static void setAdapterListas(RecyclerView rv, String usuarioLogado){
         msg.logD("setAdapterListas");
         ListaAdapter listaAdapter = new ListaAdapter( getListas(), usuarioLogado );
