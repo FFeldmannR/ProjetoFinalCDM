@@ -15,7 +15,7 @@ import com.feldmann.projetofinalcdm.controller.*;
 public class EditListActivity extends AppCompatActivity implements Controller.controllerInstance {
     private Controller.msg msg;
     private Controller.view view;
-    private Controller.controllerEditList editList;
+    private Controller.controllerEditList lista;
     private String usuarioLogado, nomeLista;
 
     @Override protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +39,7 @@ public class EditListActivity extends AppCompatActivity implements Controller.co
         btnSalvar.setTextColor(Color.BLACK);
         btnSalvar.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
-                editList.updateList( usuarioLogado, nomeLista, etNomeLista.getText().toString() );
+                lista.updateList( usuarioLogado, nomeLista, etNomeLista.getText().toString() );
             }//fim onClick
         });//fim clickListener
     }//fim onResume
@@ -50,7 +50,7 @@ public class EditListActivity extends AppCompatActivity implements Controller.co
     @Override public void instanceController() {
         this.view = new ViewController(this, this);
         this.msg = new MsgController( view.getContext(), this.getClass().getName() );
-        this.editList = new ListasController( view.getContext() );
+        this.lista = new ListasController( view.getContext() );
     }//fim instanceController
             // METODOS PARA OS BOTOES VOLTAR
     private void toolBar(){
