@@ -15,8 +15,8 @@ import com.feldmann.projetofinalcdm.views.ListaActivity;
 //
 public class LoginController implements Controller.controllerLogin{
     private Context context;
-    private Controller.msg msg;
-    private SQLiteDatabase sqlRead;
+    private static Controller.msg msg;
+    private static SQLiteDatabase sqlRead;
     //
     public LoginController(Context context, SQLiteDatabase sqlRead) {
         this.context = context;
@@ -39,47 +39,43 @@ public class LoginController implements Controller.controllerLogin{
         });//fim clickListener
     }//fim setTvEMS
     @Override public void Login(String login, String senha) {
-        if (verificaUser(login, senha)){
-            try{
-                Intent toListActivity = new Intent(context, ListaActivity.class);
-                toListActivity.putExtra("NOMEUSER", login );
-                msg.messageToast("Bem Vindo(a) "+login );
-                context.startActivity(toListActivity);
-            }catch (Exception e){
-                msg.logD("ERRO AO MUDAR DE ACTIVITY\n"+e.getMessage() );
-            }
-        }else{
-            //
-        }
+        verificaUser(login, senha);
     }//fim Login
-    private boolean verificaUser(String login, String senha){
-        //
+    private void verificaUser(String login, String senha){
         Cursor cursor = sqlRead.rawQuery("SELECT * FROM users", null);
         //
         if (cursor.moveToFirst()){
             do {
-                String dbNome = cursor.getString(1);
-                String dbSenha = cursor.getString(2);
-                //
-                if (login.equals(dbNome) && senha.equals(dbSenha)){
+                if (login.equals(cursor.getString(1)) && senha.equals(cursor.getString(2))){
                     //válido
-                    cursor.close();
-                    return true;
-                }else{
-                    //invalido
-                    cursor.close();
-                    return false;
-                }//fim if else
+                    Intent toListActivity = new Intent(context, ListaActivity.class);
+                    toListActivity.putExtra("NOMEUSER", login );
+                    msg.messageToast("Bem Vindo(a) "+login );
+                    context.startActivity(toListActivity);
+                    break;
+                }
             }while (cursor.moveToNext());
         }else{
             msg.logD("NÃO TEM REGISTROS DE USUARIOS");
-            cursor.close();
-            return false;
         }//fim if else
+        cursor.close();
     }//fim verificaUser
-    //
-    @Override
-    public void cadastrarUser(Button btn) {
+    public static void selectUserDB(){
+        Cursor cursor = sqlRead.rawQuery("SELECT * FROM users", null);
+        //
+        msg.logD("ID | LOGIN | SENHA");
+        if (cursor.moveToFirst()){
+            do {
+                msg.logD("("+cursor.getString(0)+") "+
+                        cursor.getString(1)+
+                        " | "+cursor.getString(2) );
+            }while (cursor.moveToNext());
+        }else{
+            msg.logD("NÃO TEM REGISTROS DE USUARIOS");
+        }//fim if else
+        cursor.close();
+    }
+    @Override public void cadastrarUser(Button btn) {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

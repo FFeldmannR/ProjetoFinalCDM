@@ -44,6 +44,8 @@ public class LoginActivity extends AppCompatActivity implements Controller.contr
         });//fim clickListener
         login.cadastrarUser((Button) findViewById(R.id.btnCadastrarL));
         login.setTvEMS(((TextView) findViewById(R.id.tvEMS)));
+
+        LoginController.selectUserDB();
         //
     }//fim onResume
     @Override protected void onDestroy() {
