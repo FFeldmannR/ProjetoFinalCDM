@@ -9,17 +9,15 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 import com.feldmann.projetofinalcdm.R;
-import com.feldmann.projetofinalcdm.controller.Controller;
-import com.feldmann.projetofinalcdm.controller.MsgController;
-import com.feldmann.projetofinalcdm.controller.ViewController;
-import com.feldmann.projetofinalcdm.repository.DBListas;
-import com.feldmann.projetofinalcdm.repository.ComprasRepository;
+import com.feldmann.projetofinalcdm.controller.*;
+import com.feldmann.projetofinalcdm.repository.*;
 //
 public class ListadeCompras extends AppCompatActivity implements Controller.controllerInstance{
     private Controller.msg msg;
     private Controller.view view;
+    private Controller.controllerAdapters adapters;
     private DBListas db;
-    private String usuarioLogado;
+    private String usuarioLogado, nomeLista;
     //
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,23 +25,23 @@ public class ListadeCompras extends AppCompatActivity implements Controller.cont
         this.instanceController();
         db = new DBListas(view.getContext());
         msg.logD("onCreate");
-    }
-    //
+    }//fim onCreate
     @Override protected void onResume() {
         super.onResume();
         msg.logD("onResume");
         this.toolBar();
         usuarioLogado = getIntent().getStringExtra("USUARIO");
-        String nomeLista = getIntent().getStringExtra("NOMELISTA");
+        nomeLista = getIntent().getStringExtra("NOMELISTA");
         setTitle(nomeLista);
         //
         ComprasRepository.getInstanceCompras(
-                view.getContext(), db.getWritableDatabase(), nomeLista, usuarioLogado );
+                view.getContext(), nomeLista, usuarioLogado );
         //metodo para activity de criar item
-        this.cadastrarItem((ImageButton) findViewById(R.id.imgBtnAddItem), nomeLista );
+        this.cadastrarItem( (ImageButton) findViewById(R.id.imgBtnAddItem), nomeLista );
         //
-        ComprasRepository.setAdapterItemList(
+        adapters.setAdapterItemList(
                 (RecyclerView) findViewById(R.id.RVCompras),
+                ComprasRepository.getCompras(),
                 db.getWritableDatabase(),
                 nomeLista
         );
@@ -51,39 +49,38 @@ public class ListadeCompras extends AppCompatActivity implements Controller.cont
     @Override protected void onDestroy() {
         super.onDestroy();
         msg.logD("onDestroy");
-    }
-    //
+    }//fim onDestroy
     private void cadastrarItem(ImageButton imgBtn, String nomeLista){
         imgBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+            @Override public void onClick(View v) {
                 Intent in = new Intent(v.getContext(), CadastrarItemActivity.class);
                 in.putExtra("USUARIOLOGADO", usuarioLogado);
                 in.putExtra("NOMELISTA", nomeLista);
                 v.getContext().startActivity(in);
-            }
-        });
+            }//fim onClick
+        });//fim clickListener
     }//fim cadastrarItem
     @Override public void instanceController() {
         this.view = new ViewController(this, this);
         this.msg = new MsgController(view.getContext(), this.getClass().getName() );
-    }
+        this.adapters = new AdapterController( view.getContext() );
+    }//fim instanceController
+            // METODOS PARA OS BOTOES VOLTAR
     private void toolBar(){
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
-    }
+    }//fim toolBar()
     @Override public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()){
+        switch ( item.getItemId() ) {
             case android.R.id.home:
                 Intent intent = new Intent(this, ListaActivity.class);
-                msg.logD("usuarioLogado: "+usuarioLogado);
                 intent.putExtra("NOMEUSER", usuarioLogado);
                 startActivity( intent );
                 finish();
                 break;
-        }
+        }//fim switch
         return true;
-    }
+    }//fimonOptionsItemSelected
     @Override public void onBackPressed() {
         try {
             Intent intent = new Intent(this, ListaActivity.class);
@@ -93,6 +90,6 @@ public class ListadeCompras extends AppCompatActivity implements Controller.cont
             finishAffinity();
         }catch (Exception e){
             msg.logD("FALHA AO VOLTAR\nERRO::: "+e.getMessage());
-        }
-    }
+        }//fim try catch
+    }//fim onBackPressed
 }//fim class
