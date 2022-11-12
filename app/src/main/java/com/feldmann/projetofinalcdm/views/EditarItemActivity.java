@@ -1,58 +1,91 @@
 package com.feldmann.projetofinalcdm.views;
-
+//
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.database.sqlite.SQLiteDatabase;
+import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-
 import com.feldmann.projetofinalcdm.*;
 import com.feldmann.projetofinalcdm.controller.Controller;
 import com.feldmann.projetofinalcdm.controller.EditItemController;
 import com.feldmann.projetofinalcdm.controller.MsgController;
 import com.feldmann.projetofinalcdm.controller.ViewController;
 import com.feldmann.projetofinalcdm.model.Compras;
-import com.feldmann.projetofinalcdm.repository.DBListas;
-
+//
 public class EditarItemActivity extends AppCompatActivity implements Controller.controllerInstance {
     private Controller.msg msg;
     private Controller.view view;
-    Controller.controllerEditItem edit;
-    private DBListas db;
+    private Controller.controllerEditItem edit;
     //
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_editar_item);
         this.instanceController();
-        db = new DBListas(view.getContext());
         msg.logD("onCreate");
-    }
+    }//fim onCreate
     @Override protected void onResume() {
         super.onResume();
         msg.logD("onResume");
         Compras obj = getIntent().getParcelableExtra("OBJCOMPRAS");
+
+            // METODOS PARA OS CAMPOS DE TEXTO
         EditText etNomeItem = (EditText) findViewById(R.id.etNomeItemEdit);
         EditText etQntdItem = (EditText) findViewById(R.id.etQuantidadeEdit);
-        msg.logD("nomeItem: "+obj.getNomeItem() );
         etNomeItem.setText( obj.getNomeItem() );
         etQntdItem.setText( obj.getQuantidade() );
-        edit.updateItem( (Button) findViewById(R.id.btnSalvarEdit),
-                db.getWritableDatabase(),
-                etNomeItem, etQntdItem,
-                obj );
-        edit.deleteItem( (Button) findViewById(R.id.btnDeleteItem),
-                db.getWritableDatabase(), obj.getDonoLista(),
-                obj.getNomeLista(), obj.getNomeItem() );
-    }
+
+            // METODO PARA O BOTAO SALVAR
+        ((Button) findViewById(R.id.btnSalvarEdit)).setOnClickListener(new View.OnClickListener() {
+            @Override public void onClick(View v) {
+                edit.updateItem(etNomeItem.getText().toString(), etQntdItem.getText().toString(), obj );
+            }//fim onClick
+        });//fim clickListener
+
+            // METODOS DO BOTAO DELETAR
+        Button btnDeletar = ((Button) findViewById(R.id.btnDeleteItem));
+        btnDeletar.setBackgroundColor(Color.RED); //seta a cor do botao delete para vermelho
+        btnDeletar.setOnClickListener(new View.OnClickListener() {
+            @Override public void onClick(View v) {
+                edit.deleteItem( obj );
+            }//fim onClick
+        });//fim clickListener
+    }//fim onResume
     @Override protected void onDestroy() {
         super.onDestroy();
         msg.logD("onDestroy");
-    }
+    }//fim onDestroy
     @Override public void instanceController() {
         this.view = new ViewController(this, this);
         this.msg = new MsgController(view.getContext(), this.getClass().getName() );
-        this.edit = new EditItemController();
-    }
-}
+        this.edit = new EditItemController( view.getContext() );
+    }// instanceController
+            // METODOS PARA OS BOTOES VOLTAR
+    private void toolBar(){
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
+    }//fim toolBar()
+    @Override public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case android.R.id.home:
+                Intent intent = new Intent(this, LoginActivity.class);
+                startActivity( intent );
+                finishAffinity();
+                break;
+        }//fim switch
+        return true;
+    }//fim onOptionsItemSelected
+    @Override public void onBackPressed() {
+        try {
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivity( intent );
+            finishAffinity();
+        }catch (Exception e){
+            msg.logD("FALHA AO VOLTAR\nERRO::: "+e.getMessage());
+        }//fim try catch
+    }//fim onBackPressed
+}//fim classe
