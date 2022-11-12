@@ -14,7 +14,6 @@ import com.feldmann.projetofinalcdm.model.Compras;
 import com.feldmann.projetofinalcdm.views.EditarItemActivity;
 //
 public class ComprasAdapterController implements Controller.controllerComprasAdapter{
-
     @Override public void updateCheckbox(RecyclerView.ViewHolder holder,
                                SQLiteDatabase sqlWrite, CheckBox checkBox,
                                String nomeListaAtual, Compras compras){
@@ -27,9 +26,9 @@ public class ComprasAdapterController implements Controller.controllerComprasAda
             public void onClick(View v) {
                 buttonEffect(v.getContext(), holder);
                 updateSQL(sqlWrite, checkBox, nomeListaAtual, compras);
-            }
-        });
-    }
+            }//fim onClick
+        });//fim clickListener
+    }//fim updateCheckbox
     @Override public void clickInfoItemToEdit(LinearLayout infoItem, RecyclerView.ViewHolder holder, Compras compras){
         infoItem.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
@@ -38,9 +37,9 @@ public class ComprasAdapterController implements Controller.controllerComprasAda
                 intent.putExtra("OBJCOMPRAS", compras);
                 selectList( compras );
                 v.getContext().startActivity(intent);
-            }
-        });
-    }
+            }//fim onClick
+        });//fim clickListener
+    }//fim updateCheckbox
     @Override public void selectList(Compras objCompras){
         Log.d("SELECT_LIST","_id | nomeLista | nomeItem | quantidade | completed\n"+
                 "("+objCompras.getId()+") "+
@@ -48,8 +47,7 @@ public class ComprasAdapterController implements Controller.controllerComprasAda
                 objCompras.getNomeItem()+" | "+
                 objCompras.getQuantidade()+" | "+
                 objCompras.isCompleted() );
-    }
-    //
+    }//fim selectList
     private void buttonEffect(Context context, RecyclerView.ViewHolder holder){
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
             TypedValue outValue = new TypedValue();
@@ -81,7 +79,7 @@ public class ComprasAdapterController implements Controller.controllerComprasAda
                         " AND nomeItem='"+objCompras.getNomeItem()+"'"
                 );
                 Log.d(tag, "checkBox atualizado no banco para 0");
-            }
+            }//fim if else
         }catch (Exception e){
             Log.d(tag, "FALHA AO ATUALIZAR NO BANCO");
             Log.d(tag, ""+e.getMessage());
