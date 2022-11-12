@@ -50,7 +50,7 @@ public class EditListActivity extends AppCompatActivity implements Controller.co
     @Override public void instanceController() {
         this.view = new ViewController(this, this);
         this.msg = new MsgController( view.getContext(), this.getClass().getName() );
-        this.editList = new EditListController( view.getContext() );
+        this.editList = new ListasController( view.getContext() );
     }//fim instanceController
             // METODOS PARA OS BOTOES VOLTAR
     private void toolBar(){
