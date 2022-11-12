@@ -65,13 +65,17 @@ public class ListasRepository {
         }//fim try catch
     }//fim insertNewListToDB
     public static void updateList( String donoLista, String nomeLista, String novoNomeLista ){
-        db.getWritableDatabase().execSQL(
-                "UPDATE listas "+
-                " SET nomeLista='"+novoNomeLista+"'"+
-                " WHERE donoLista='"+donoLista+"'"+
-                " AND nomeLista='"+nomeLista+"'"
-        );
-    }
+        try{
+            db.getWritableDatabase().execSQL(
+                    "UPDATE listas "+
+                            " SET nomeLista='"+novoNomeLista+"'"+
+                            " WHERE donoLista='"+donoLista+"'"+
+                            " AND nomeLista='"+nomeLista+"'"
+            );
+        }catch (SQLException sqlE){
+
+        }//fim try catch
+    }//fim updateList
     public static void setAdapterListas(RecyclerView rv, String usuarioLogado){
         msg.logD("setAdapterListas");
         ListaAdapter listaAdapter = new ListaAdapter( getListas(), usuarioLogado );
