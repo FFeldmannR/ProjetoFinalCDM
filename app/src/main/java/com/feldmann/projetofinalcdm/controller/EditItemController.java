@@ -16,7 +16,6 @@ public class EditItemController implements Controller.controllerEditItem{
         this.context = context;
         msg = new MsgController(context, this.getClass().getName() );
     }
-    //
     @Override public void updateItem(String novoNomeItem, String novaQuantidade, Compras objCompras) {
         Log.d("EDIT_ITEM", "antesdoBotao/SET: "+novoNomeItem+" | "+novaQuantidade+" WHERE "+objCompras.getDonoLista()+" | "+ objCompras.getNomeLista() );
         if (novoNomeItem == null || novaQuantidade == null){
