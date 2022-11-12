@@ -11,13 +11,10 @@ public class ViewController implements Controller.view{
         this.context = context;
         this.activity = activity;
     }
-    //
-    @Override
-    public Activity getActivity() {
+    @Override public Activity getActivity() {
         return this.activity;
     }
-    @Override
-    public Context getContext() {
+    @Override public Context getContext() {
         return this.context;
     }
 }// fim class
