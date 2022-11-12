@@ -68,12 +68,12 @@ public class ListasRepository {
         try{
             db.getWritableDatabase().execSQL(
                     "UPDATE listas "+
-                            " SET nomeLista='"+novoNomeLista+"'"+
-                            " WHERE donoLista='"+donoLista+"'"+
-                            " AND nomeLista='"+nomeLista+"'"
+                    " SET nomeLista='"+novoNomeLista+"'"+
+                    " WHERE donoLista='"+donoLista+"'"+
+                    " AND nomeLista='"+nomeLista+"'"
             );
         }catch (SQLException sqlE){
-
+            msg.logD("ERRO AO ATUALIZAR LISTA\n"+sqlE.getMessage() );
         }//fim try catch
     }//fim updateList
     public static void setAdapterListas(RecyclerView rv, String usuarioLogado){
