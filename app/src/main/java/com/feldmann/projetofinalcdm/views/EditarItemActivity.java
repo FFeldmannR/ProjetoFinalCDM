@@ -44,7 +44,10 @@ public class EditarItemActivity extends AppCompatActivity implements Controller.
         etQntdItem.setText( obj.getQuantidade() );
 
             // METODO PARA O BOTAO SALVAR
-        ((Button) findViewById(R.id.btnSalvarEdit)).setOnClickListener(new View.OnClickListener() {
+        Button btnSalvar = ((Button) findViewById(R.id.btnSalvarEdit));
+        btnSalvar.setBackgroundColor(Color.GREEN);
+        btnSalvar.setTextColor(Color.BLACK);
+        btnSalvar.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
                 edit.updateItem(etNomeItem.getText().toString(), etQntdItem.getText().toString(), obj );
             }//fim onClick
