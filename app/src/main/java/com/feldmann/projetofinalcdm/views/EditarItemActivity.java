@@ -18,6 +18,7 @@ import com.feldmann.projetofinalcdm.controller.ViewController;
 import com.feldmann.projetofinalcdm.model.Compras;
 //
 public class EditarItemActivity extends AppCompatActivity implements Controller.controllerInstance {
+    private Compras obj;
     private Controller.msg msg;
     private Controller.view view;
     private Controller.controllerEditItem edit;
@@ -31,7 +32,7 @@ public class EditarItemActivity extends AppCompatActivity implements Controller.
     @Override protected void onResume() {
         super.onResume();
         msg.logD("onResume");
-        Compras obj = getIntent().getParcelableExtra("OBJCOMPRAS");
+        obj = getIntent().getParcelableExtra("OBJCOMPRAS");
 
             // METODOS PARA OS CAMPOS DE TEXTO
         EditText etNomeItem = (EditText) findViewById(R.id.etNomeItemEdit);
@@ -72,7 +73,9 @@ public class EditarItemActivity extends AppCompatActivity implements Controller.
     @Override public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
             case android.R.id.home:
-                Intent intent = new Intent(this, LoginActivity.class);
+                Intent intent = new Intent(this, ListadeCompras.class);
+                intent.putExtra("USUARIO", obj.getDonoLista() );
+                intent.putExtra("NOMELISTA", obj.getNomeLista() );
                 startActivity( intent );
                 finishAffinity();
                 break;
@@ -81,7 +84,9 @@ public class EditarItemActivity extends AppCompatActivity implements Controller.
     }//fim onOptionsItemSelected
     @Override public void onBackPressed() {
         try {
-            Intent intent = new Intent(this, LoginActivity.class);
+            Intent intent = new Intent(this, ListadeCompras.class);
+            intent.putExtra("USUARIO", obj.getDonoLista() );
+            intent.putExtra("NOMELISTA", obj.getNomeLista() );
             startActivity( intent );
             finishAffinity();
         }catch (Exception e){
