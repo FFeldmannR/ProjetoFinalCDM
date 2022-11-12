@@ -5,11 +5,11 @@ import android.content.Intent;
 import com.feldmann.projetofinalcdm.repository.ListasRepository;
 import com.feldmann.projetofinalcdm.views.ListaActivity;
 
-public class EditListController implements Controller.controllerEditList{
+public class ListasController implements Controller.controllerEditList{
     private Context context;
     private Controller.msg msg;
 
-    public EditListController(Context context) {
+    public ListasController(Context context) {
         this.context = context;
         this.msg = new MsgController( context, this.getClass().getName() );
     }
