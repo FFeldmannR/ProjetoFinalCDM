@@ -9,7 +9,7 @@
     <!-- LISTA LAYOUT -->
     <string name="nomeLista">NOME_LISTA</string>
     <!-- ITEM LAYOUT -->
-    <string name="nomeItem">NOME_ITEM</string>
-    <string name="quantidade">QNTD</string>
+    <string name="nomeItem">Nome do Item</string>
+    <string name="quantidade">Quantidade</string>
     <!--  -->
 </resources>
