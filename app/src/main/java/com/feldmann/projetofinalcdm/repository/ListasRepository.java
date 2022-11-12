@@ -53,7 +53,7 @@ public class ListasRepository {
         return listas;
     }
     //
-    public static void insertNewListToDB(String donoLista, String nomeLista){
+    public static void createList(String donoLista, String nomeLista){
         try{
             ContentValues ctv = new ContentValues();
             ctv.put("donoLista", donoLista);
