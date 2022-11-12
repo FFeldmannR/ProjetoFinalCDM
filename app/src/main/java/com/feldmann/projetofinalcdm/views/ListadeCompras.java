@@ -34,15 +34,23 @@ public class ListadeCompras extends AppCompatActivity implements Controller.cont
         nomeLista = getIntent().getStringExtra("NOMELISTA");
         setTitle(nomeLista);
         //
-        ComprasRepository.getInstanceCompras(
-                view.getContext(), nomeLista, usuarioLogado );
+        ComprasRepository.getInstanceCompras( view.getContext(), nomeLista, usuarioLogado );
             //METODO PARA IR PARA ACTIVITY DE CRIAR ITEM
-        ((ImageButton) findViewById(R.id.imgBtnAddItem)).setOnClickListener(new View.OnClickListener() {
-            @Override public void onClick(View v) {
-                Intent in = new Intent(v.getContext(), CadastrarItemActivity.class);
+        ((ImageButton) findViewById(R.id.imgBtnConfigList)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent in = new Intent( view.getContext(), EditListActivity.class );
                 in.putExtra("USUARIOLOGADO", usuarioLogado);
                 in.putExtra("NOMELISTA", nomeLista);
-                v.getContext().startActivity(in);
+                view.getContext().startActivity(in);
+            }
+        });
+        ((ImageButton) findViewById(R.id.imgBtnAddItem)).setOnClickListener(new View.OnClickListener() {
+            @Override public void onClick(View v) {
+                Intent in = new Intent( view.getContext(), CadastrarItemActivity.class );
+                in.putExtra("USUARIOLOGADO", usuarioLogado);
+                in.putExtra("NOMELISTA", nomeLista);
+                view.getContext().startActivity(in);
             }//fim onClick
         });//fim clickListener
         adapters.setAdapterItemList(
