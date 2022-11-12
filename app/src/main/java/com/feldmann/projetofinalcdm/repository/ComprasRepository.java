@@ -2,41 +2,30 @@ package com.feldmann.projetofinalcdm.repository;
 //
 import android.content.ContentValues;
 import android.content.Context;
-import android.content.Intent;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import com.feldmann.projetofinalcdm.adapters.ComprasAdapter;
+import android.database.SQLException;
 import com.feldmann.projetofinalcdm.controller.Controller;
 import com.feldmann.projetofinalcdm.controller.MsgController;
 import com.feldmann.projetofinalcdm.model.Compras;
-import com.feldmann.projetofinalcdm.views.ListadeCompras;
 import java.util.ArrayList;
 import java.util.List;
 //
 public class ComprasRepository {
     private static ComprasRepository instance = null;
-    private Context contexto;
     private static List<Compras> compras;
     private static Controller.msg msg;
+    private static DBListas db;
     //
     public ComprasRepository(Context contexto) {
         this.msg = new MsgController(contexto, this.getClass().getName() );
-        this.contexto = contexto;
-        if (instance == null){
-            compras = new ArrayList<>();
-        }
+        this.db = new DBListas(contexto);
+        if (instance == null){ compras = new ArrayList<>(); }
     }//fim construtor
-    //
-    public static ComprasRepository getInstanceCompras(Context context, SQLiteDatabase sqlWrite, String nomeLista, String usuarioLogado){
+    public static ComprasRepository getInstanceCompras(Context context, String nomeLista, String usuarioLogado){
         instance = new ComprasRepository(context);
         compras.removeAll( getCompras() );
         //
-        Cursor cursor = sqlWrite.rawQuery("SELECT * FROM compras", null);
+        Cursor cursor = db.getWritableDatabase().rawQuery("SELECT * FROM compras", null);
         if (cursor.moveToFirst()){
             do {
                 //verifica qual a lista atual, para preencher o
@@ -49,59 +38,58 @@ public class ComprasRepository {
                 int completedDB = Integer.parseInt( cursor.getString(5) );
                 if ( nomeLista.equals( nomeListaDB ) && usuarioLogado.equals( donoListaDB ) ){
                     compras.add(new Compras(
-                            idDB,         // _id (INTEGER)
-                            donoListaDB,  // donoLista (TEXT)
-                            nomeListaDB,  // nomeLista (TEXT)
-                            nomeItemDB,   // nomeItem (TEXT)
+                            idDB,           // _id (INTEGER)
+                            donoListaDB,    // donoLista (TEXT)
+                            nomeListaDB,    // nomeLista (TEXT)
+                            nomeItemDB,     // nomeItem (TEXT)
                             quantidadeDB,   // quantidade (TEXT)
                             completedDB     // completed (INTEGER)
                             )
                     );//fim compras.add
-                    msg.logD("Adicionado no arrayList Compras: "+
-                            "("+idDB+") dono: "+donoListaDB+" | Lista: "+nomeListaDB+" | Item: "+nomeItemDB+" ("+quantidadeDB+") "+"("+completedDB+")" );
-                }
-
+                }//fim if
             }while (cursor.moveToNext());
-        }else{
-            msg.logD("NÃO TEM REGISTROS EM listas");
-        }
-        //
+        }else{ msg.logD("NÃO TEM REGISTROS NA TABELA listas"); }
         cursor.close();
         return instance;
     }
-    //
     public static List<Compras> getCompras() {
         return compras;
     }
     //
-    public static void addItemToDB(
-            SQLiteDatabase sqlWrite, Button btnSalvar, String usuarioLogado,
-            String nomeLista, EditText etNomeItem,
-            EditText etQntdItem, int completed) {
-        btnSalvar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ContentValues ctv = new ContentValues();
-                ctv.put("donoLista", usuarioLogado);
-                ctv.put("nomeLista", nomeLista);
-                ctv.put("nomeItem", etNomeItem.getText().toString() );
-                ctv.put("quantidade", etQntdItem.getText().toString() );
-                ctv.put("completed", completed);
-                sqlWrite.insert("compras", null, ctv);
-                //
-                Intent in = new Intent(v.getContext(), ListadeCompras.class);
-                in.putExtra("NOMELISTA", nomeLista);
-                in.putExtra("USUARIO", usuarioLogado);
-                v.getContext().startActivity(in);
-            }//fim onClick
-        });//fim clickListener
-    }//fim metodo insertItemToDB
-    //
-    public static void setAdapterItemList(RecyclerView rv, SQLiteDatabase sqlWrite, String lista){
-        msg.logD("setAdapterListas");
-        ComprasAdapter comprasAdapter = new ComprasAdapter( getCompras(), sqlWrite, lista );
-        rv.setAdapter(comprasAdapter);
-        rv.setLayoutManager( new LinearLayoutManager(instance.contexto ) );
+    public static void createItem(String usuarioLogado,
+                                  String nomeLista, String nomeItem,
+                                  String qntdItem, int completed){
+        try{
+            ContentValues ctv = new ContentValues();
+            ctv.put("donoLista", usuarioLogado);
+            ctv.put("nomeLista", nomeLista);
+            ctv.put("nomeItem", nomeItem );
+            ctv.put("quantidade", qntdItem );
+            ctv.put("completed", completed);
+            db.getWritableDatabase().insert("compras", null, ctv);
+        }catch (SQLException sqlE){
+            msg.logD("ERRO AO CRIAR ITEM\n"+sqlE.getMessage() );
+        }//fim try catch
+    }//fim createItem
+    public static void updateItem(String novoNomeItem, String novaQuantidade, int idItem){
+        try{
+            db.getWritableDatabase().execSQL(
+                    "UPDATE compras"+
+                    " SET nomeItem='"+novoNomeItem+"'"+
+                    " , quantidade='"+novaQuantidade+"'"+
+                    " WHERE _id='"+idItem+"'" );
+        }catch (SQLException sqlE){
+            msg.logD("ERRO AO ATUALIZAR\n"+sqlE.getMessage() );
+        }
     }
-    //
+    public static void deleteItem(Compras compras) {
+        try{
+            db.getWritableDatabase().execSQL(
+                "DELETE FROM compras"+
+                " WHERE donoLista='"+compras.getDonoLista()+"'"+
+                " AND nomeLista='"+compras.getNomeLista()+"'"+
+                " AND nomeItem='"+compras.getNomeItem()+"'" );
+            msg.logD("SUCESSO AO DELETAR");
+        }catch (SQLException sqlE){ msg.logD("ERRO AO DELETAR\n"+sqlE.getMessage() ); }
+    }
 }//fim classe
