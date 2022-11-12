@@ -16,14 +16,12 @@ public class ListadeCompras extends AppCompatActivity implements Controller.cont
     private Controller.msg msg;
     private Controller.view view;
     private Controller.controllerAdapters adapters;
-    private DBListas db;
     private String usuarioLogado, nomeLista;
     //
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista_de_compras);
         this.instanceController();
-        db = new DBListas(view.getContext());
         msg.logD("onCreate");
     }//fim onCreate
     @Override protected void onResume() {
@@ -56,7 +54,6 @@ public class ListadeCompras extends AppCompatActivity implements Controller.cont
         adapters.setAdapterItemList(
                 (RecyclerView) findViewById(R.id.RVCompras),
                 ComprasRepository.getCompras(),
-                db.getWritableDatabase(),
                 nomeLista
         );
     }//fim onResume

@@ -51,7 +51,6 @@ public class Controller {
         public void deleteItem(Compras objCompras);
     }
     public interface controllerAdapters{
-        public void setAdapterItemList(RecyclerView rv, List<Compras> comprasList,
-                                       SQLiteDatabase sqlWrite, String lista);
+        public void setAdapterItemList(RecyclerView rv, List<Compras> comprasList, String lista);
     }
 }//fim classe
