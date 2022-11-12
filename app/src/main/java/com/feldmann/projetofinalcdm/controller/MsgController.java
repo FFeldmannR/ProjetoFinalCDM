@@ -13,7 +13,7 @@ public class MsgController implements Controller.msg{
         this.tag = tag;
     }//fim contrutor
     @Override
-    public void messageToast(String msg) { Toast.makeText(context, msg, Toast.LENGTH_SHORT).show(); }
+    public void messageToast(String msg) { Toast.makeText(context, msg, Toast.LENGTH_LONG).show(); }
     @Override
     public void logD(String msg) { Log.d(tag, msg); }
 }//fim class
