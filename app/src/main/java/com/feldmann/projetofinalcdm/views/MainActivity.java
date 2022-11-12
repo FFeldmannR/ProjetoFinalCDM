@@ -22,8 +22,7 @@ public class MainActivity extends AppCompatActivity implements Controller.contro
     @Override protected void onDestroy() {
         super.onDestroy();
         msg.logD("onDestroy");
-    }
-    //
+    }//fim onDestroy
     @Override public void instanceController(){
         this.view = new ViewController(this, this);
         this.msg = new MsgController(view.getContext(), this.getClass().getName().toString() );
