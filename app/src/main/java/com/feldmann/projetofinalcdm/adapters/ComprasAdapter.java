@@ -15,7 +15,6 @@ import com.feldmann.projetofinalcdm.model.Compras;
 import java.util.List;
 //
 public class ComprasAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-    //
     private List<Compras> comprasList;
     private SQLiteDatabase sqlWrite;
     private String nomeListaAtual;
@@ -27,12 +26,10 @@ public class ComprasAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         this.nomeListaAtual = nomeListaAtual;
         this.CAC = new ComprasAdapterController();
     }
-    //
     @NonNull @Override public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View layoutViewHolder = LayoutInflater.from(parent.getContext()).inflate(R.layout.modelo_item_layout, parent, false);
         return new ComprasViewHolder(layoutViewHolder);
     }
-    //
     @Override public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         Compras objCompras = comprasList.get(position);
         //
@@ -46,17 +43,14 @@ public class ComprasAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                 ((LinearLayout)((ComprasViewHolder) holder).itemView.findViewById(R.id.LLinfoItem)),
                 holder, objCompras );
     }//fim bindView
-    //
     @Override public int getItemCount() {
         return comprasList.size();
     }
-    //
 }// fim classe
-
 class ComprasViewHolder extends RecyclerView.ViewHolder{
     public View view;
     public ComprasViewHolder(@NonNull View itemView){
         super(itemView);
         view = itemView;
     }
-}
+}//fim classe
