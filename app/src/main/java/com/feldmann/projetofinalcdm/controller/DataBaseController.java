@@ -48,12 +48,13 @@ public class DataBaseController implements Controller.controllerDataBase{
                             cursor.getString(1)+" | "+
                             cursor.getString(2) );
                 }else if (nomeTabela.equals("compras") ){
-                    Log.d("SELECT_TABLE","_id | nomeLista | nomeItem | quantidade | completed"+
+                    Log.d("SELECT_TABLE","_id | donoLista | nomeLista | nomeItem | quantidade | completed"+
                             "("+Integer.valueOf(cursor.getString(0))+") "+
                             cursor.getString(1)+" | "+
                             cursor.getString(2)+" | "+
                             cursor.getString(3)+" | "+
-                            cursor.getString(4));
+                            cursor.getString(4)+" | "+
+                            cursor.getString(5) );
                 }
             }while (cursor.moveToNext() );
         }else{
