@@ -1,12 +1,11 @@
 package com.feldmann.projetofinalcdm.controller;
-
+//
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
-
+//
 public class DataBaseController implements Controller.controllerDataBase{
-    @Override
-    public String criarTabelaUsers() {
+    @Override public String criarTabelaUsers() {
         String sqlStatement = "CREATE TABLE IF NOT EXISTS users("+
                 "_id INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "nome TEXT, " +
@@ -14,9 +13,7 @@ public class DataBaseController implements Controller.controllerDataBase{
                 ");";
         return sqlStatement;
     }
-
-    @Override
-    public String criarTabelaListas() {
+    @Override public String criarTabelaListas() {
         String sqlStatement = "CREATE TABLE IF NOT EXISTS listas("+
                 "_id INTEGER PRIMARY KEY AUTOINCREMENT, "+
                 "donoLista TEXT, " +
@@ -24,9 +21,7 @@ public class DataBaseController implements Controller.controllerDataBase{
                 ");";
         return sqlStatement;
     }
-
-    @Override
-    public String criarTabelaCompras() {
+    @Override public String criarTabelaCompras() {
         String sqlStatement = "CREATE TABLE IF NOT EXISTS compras("+
                 "_id INTEGER PRIMARY KEY AUTOINCREMENT, "+
                 "donoLista TEXT, " +
@@ -37,9 +32,7 @@ public class DataBaseController implements Controller.controllerDataBase{
                 ");";
         return sqlStatement;
     }
-
-    @Override
-    public void selectTable(SQLiteDatabase sqlRead, String nomeTabela) {
+    @Override public void selectTable(SQLiteDatabase sqlRead, String nomeTabela) {
         Cursor cursor = sqlRead.rawQuery("SELECT * FROM "+nomeTabela, null);
         if (cursor.moveToFirst()){
             do {
@@ -67,4 +60,4 @@ public class DataBaseController implements Controller.controllerDataBase{
             Log.d("SELECT_TABLE", "NÃO TEM DADOS NESSA TABELA");
         }
     }//fim selectTable
-}
+}//fim class
