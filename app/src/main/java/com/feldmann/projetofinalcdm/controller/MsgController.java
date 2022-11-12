@@ -11,8 +11,7 @@ public class MsgController implements Controller.msg{
     public MsgController(Context context, String tag) {
         this.context = context;
         this.tag = tag;
-    }
-    //
+    }//fim contrutor
     @Override
     public void messageToast(String msg) { Toast.makeText(context, msg, Toast.LENGTH_SHORT).show(); }
     @Override
