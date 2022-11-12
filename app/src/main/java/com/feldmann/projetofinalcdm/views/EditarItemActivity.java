@@ -6,11 +6,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import com.feldmann.projetofinalcdm.*;
+import com.feldmann.projetofinalcdm.controller.ComprasAdapterController;
 import com.feldmann.projetofinalcdm.controller.Controller;
 import com.feldmann.projetofinalcdm.controller.EditItemController;
 import com.feldmann.projetofinalcdm.controller.MsgController;
@@ -32,6 +34,7 @@ public class EditarItemActivity extends AppCompatActivity implements Controller.
     @Override protected void onResume() {
         super.onResume();
         msg.logD("onResume");
+        this.toolBar();
         obj = getIntent().getParcelableExtra("OBJCOMPRAS");
 
             // METODOS PARA OS CAMPOS DE TEXTO
