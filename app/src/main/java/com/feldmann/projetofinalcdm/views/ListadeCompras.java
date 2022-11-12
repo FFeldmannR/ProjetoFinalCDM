@@ -36,9 +36,15 @@ public class ListadeCompras extends AppCompatActivity implements Controller.cont
         //
         ComprasRepository.getInstanceCompras(
                 view.getContext(), nomeLista, usuarioLogado );
-        //metodo para activity de criar item
-        this.cadastrarItem( (ImageButton) findViewById(R.id.imgBtnAddItem), nomeLista );
-        //
+            //METODO PARA IR PARA ACTIVITY DE CRIAR ITEM
+        ((ImageButton) findViewById(R.id.imgBtnAddItem)).setOnClickListener(new View.OnClickListener() {
+            @Override public void onClick(View v) {
+                Intent in = new Intent(v.getContext(), CadastrarItemActivity.class);
+                in.putExtra("USUARIOLOGADO", usuarioLogado);
+                in.putExtra("NOMELISTA", nomeLista);
+                v.getContext().startActivity(in);
+            }//fim onClick
+        });//fim clickListener
         adapters.setAdapterItemList(
                 (RecyclerView) findViewById(R.id.RVCompras),
                 ComprasRepository.getCompras(),
@@ -50,16 +56,6 @@ public class ListadeCompras extends AppCompatActivity implements Controller.cont
         super.onDestroy();
         msg.logD("onDestroy");
     }//fim onDestroy
-    private void cadastrarItem(ImageButton imgBtn, String nomeLista){
-        imgBtn.setOnClickListener(new View.OnClickListener() {
-            @Override public void onClick(View v) {
-                Intent in = new Intent(v.getContext(), CadastrarItemActivity.class);
-                in.putExtra("USUARIOLOGADO", usuarioLogado);
-                in.putExtra("NOMELISTA", nomeLista);
-                v.getContext().startActivity(in);
-            }//fim onClick
-        });//fim clickListener
-    }//fim cadastrarItem
     @Override public void instanceController() {
         this.view = new ViewController(this, this);
         this.msg = new MsgController(view.getContext(), this.getClass().getName() );
@@ -84,7 +80,6 @@ public class ListadeCompras extends AppCompatActivity implements Controller.cont
     @Override public void onBackPressed() {
         try {
             Intent intent = new Intent(this, ListaActivity.class);
-            msg.logD("usuarioLogado: "+usuarioLogado);
             intent.putExtra("NOMEUSER", usuarioLogado);
             startActivity( intent );
             finishAffinity();
