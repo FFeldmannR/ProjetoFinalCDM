@@ -10,6 +10,8 @@ import android.widget.*;
 import com.feldmann.projetofinalcdm.R;
 import com.feldmann.projetofinalcdm.controller.*;
 import com.feldmann.projetofinalcdm.repository.DBListas;
+import com.feldmann.projetofinalcdm.repository.UserRepository;
+
 //
 public class LoginActivity extends AppCompatActivity implements Controller.controllerInstance{
     private Controller.msg msg;
@@ -26,11 +28,12 @@ public class LoginActivity extends AppCompatActivity implements Controller.contr
     @Override protected void onResume() {
         super.onResume();
         msg.logD("onResume");
-
+        this.toolBar();
+        //
         ((EditText) findViewById(R.id.etLoginL)).setText("fabio");
         ((EditText) findViewById(R.id.etSenhaL)).setText("111");
-
-        this.toolBar();
+        //
+        UserRepository.getInstance( view.getContext() );
         //
         login.setLoginField(getIntent().getStringExtra("NOMEUSER"), ((EditText) findViewById(R.id.etLoginL)));
         ((Button) findViewById(R.id.btnEntrar)).setOnClickListener(new View.OnClickListener() {
