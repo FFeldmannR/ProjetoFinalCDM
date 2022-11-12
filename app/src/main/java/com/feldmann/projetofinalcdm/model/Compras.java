@@ -1,8 +1,8 @@
 package com.feldmann.projetofinalcdm.model;
-
+//
 import android.os.Parcel;
 import android.os.Parcelable;
-
+//
 public class Compras implements Parcelable {
     private int id;
     private String donoLista;
@@ -19,7 +19,6 @@ public class Compras implements Parcelable {
         this.quantidade = quantidade;
         this.completed = completed;
     }
-    //
     public int getId() { return id; }
     public void setId(int id) { this.id = id; }
     //
@@ -48,22 +47,17 @@ public class Compras implements Parcelable {
         completed = in.readInt();
     }
     public static final Creator<Compras> CREATOR = new Creator<Compras>() {
-        @Override
-        public Compras createFromParcel(Parcel in) {
+        @Override public Compras createFromParcel(Parcel in) {
             return new Compras(in);
         }
-
-        @Override
-        public Compras[] newArray(int size) {
+        @Override public Compras[] newArray(int size) {
             return new Compras[size];
         }
     };
-    @Override
-    public int describeContents() {
+    @Override public int describeContents() {
         return 0;
     }
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
+    @Override public void writeToParcel(Parcel dest, int flags) {
         dest.writeInt(id);
         dest.writeString(donoLista);
         dest.writeString(nomeLista);
@@ -71,5 +65,4 @@ public class Compras implements Parcelable {
         dest.writeString(quantidade);
         dest.writeInt(completed);
     }
-    //
 }//fim classe
