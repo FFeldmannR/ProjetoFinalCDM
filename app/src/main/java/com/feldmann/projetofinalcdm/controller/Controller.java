@@ -50,6 +50,9 @@ public class Controller {
         public void updateItem(String novoNomeItem, String novaQuantidade, Compras objCompras);
         public void deleteItem(Compras objCompras);
     }
+    public interface controllerEditList{
+        public void updateList( String donoLista, String nomeLista, String novoNomeLista );
+    }
     public interface controllerAdapters{
         public void setAdapterItemList(RecyclerView rv, List<Compras> comprasList, String lista);
     }
