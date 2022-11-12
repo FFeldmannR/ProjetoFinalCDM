@@ -14,47 +14,45 @@ import com.feldmann.projetofinalcdm.views.CadastroActivity;
 import com.feldmann.projetofinalcdm.views.ListaActivity;
 //
 public class LoginController implements Controller.controllerLogin{
+    private Context context;
     private Controller.msg msg;
     private SQLiteDatabase sqlRead;
     //
     public LoginController(Context context, SQLiteDatabase sqlRead) {
+        this.context = context;
         this.msg = new MsgController(context, this.getClass().getName().toString() );
         this.sqlRead = sqlRead;
-    }
-
-    @Override
-    public void setLoginField(String nomeUser, EditText etLoginL) {
+    }//fim contrutor
+    @Override public void setLoginField(String nomeUser, EditText etLoginL) {
         if (nomeUser != null){
             etLoginL.setText(nomeUser);
         }
-    }
-
-    @Override
-    public void setTvEMS(TextView tvEMS) {
+    }//fim setLoginField
+    @Override public void setTvEMS(TextView tvEMS) { //EMS = Esqueci Minha Senha
         tvEMS.setTextColor(Color.BLUE);
         tvEMS.setTypeface(null, Typeface.BOLD);
         tvEMS.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 msg.messageToast("btn EMS clicado :D");
+            }//fim onClick
+        });//fim clickListener
+    }//fim setTvEMS
+    @Override public void Login(String login, String senha) {
+        if (verificaUser(login, senha)){
+            try{
+                Intent toListActivity = new Intent(context, ListaActivity.class);
+                toListActivity.putExtra("NOMEUSER", login );
+                msg.messageToast("Bem Vindo(a) "+login );
+                context.startActivity(toListActivity);
+            }catch (Exception e){
+                msg.logD("ERRO AO MUDAR DE ACTIVITY\n"+e.getMessage() );
             }
-        });
-    }
-
-    //
-    @Override
-    public void Login(Button btn, EditText etLogin, EditText etSenha) {
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v){
-                verificaUser(v.getContext(), etLogin, etSenha);
-            }
-        });
-    }
-    //
-    private void verificaUser(Context context, EditText login, EditText senha){
-        String etNome = login.getText().toString();
-        String etSenha = senha.getText().toString();
+        }else{
+            //
+        }
+    }//fim Login
+    private boolean verificaUser(String login, String senha){
         //
         Cursor cursor = sqlRead.rawQuery("SELECT * FROM users", null);
         //
@@ -63,29 +61,21 @@ public class LoginController implements Controller.controllerLogin{
                 String dbNome = cursor.getString(1);
                 String dbSenha = cursor.getString(2);
                 //
-                if (etNome.equals(dbNome) && etSenha.equals(dbSenha)){
+                if (login.equals(dbNome) && senha.equals(dbSenha)){
                     //válido
-                    try{
-                        Intent toListActivity = new Intent(context, ListaActivity.class);
-                        toListActivity.putExtra("NOMEUSER", dbNome);
-                        msg.messageToast("Bem Vindo(a) "+dbNome);
-                        context.startActivity(toListActivity);
-                    }catch (Exception e){
-                        msg.logD("ERRO AO MUDAR DE ACTIVITY\n"+e.getMessage() );
-                    }
-                    break;
+                    cursor.close();
+                    return true;
                 }else{
-                    //inválido
-                    //msg.messageToast("USUARIO INVÁLIDO\nTENTE NOVAMENTE");
-                    msg.logD(""+
-                            "etNome: "+etNome+" | etSenha: "+etSenha+
-                            "\ndbNome: "+dbNome+" | dbSenha: "+dbSenha);
+                    //invalido
+                    cursor.close();
+                    return false;
                 }//fim if else
             }while (cursor.moveToNext());
         }else{
-            msg.logD("NÃO TEM REGISTROS");
+            msg.logD("NÃO TEM REGISTROS DE USUARIOS");
+            cursor.close();
+            return false;
         }//fim if else
-        cursor.close();
     }//fim verificaUser
     //
     @Override
