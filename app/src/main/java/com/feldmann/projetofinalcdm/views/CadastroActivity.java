@@ -42,7 +42,7 @@ public class CadastroActivity extends AppCompatActivity implements Controller.co
     @Override public void instanceController() {
         this.view = new ViewController(this, this);
         this.msg = new MsgController(view.getContext(), this.getClass().getName().toString() );
-        this.cadastro = new CadastroController(view.getContext());
+        this.cadastro = new CadastroController( view.getContext() );
     }//fim instanceController
             // METODOS PARA OS BOTOES VOLTAR
     private void toolBar(){
