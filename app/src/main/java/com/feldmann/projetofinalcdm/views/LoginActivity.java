@@ -4,14 +4,11 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
+import android.widget.*;
 import com.feldmann.projetofinalcdm.R;
-import com.feldmann.projetofinalcdm.controller.Controller;
-import com.feldmann.projetofinalcdm.controller.LoginController;
-import com.feldmann.projetofinalcdm.controller.MsgController;
-import com.feldmann.projetofinalcdm.controller.ViewController;
+import com.feldmann.projetofinalcdm.controller.*;
 import com.feldmann.projetofinalcdm.repository.DBListas;
 //
 public class LoginActivity extends AppCompatActivity implements Controller.controllerInstance{
@@ -26,7 +23,6 @@ public class LoginActivity extends AppCompatActivity implements Controller.contr
         this.instanceController();
         msg.logD("onCreate");
     }//fim onCreate
-    //
     @Override protected void onResume() {
         super.onResume();
         msg.logD("onResume");
@@ -37,11 +33,15 @@ public class LoginActivity extends AppCompatActivity implements Controller.contr
         this.toolBar();
         //
         login.setLoginField(getIntent().getStringExtra("NOMEUSER"), ((EditText) findViewById(R.id.etLoginL)));
-        login.Login(
-                (Button) findViewById(R.id.btnEntrar),
-                (EditText) findViewById(R.id.etLoginL),
-                (EditText) findViewById(R.id.etSenhaL)
-        );
+        ((Button) findViewById(R.id.btnEntrar)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                login.Login(
+                        ((EditText) findViewById(R.id.etLoginL)).getText().toString(),
+                        ((EditText) findViewById(R.id.etSenhaL)).getText().toString()
+                );//fim Login
+            }//fim onClick
+        });//fim clickListener
         login.cadastrarUser((Button) findViewById(R.id.btnCadastrarL));
         login.setTvEMS(((TextView) findViewById(R.id.tvEMS)));
         //
@@ -57,20 +57,19 @@ public class LoginActivity extends AppCompatActivity implements Controller.contr
         db = new DBListas(view.getContext());
         this.login = new LoginController(view.getContext(), db.getReadableDatabase());
     }//fim instanceController
-    //
+            // METODOS PARA OS BOTOES VOLTAR
     private void toolBar(){
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
-    }
-    //
+    }//fim toolBar()
     @Override public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
             case android.R.id.home:
                 finishAffinity();
                 break;
-        }
+        }//fim switch
         return true;
-    }
+    }//fim onOptionsItemSelected
     @Override public void onBackPressed() {
         finishAffinity();
     }
