@@ -30,9 +30,6 @@ public class LoginActivity extends AppCompatActivity implements Controller.contr
         msg.logD("onResume");
         this.toolBar();
         //
-        ((EditText) findViewById(R.id.etLoginL)).setText("fabio");
-        ((EditText) findViewById(R.id.etSenhaL)).setText("111");
-        //
         UserRepository.getInstance( view.getContext() );
         //
         login.setLoginField(getIntent().getStringExtra("NOMEUSER"), ((EditText) findViewById(R.id.etLoginL)));
