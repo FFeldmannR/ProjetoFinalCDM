@@ -41,6 +41,8 @@ public class ListaActivity extends AppCompatActivity implements Controller.contr
             }
         });
         ListasRepository.setAdapterListas( (RecyclerView) findViewById(R.id.RVListas), usuario );
+
+        view.selectTableDB( "listas" );
     }//fim onResume
     @Override protected void onDestroy() {
         super.onDestroy();

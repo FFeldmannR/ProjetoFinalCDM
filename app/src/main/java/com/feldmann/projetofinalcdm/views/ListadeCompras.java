@@ -56,6 +56,8 @@ public class ListadeCompras extends AppCompatActivity implements Controller.cont
                 ComprasRepository.getCompras(),
                 nomeLista
         );
+
+        view.selectTableDB( "compras" );
     }//fim onResume
     @Override protected void onDestroy() {
         super.onDestroy();

@@ -16,7 +16,6 @@ import com.feldmann.projetofinalcdm.repository.UserRepository;
 public class LoginActivity extends AppCompatActivity implements Controller.controllerInstance{
     private Controller.msg msg;
     private Controller.view view;
-    private DBListas db;
     private Controller.controllerLogin login;
     //
     @Override protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +44,7 @@ public class LoginActivity extends AppCompatActivity implements Controller.contr
         login.cadastrarUser((Button) findViewById(R.id.btnCadastrarL));
         login.setTvEMS(((TextView) findViewById(R.id.tvEMS)));
 
-        LoginController.selectUserDB();
+        view.selectTableDB( "users" );
         //
     }//fim onResume
     @Override protected void onDestroy() {
@@ -55,9 +54,8 @@ public class LoginActivity extends AppCompatActivity implements Controller.contr
     //
     @Override public void instanceController() {
         this.view = new ViewController(this, this);
-        this.msg = new MsgController(view.getContext(), this.getClass().getName().toString() );
-        db = new DBListas(view.getContext());
-        this.login = new LoginController(view.getContext(), db.getReadableDatabase());
+        this.msg = new MsgController( view.getContext(), this.getClass().getName() );
+        this.login = new LoginController( view.getContext() );
     }//fim instanceController
             // METODOS PARA OS BOTOES VOLTAR
     private void toolBar(){
