@@ -15,6 +15,7 @@ public class Controller {
     public interface view{
         public Activity getActivity();
         public Context getContext();
+        public void selectTableDB( String nomeTabela );
     }
     public interface msg{
         public void messageToast(String msg);
@@ -24,7 +25,6 @@ public class Controller {
         public String criarTabelaUsers();
         public String criarTabelaListas();
         public String criarTabelaCompras();
-        public void selectTable(SQLiteDatabase sqlRead, String nomeTabela);
     }
     public interface controllerLogin{
         public void setLoginField(String nomeUser, EditText etLoginL);
