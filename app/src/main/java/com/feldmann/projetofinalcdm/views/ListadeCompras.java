@@ -32,8 +32,6 @@ public class ListadeCompras extends AppCompatActivity implements Controller.cont
         usuarioLogado = getIntent().getStringExtra("USUARIO");
         nomeLista = getIntent().getStringExtra("NOMELISTA");
         setTitle(nomeLista);
-
-        editList.updateListProgress( ListasRepository.getListas(), ComprasRepository.getCompras() );
         //
         ComprasRepository.getInstanceCompras( view.getContext(), nomeLista, usuarioLogado );
             //METODO PARA IR PARA ACTIVITY DE CRIAR ITEM
