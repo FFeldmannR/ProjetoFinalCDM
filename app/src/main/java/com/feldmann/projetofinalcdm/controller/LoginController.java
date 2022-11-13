@@ -25,7 +25,7 @@ public class LoginController implements Controller.controllerLogin{
         tvEMS.setTypeface(null, Typeface.BOLD);
         tvEMS.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
-                msg.messageToast("btn EMS clicado :D");
+                msg.messageToast("BOTAO AINDA NAO FUNCIONA");
             }//fim onClick
         });//fim clickListener
     }//fim setTvEMS
