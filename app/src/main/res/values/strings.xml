@@ -8,6 +8,7 @@
     <!-- MODELOS -->
     <!-- LISTA LAYOUT -->
     <string name="nomeLista">NOME_LISTA</string>
+    <string name="progressoList">X %</string>
     <!-- ITEM LAYOUT -->
     <string name="nomeItem">Nome do Item</string>
     <string name="quantidade">Quantidade</string>
