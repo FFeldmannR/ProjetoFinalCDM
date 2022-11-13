@@ -42,6 +42,14 @@ public class EditListActivity extends AppCompatActivity implements Controller.co
                 lista.updateList( usuarioLogado, nomeLista, etNomeLista.getText().toString() );
             }//fim onClick
         });//fim clickListener
+        Button btnDeletar = ((Button) findViewById(R.id.btnDeleteList));
+        btnDeletar.setBackgroundColor(Color.RED);
+        btnDeletar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                lista.deleteList( usuarioLogado, nomeLista );
+            }
+        });
     }//fim onResume
     @Override protected void onDestroy() {
         super.onDestroy();

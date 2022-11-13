@@ -82,6 +82,20 @@ public class ListasRepository {
             msg.logD("ERRO AO ATUALIZAR LISTA\n"+sqlE.getMessage() );
         }//fim try catch
     }//fim updateList
+    public static void deleteList( String donoLista, String nomeLista ){
+        try{
+            db.getWritableDatabase().execSQL(
+                    "DELETE FROM listas"+
+                    " WHERE donoLista='"+donoLista+"'"+
+                    " AND nomeLista='"+nomeLista+"'" );
+            db.getWritableDatabase().execSQL(
+                    "DELETE FROM compras"+
+                    " WHERE donoLista='"+donoLista+"'"+
+                    " AND nomeLista='"+nomeLista+"'" );
+        }catch (SQLException e){
+            msg.logD("ERRO AO DELETAR LISTA:\n"+e.getMessage() );
+        }
+    }
     public static void setAdapterListas(RecyclerView rv, String usuarioLogado){
         msg.logD("setAdapterListas");
         ListaAdapter listaAdapter = new ListaAdapter( getListas(), usuarioLogado );
