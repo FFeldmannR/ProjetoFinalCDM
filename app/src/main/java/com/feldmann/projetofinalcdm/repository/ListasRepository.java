@@ -67,7 +67,13 @@ public class ListasRepository {
     public static void updateList( String donoLista, String nomeLista, String novoNomeLista ){
         try{
             db.getWritableDatabase().execSQL(
-                    "UPDATE listas "+
+                    "UPDATE listas"+
+                    " SET nomeLista='"+novoNomeLista+"'"+
+                    " WHERE donoLista='"+donoLista+"'"+
+                    " AND nomeLista='"+nomeLista+"'"
+            );
+            db.getWritableDatabase().execSQL(
+                    "UPDATE compras"+
                     " SET nomeLista='"+novoNomeLista+"'"+
                     " WHERE donoLista='"+donoLista+"'"+
                     " AND nomeLista='"+nomeLista+"'"
