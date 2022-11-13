@@ -26,7 +26,7 @@ public class CadastroController implements Controller.controllerCadastro{
         in.putExtra("NOMEUSER", nomeUser );
         context.startActivity(in);
     }//fim addToDB
-    @Override public void addListToDB(String donoLista, String nomeLista) {
+    @Override public void addListToDB( String donoLista, String nomeLista ) {
         ListasRepository.createList( donoLista, nomeLista );
         Intent in = new Intent( context, ListaActivity.class );
         in.putExtra("NOMEUSER", donoLista );

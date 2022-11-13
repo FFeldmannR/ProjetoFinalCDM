@@ -56,7 +56,7 @@ public class ComprasAdapterController implements Controller.controllerComprasAda
         }
     }//fim buttonEffect
     private void updateSQL(SQLiteDatabase sqlWrite, CheckBox cb,
-                           String nomeListaAtual,Compras objCompras){
+                           String nomeListaAtual, Compras objCompras){
         String tag = "UPDATE";
         try{
             if (cb.isChecked()){ //se esta marcado, mude para 1

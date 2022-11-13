@@ -2,9 +2,15 @@ package com.feldmann.projetofinalcdm.controller;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
+
+import com.feldmann.projetofinalcdm.model.Compras;
+import com.feldmann.projetofinalcdm.model.Listas;
 import com.feldmann.projetofinalcdm.repository.ListasRepository;
 import com.feldmann.projetofinalcdm.views.ListaActivity;
 import com.feldmann.projetofinalcdm.views.ListadeCompras;
+
+import java.util.List;
 
 public class ListasController implements Controller.controllerEditList{
     private Context context;

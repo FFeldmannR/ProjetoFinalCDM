@@ -6,6 +6,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.widget.*;
 import androidx.recyclerview.widget.RecyclerView;
 import com.feldmann.projetofinalcdm.model.Compras;
+import com.feldmann.projetofinalcdm.model.Listas;
+
 import java.util.List;
 //
 public class Controller {
@@ -31,11 +33,11 @@ public class Controller {
         public void Login(String login, String senha);
     }
     public interface controllerCadastro{
-        public void addItemToDB(String usuarioLogado, String nomeLista,
+        public void addItemToDB( String usuarioLogado, String nomeLista,
                                 String nomeItem, String qntdItem,
-                                int completed);
+                                int completed );
         public void addUserToDB( String nomeUser, String senhaUser );
-        public void addListToDB(String donoLista, String nomeLista);
+        public void addListToDB( String donoLista, String nomeLista );
     }
     public interface controllerComprasAdapter{
         public void selectList(Compras objCompras);

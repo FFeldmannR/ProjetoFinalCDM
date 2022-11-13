@@ -17,6 +17,7 @@ public class ListadeCompras extends AppCompatActivity implements Controller.cont
     private Controller.view view;
     private Controller.controllerAdapters adapters;
     private String usuarioLogado, nomeLista;
+    private Controller.controllerEditList editList;
     //
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,6 +32,8 @@ public class ListadeCompras extends AppCompatActivity implements Controller.cont
         usuarioLogado = getIntent().getStringExtra("USUARIO");
         nomeLista = getIntent().getStringExtra("NOMELISTA");
         setTitle(nomeLista);
+
+        editList.updateListProgress( ListasRepository.getListas(), ComprasRepository.getCompras() );
         //
         ComprasRepository.getInstanceCompras( view.getContext(), nomeLista, usuarioLogado );
             //METODO PARA IR PARA ACTIVITY DE CRIAR ITEM

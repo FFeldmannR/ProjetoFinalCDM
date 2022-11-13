@@ -14,7 +14,6 @@ public class DataBaseController implements Controller.controllerDataBase{
                 "_id INTEGER PRIMARY KEY AUTOINCREMENT, "+
                 "donoLista TEXT, " +
                 "nomeLista TEXT" +
-                "progressoList TEXT" +
                 ");";
         return sqlStatement;
     }

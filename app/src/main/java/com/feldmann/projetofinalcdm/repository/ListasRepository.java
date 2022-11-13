@@ -40,8 +40,7 @@ public class ListasRepository {
                     listas.add(new Listas(
                             Integer.parseInt( cursor.getString(0) ),
                             cursor.getString(1),
-                            cursor.getString(2),
-                            cursor.getString(3) )
+                            cursor.getString(2) )
                     );// fim add
                 }//fim if
                 msg.logD(cursor.getString(2)+" adicionado no arrayList" );
