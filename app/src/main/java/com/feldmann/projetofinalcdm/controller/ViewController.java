@@ -26,6 +26,7 @@ public class ViewController implements Controller.view{
     }
     @Override public void selectTableDB(String nomeTabela) {
         Cursor cursor = db.getReadableDatabase().rawQuery("SELECT * FROM "+nomeTabela, null);
+        Log.d("SELECT_TABLE", "");
         if (nomeTabela.equals("users") ){
             Log.d("SELECT_TABLE", "_id | nome | senha");
         }else if (nomeTabela.equals("listas") ){
