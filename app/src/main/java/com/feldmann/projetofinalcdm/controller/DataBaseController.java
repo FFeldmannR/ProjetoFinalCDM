@@ -32,33 +32,4 @@ public class DataBaseController implements Controller.controllerDataBase{
                 ");";
         return sqlStatement;
     }
-    @Override public void selectTable(SQLiteDatabase sqlRead, String nomeTabela) {
-        Cursor cursor = sqlRead.rawQuery("SELECT * FROM "+nomeTabela, null);
-        if (cursor.moveToFirst()){
-            do {
-                //
-                if (nomeTabela.equals("users") ){
-                    Log.d("SELECT_TABLE","_id | nome | senha"+
-                            "("+Integer.valueOf(cursor.getString(0))+") "+
-                            cursor.getString(1)+" | "+
-                            cursor.getString(2) );
-                }else if (nomeTabela.equals("lista") ){
-                    Log.d("SELECT_TABLE","_id | donoLista | nomeLista"+
-                            "("+Integer.valueOf(cursor.getString(0))+") "+
-                            cursor.getString(1)+" | "+
-                            cursor.getString(2) );
-                }else if (nomeTabela.equals("compras") ){
-                    Log.d("SELECT_TABLE","_id | donoLista | nomeLista | nomeItem | quantidade | completed"+
-                            "("+Integer.valueOf(cursor.getString(0))+") "+
-                            cursor.getString(1)+" | "+
-                            cursor.getString(2)+" | "+
-                            cursor.getString(3)+" | "+
-                            cursor.getString(4)+" | "+
-                            cursor.getString(5) );
-                }
-            }while (cursor.moveToNext() );
-        }else{
-            Log.d("SELECT_TABLE", "NÃO TEM DADOS NESSA TABELA");
-        }
-    }//fim selectTable
 }//fim class
