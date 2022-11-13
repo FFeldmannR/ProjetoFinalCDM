@@ -4,12 +4,15 @@ public class Listas {
     private int id;
     private String donoLista;
     private String nomeLista;
+    private String progressoList;
     //
-    public Listas(int id, String donoLista, String nomeLista) {
+    public Listas(int id, String donoLista, String nomeLista, String progressoList) {
         this.id = id;
         this.donoLista = donoLista;
         this.nomeLista = nomeLista;
+        this.progressoList = progressoList;
     }
+    //
     public int getId() { return id; }
     public void setId(int id) { this.id = id; }
     //

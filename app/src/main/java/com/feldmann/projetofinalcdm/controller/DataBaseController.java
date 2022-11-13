@@ -1,9 +1,5 @@
 package com.feldmann.projetofinalcdm.controller;
 //
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.util.Log;
-//
 public class DataBaseController implements Controller.controllerDataBase{
     @Override public String criarTabelaUsers() {
         String sqlStatement = "CREATE TABLE IF NOT EXISTS users("+
@@ -18,6 +14,7 @@ public class DataBaseController implements Controller.controllerDataBase{
                 "_id INTEGER PRIMARY KEY AUTOINCREMENT, "+
                 "donoLista TEXT, " +
                 "nomeLista TEXT" +
+                "progressoList TEXT" +
                 ");";
         return sqlStatement;
     }
