@@ -52,7 +52,6 @@ public class EditarItemActivity extends AppCompatActivity implements Controller.
                 edit.updateItem(etNomeItem.getText().toString(), etQntdItem.getText().toString(), obj );
             }//fim onClick
         });//fim clickListener
-
             // METODOS DO BOTAO DELETAR
         Button btnDeletar = ((Button) findViewById(R.id.btnDeleteItem));
         btnDeletar.setBackgroundColor(Color.RED); //seta a cor do botao delete para vermelho
