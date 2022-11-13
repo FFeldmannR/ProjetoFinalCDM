@@ -2,6 +2,8 @@ package com.feldmann.projetofinalcdm.views;
 //
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -30,8 +32,16 @@ public class LoginActivity extends AppCompatActivity implements Controller.contr
         this.toolBar();
         //
         UserRepository.getInstance( view.getContext() );
-        //
-        login.setLoginField(getIntent().getStringExtra("NOMEUSER"), ((EditText) findViewById(R.id.etLoginL)));
+                //BOTAO ENTRAR
+        String nomeUser = null;
+        try {
+            nomeUser = getIntent().getStringExtra("NOMEUSER");
+        }catch (Exception e){
+            //
+        }
+        if (nomeUser != null){
+            ((EditText) findViewById(R.id.etLoginL)).setText(nomeUser);
+        }
         ((Button) findViewById(R.id.btnEntrar)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -41,17 +51,23 @@ public class LoginActivity extends AppCompatActivity implements Controller.contr
                 );//fim Login
             }//fim onClick
         });//fim clickListener
-        login.cadastrarUser((Button) findViewById(R.id.btnCadastrarL));
+                // BOTAO CADASTRAR
+        ((Button) findViewById(R.id.btnCadastrarL)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent in = new Intent(view.getContext(), CadastroActivity.class);
+                view.getContext().startActivity(in);
+            }
+        });
+                //BOTAO ESQUECI MINHA SENHA
         login.setTvEMS(((TextView) findViewById(R.id.tvEMS)));
-
-        view.selectTableDB( "users" );
         //
+        view.selectTableDB( "users" );
     }//fim onResume
     @Override protected void onDestroy() {
         super.onDestroy();
         msg.logD("onDestroy");
     }
-    //
     @Override public void instanceController() {
         this.view = new ViewController(this, this);
         this.msg = new MsgController( view.getContext(), this.getClass().getName() );
