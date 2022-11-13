@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import com.feldmann.projetofinalcdm.repository.ListasRepository;
 import com.feldmann.projetofinalcdm.views.ListaActivity;
+import com.feldmann.projetofinalcdm.views.ListadeCompras;
 
 public class ListasController implements Controller.controllerEditList{
     private Context context;
@@ -15,9 +16,10 @@ public class ListasController implements Controller.controllerEditList{
     }
     @Override public void updateList( String donoLista, String nomeLista, String novoNomeLista ) {
         ListasRepository.updateList( donoLista, nomeLista, novoNomeLista );
-        msg.messageToast("Nome da lista '"+nomeLista+"' alterado para '"+novoNomeLista+"'" );
-        Intent intent = new Intent( context, ListaActivity.class );
-        intent.putExtra("NOMEUSER", donoLista );
+        msg.logD("Nome da lista '"+nomeLista+"' alterado para '"+novoNomeLista+"'" );
+        Intent intent = new Intent( context, ListadeCompras.class );
+        intent.putExtra("USUARIO", donoLista );
+        intent.putExtra("NOMELISTA", novoNomeLista );
         context.startActivity(intent);
     }//fim updateList
 }//fim classe
