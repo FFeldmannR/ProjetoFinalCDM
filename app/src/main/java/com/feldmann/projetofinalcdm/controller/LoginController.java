@@ -10,18 +10,20 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import com.feldmann.projetofinalcdm.repository.DBListas;
 import com.feldmann.projetofinalcdm.views.CadastroActivity;
 import com.feldmann.projetofinalcdm.views.ListaActivity;
 //
 public class LoginController implements Controller.controllerLogin{
     private Context context;
+    private DBListas db;
     private static Controller.msg msg;
-    private static SQLiteDatabase sqlRead;
     //
-    public LoginController(Context context, SQLiteDatabase sqlRead) {
+    public LoginController(Context context) {
         this.context = context;
+        this.db = new DBListas( context );
         this.msg = new MsgController(context, this.getClass().getName().toString() );
-        this.sqlRead = sqlRead;
     }//fim contrutor
     @Override public void setLoginField(String nomeUser, EditText etLoginL) {
         if (nomeUser != null){
@@ -42,7 +44,7 @@ public class LoginController implements Controller.controllerLogin{
         verificaUser(login, senha);
     }//fim Login
     private void verificaUser(String login, String senha){
-        Cursor cursor = sqlRead.rawQuery("SELECT * FROM users", null);
+        Cursor cursor = db.getReadableDatabase().rawQuery("SELECT * FROM users", null);
         //
         if (cursor.moveToFirst()){
             do {
@@ -60,21 +62,6 @@ public class LoginController implements Controller.controllerLogin{
         }//fim if else
         cursor.close();
     }//fim verificaUser
-    public static void selectUserDB(){
-        Cursor cursor = sqlRead.rawQuery("SELECT * FROM users", null);
-        //
-        msg.logD("ID | LOGIN | SENHA");
-        if (cursor.moveToFirst()){
-            do {
-                msg.logD("("+cursor.getString(0)+") "+
-                        cursor.getString(1)+
-                        " | "+cursor.getString(2) );
-            }while (cursor.moveToNext());
-        }else{
-            msg.logD("NÃO TEM REGISTROS DE USUARIOS");
-        }//fim if else
-        cursor.close();
-    }
     @Override public void cadastrarUser(Button btn) {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
