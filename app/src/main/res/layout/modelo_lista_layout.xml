@@ -19,15 +19,6 @@
             android:layout_weight="3"
             android:text="@string/nomeLista" />
 
-        <TextView
-            android:id="@+id/tvProgressoList"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:textStyle="bold"
-            android:text="@string/progressoList" />
-
 
     </LinearLayout>
 
