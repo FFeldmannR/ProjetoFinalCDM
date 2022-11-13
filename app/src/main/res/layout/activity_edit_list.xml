@@ -47,5 +47,15 @@
             android:ems="10"
             android:text="Salvar" />
 
+        <Button
+            android:id="@+id/btnDeleteList"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:ems="10"
+            android:text="Deletar" />
+
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
