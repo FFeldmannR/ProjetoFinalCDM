@@ -12,6 +12,8 @@ import android.widget.ImageButton;
 import com.feldmann.projetofinalcdm.R;
 import com.feldmann.projetofinalcdm.controller.*;
 import com.feldmann.projetofinalcdm.repository.*;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 //
 public class ListadeCompras extends AppCompatActivity implements Controller.controllerInstance{
     private Controller.msg msg;
@@ -45,18 +47,13 @@ public class ListadeCompras extends AppCompatActivity implements Controller.cont
                 view.getContext().startActivity(in);
             }
         });
-        ((ImageButton) findViewById(R.id.imgBtnAddItem)).setOnClickListener(new View.OnClickListener() {
+        ((FloatingActionButton) findViewById(R.id.addNewItem)).setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
-                String nomeItem = ((EditText) findViewById(R.id.etNomeItemAdd)).getText().toString();
-                if ( nomeItem.equals("") ){
-                    msg.messageToast("DIGITE O NOME DO ITEM");
-                }else {
-                    cadastro.addItemToDB( usuarioLogado, nomeLista, nomeItem,
-                            ((EditText) findViewById(R.id.etQntdItemAdd)).getText().toString(),
-                            0 );
-                }
-            }//fim onClick
-        });//fim clickListener
+                cadastro.addItemToDB( usuarioLogado, nomeLista,
+                        createNewNomeItem(), "0",
+                        0 );
+            }
+        });
         adapters.setAdapterItemList(
                 (RecyclerView) findViewById(R.id.RVCompras),
                 ComprasRepository.getCompras(),
@@ -75,6 +72,9 @@ public class ListadeCompras extends AppCompatActivity implements Controller.cont
         this.adapters = new AdapterController( view.getContext() );
         this.cadastro = new CadastroController(view.getContext() );
     }//fim instanceController
+    private String createNewNomeItem(){
+        return "Item "+Integer.toString( ( ComprasRepository.getCompras().size() ) +1 );
+    }
             // METODOS PARA OS BOTOES VOLTAR
     private void toolBar(){
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
