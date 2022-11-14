@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/DodgerBlue"
     tools:context=".views.CadastroActivity">
 
     <LinearLayout
@@ -16,27 +17,43 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <EditText
-            android:id="@+id/etLoginC"
+        <FrameLayout
+            android:id="@+id/FLetLoginC"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
             android:layout_gravity="center"
-            android:gravity="center"
-            android:hint="@string/nome"
-            android:ems="10"
-            android:inputType="textPersonName" />
+            android:background="@color/white"
+            android:layout_marginBottom="20dp">
 
-        <EditText
-            android:id="@+id/etSenhaC"
+            <EditText
+                android:id="@+id/etLoginC"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:hint="@string/nome"
+                android:backgroundTint="@color/white"
+                android:ems="10"
+                android:inputType="textPersonName" />
+        </FrameLayout>
+
+        <FrameLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
             android:layout_gravity="center"
-            android:gravity="center"
-            android:hint="@string/senha"
-            android:ems="10"
-            android:inputType="textPassword" />
+            android:background="@color/white"
+            android:layout_marginBottom="30dp" >
+
+            <EditText
+                android:id="@+id/etSenhaC"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:backgroundTint="@color/white"
+                android:hint="@string/senha"
+                android:ems="10"
+                android:inputType="textPassword" />
+        </FrameLayout>
 
         <Button
             android:id="@+id/btnCadastrarC"
@@ -44,6 +61,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:gravity="center"
+            android:textColor="@color/black"
+            android:backgroundTint="@color/limeGreen"
             android:ems="10"
             android:text="@string/btnCadastrar" />
 
