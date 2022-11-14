@@ -2,7 +2,6 @@ package com.feldmann.projetofinalcdm.views;
 //
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -11,9 +10,7 @@ import android.widget.Button;
 import android.widget.*;
 import com.feldmann.projetofinalcdm.R;
 import com.feldmann.projetofinalcdm.controller.*;
-import com.feldmann.projetofinalcdm.repository.DBListas;
 import com.feldmann.projetofinalcdm.repository.UserRepository;
-
 //
 public class LoginActivity extends AppCompatActivity implements Controller.controllerInstance{
     private Controller.msg msg;
@@ -34,11 +31,8 @@ public class LoginActivity extends AppCompatActivity implements Controller.contr
         UserRepository.getInstance( view.getContext() );
                 //BOTAO ENTRAR
         String nomeUser = null;
-        try {
-            nomeUser = getIntent().getStringExtra("NOMEUSER");
-        }catch (Exception e){
-            //
-        }
+        try { nomeUser = getIntent().getStringExtra("NOMEUSER");
+        }catch (Exception ignored){ }
         if (nomeUser != null){
             ((EditText) findViewById(R.id.etLoginL)).setText(nomeUser);
         }
@@ -59,8 +53,10 @@ public class LoginActivity extends AppCompatActivity implements Controller.contr
                 view.getContext().startActivity(in);
             }
         });
+        /*
                 //BOTAO ESQUECI MINHA SENHA
         login.setTvEMS(((TextView) findViewById(R.id.tvEMS)));
+        */
         //
         view.selectTableDB( "users" );
     }//fim onResume
