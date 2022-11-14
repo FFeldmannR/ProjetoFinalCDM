@@ -37,17 +37,13 @@ public class LoginController implements Controller.controllerLogin{
         //
         if (cursor.moveToFirst()){
             do {
-                if (login == null){
-                    if (login.equals(cursor.getString(1)) && senha.equals(cursor.getString(2))){
-                        //válido
-                        Intent toListActivity = new Intent(context, ListaActivity.class);
-                        toListActivity.putExtra("NOMEUSER", login );
-                        msg.messageToast("Bem Vindo(a) "+login );
-                        context.startActivity(toListActivity);
-                        break;
-                    }
-                }else {
-                    msg.messageToast("CAMPO NOME ESTÁ VAZIO");
+                if (login.equals(cursor.getString(1)) && senha.equals(cursor.getString(2))){
+                    //válido
+                    Intent toListActivity = new Intent(context, ListaActivity.class);
+                    toListActivity.putExtra("NOMEUSER", login );
+                    msg.messageToast("Bem Vindo(a) "+login );
+                    context.startActivity(toListActivity);
+                    break;
                 }
             }while (cursor.moveToNext());
         }else{
