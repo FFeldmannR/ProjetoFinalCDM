@@ -30,20 +30,24 @@ public class LoginController implements Controller.controllerLogin{
         });//fim clickListener
     }//fim setTvEMS
     @Override public void Login(String login, String senha) {
-        verificaUser(login, senha);
+        selectUser(login, senha);
     }//fim Login
-    private void verificaUser(String login, String senha){
+    private void selectUser(String login, String senha){
         Cursor cursor = db.getReadableDatabase().rawQuery("SELECT * FROM users", null);
         //
         if (cursor.moveToFirst()){
             do {
-                if (login.equals(cursor.getString(1)) && senha.equals(cursor.getString(2))){
-                    //válido
-                    Intent toListActivity = new Intent(context, ListaActivity.class);
-                    toListActivity.putExtra("NOMEUSER", login );
-                    msg.messageToast("Bem Vindo(a) "+login );
-                    context.startActivity(toListActivity);
-                    break;
+                if (login == null){
+                    if (login.equals(cursor.getString(1)) && senha.equals(cursor.getString(2))){
+                        //válido
+                        Intent toListActivity = new Intent(context, ListaActivity.class);
+                        toListActivity.putExtra("NOMEUSER", login );
+                        msg.messageToast("Bem Vindo(a) "+login );
+                        context.startActivity(toListActivity);
+                        break;
+                    }
+                }else {
+                    msg.messageToast("CAMPO NOME ESTÁ VAZIO");
                 }
             }while (cursor.moveToNext());
         }else{
