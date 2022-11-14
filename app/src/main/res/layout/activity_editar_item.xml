@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/DodgerBlue"
     tools:context=".views.EditarItemActivity">
 
     <LinearLayout
@@ -12,66 +13,111 @@
         android:orientation="vertical"
         android:padding="10dp">
 
-        <TextView
-            android:id="@+id/tvTituloCampoNomeItem"
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="50dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvTituloCampoNomeItem"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:ems="10"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:text="Nome do Item"
+                android:textColor="@color/white" />
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/customborder"
+                android:backgroundTint="@color/white">
+
+                <EditText
+                    android:id="@+id/etNomeItemEdit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:backgroundTint="@color/white"
+                    android:gravity="center"
+                    android:hint="Ex: Frango"
+                    android:inputType="textPersonName" />
+            </FrameLayout>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="50dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvTituloCampoQntd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:ems="10"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:text="Quantidade" />
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/customborder"
+                android:backgroundTint="@color/white">
+
+                <EditText
+                    android:id="@+id/etQuantidadeEdit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:ems="10"
+                    android:backgroundTint="@color/white"
+                    android:gravity="center"
+                    android:hint="Ex: 3 pct"
+                    android:inputType="textPersonName" />
+            </FrameLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="50dp"
             android:layout_gravity="center"
-            android:gravity="center"
-            android:ems="10"
-            android:text="Nome do Item" />
+            android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/etNomeItemEdit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:hint="Ex: Frango" />
+            <Button
+                android:id="@+id/btnSalvarEdit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="20dp"
+                android:backgroundTint="@color/limeGreen"
+                android:ems="10"
+                android:gravity="center"
+                android:text="Salvar" />
 
-        <TextView
-            android:id="@+id/tvTituloCampoQntd"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:textStyle="bold"
-            android:ems="10"
-            android:text="Quantidade" />
+            <Button
+                android:id="@+id/btnDeleteItem"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:backgroundTint="@color/vermelho"
+                android:ems="10"
+                android:gravity="center"
+                android:text="Deletar" />
+        </LinearLayout>
 
-        <EditText
-            android:id="@+id/etQuantidadeEdit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:hint="Ex: 3 pct" />
-
-        <Button
-            android:id="@+id/btnSalvarEdit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:ems="10"
-            android:text="Salvar" />
-
-        <Button
-            android:id="@+id/btnDeleteItem"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:ems="10"
-            android:text="Deletar" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
