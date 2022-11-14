@@ -23,8 +23,9 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="@string/nomeItem"
-                android:textStyle="bold" />
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:text="@string/nomeItem" />
 
             <TextView
                 android:id="@+id/tvQuantidade"
@@ -32,6 +33,8 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
+                android:textColor="@color/white"
+                android:textStyle="bold"
                 android:text="@string/quantidade" />
         </LinearLayout>
 
