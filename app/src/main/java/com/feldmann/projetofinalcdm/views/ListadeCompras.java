@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import com.feldmann.projetofinalcdm.R;
 import com.feldmann.projetofinalcdm.controller.*;
@@ -16,8 +17,8 @@ public class ListadeCompras extends AppCompatActivity implements Controller.cont
     private Controller.msg msg;
     private Controller.view view;
     private Controller.controllerAdapters adapters;
+    private Controller.controllerCadastro cadastro;
     private String usuarioLogado, nomeLista;
-    private Controller.controllerEditList editList;
     //
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,10 +47,16 @@ public class ListadeCompras extends AppCompatActivity implements Controller.cont
         });
         ((ImageButton) findViewById(R.id.imgBtnAddItem)).setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
+                cadastro.addItemToDB( usuarioLogado, nomeLista,
+                        ((EditText) findViewById(R.id.etNomeItemAdd)).getText().toString(),
+                        ((EditText) findViewById(R.id.etQntdItemAdd)).getText().toString(),
+                        0 );
+                /*
                 Intent in = new Intent( view.getContext(), CadastrarItemActivity.class );
                 in.putExtra("USUARIOLOGADO", usuarioLogado);
                 in.putExtra("NOMELISTA", nomeLista);
                 view.getContext().startActivity(in);
+                */
             }//fim onClick
         });//fim clickListener
         adapters.setAdapterItemList(
@@ -68,6 +75,7 @@ public class ListadeCompras extends AppCompatActivity implements Controller.cont
         this.view = new ViewController(this, this);
         this.msg = new MsgController(view.getContext(), this.getClass().getName() );
         this.adapters = new AdapterController( view.getContext() );
+        this.cadastro = new CadastroController(view.getContext() );
     }//fim instanceController
             // METODOS PARA OS BOTOES VOLTAR
     private void toolBar(){
