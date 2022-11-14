@@ -7,13 +7,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.ImageButton;
 import com.feldmann.projetofinalcdm.R;
 import com.feldmann.projetofinalcdm.controller.*;
 import com.feldmann.projetofinalcdm.repository.*;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
 //
 public class ListadeCompras extends AppCompatActivity implements Controller.controllerInstance{
     private Controller.msg msg;
@@ -39,8 +37,7 @@ public class ListadeCompras extends AppCompatActivity implements Controller.cont
         ComprasRepository.getInstanceCompras( view.getContext(), nomeLista, usuarioLogado );
             //METODO PARA IR PARA ACTIVITY DE CRIAR ITEM
         ((ImageButton) findViewById(R.id.imgBtnConfigList)).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+            @Override public void onClick(View v) {
                 Intent in = new Intent( view.getContext(), EditListActivity.class );
                 in.putExtra("USUARIOLOGADO", usuarioLogado);
                 in.putExtra("NOMELISTA", nomeLista);
