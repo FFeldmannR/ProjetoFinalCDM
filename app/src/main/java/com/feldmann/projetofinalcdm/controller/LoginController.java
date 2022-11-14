@@ -30,9 +30,9 @@ public class LoginController implements Controller.controllerLogin{
         });//fim clickListener
     }//fim setTvEMS
     @Override public void Login(String login, String senha) {
-        selectUser(login, senha);
+        verificaUser(login, senha);
     }//fim Login
-    private void selectUser(String login, String senha){
+    private void verificaUser(String login, String senha){
         Cursor cursor = db.getReadableDatabase().rawQuery("SELECT * FROM users", null);
         //
         if (cursor.moveToFirst()){
