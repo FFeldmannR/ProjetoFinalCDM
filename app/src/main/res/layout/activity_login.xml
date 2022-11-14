@@ -40,6 +40,7 @@
                 android:layout_height="wrap_content"
                 android:hint="@string/nome"
                 android:gravity="center"
+                android:backgroundTint="@color/white"
                 android:ems="10"
                 android:inputType="textPersonName" />
         </FrameLayout>
@@ -56,6 +57,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="10"
+                android:backgroundTint="@color/white"
                 android:gravity="center"
                 android:hint="@string/senha"
                 android:inputType="textPassword" />
