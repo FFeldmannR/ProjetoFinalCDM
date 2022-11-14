@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="10dp"
+    android:background="@color/DodgerBlue"
     tools:context=".views.EditListActivity">
 
     <LinearLayout
@@ -17,45 +17,73 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/tvNomeListaEdit"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_marginTop="50dp"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:ems="10"
-            android:text="Nome da Lista" />
+            android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/etNomeListaEdit"
+            <TextView
+                android:id="@+id/tvNomeListaEdit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:ems="10"
+                android:gravity="center"
+                android:text="Nome da Lista"
+                android:textColor="@color/white"
+                android:textStyle="bold" />
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/customborder"
+                android:backgroundTint="@color/white">
+
+                <EditText
+                    android:id="@+id/etNomeListaEdit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:backgroundTint="@color/white"
+                    android:ems="10"
+                    android:gravity="center"
+                    android:hint="Nome da Lista"
+                    android:inputType="textPersonName" />
+            </FrameLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:gravity="center"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:hint="Nome da Lista" />
+            android:layout_marginTop="50dp"
+            android:orientation="vertical">
 
-        <Button
-            android:id="@+id/btnSalvarList"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:ems="10"
-            android:text="Salvar" />
+            <Button
+                android:id="@+id/btnSalvarList"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="20dp"
+                android:backgroundTint="@color/limeGreen"
+                android:ems="10"
+                android:gravity="center"
+                android:text="Salvar" />
 
-        <Button
-            android:id="@+id/btnDeleteList"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:ems="10"
-            android:text="Deletar" />
+            <Button
+                android:id="@+id/btnDeleteList"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:backgroundTint="@color/vermelho"
+                android:ems="10"
+                android:gravity="center"
+                android:text="Deletar" />
+        </LinearLayout>
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
