@@ -8,4 +8,7 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="cinza">#808080</color>
+    <color name="DodgerBlue">#1E90FF</color>
+    <color name="limeGreen">#32CD32</color>
+    <color name="azul">#0000FF</color>
 </resources>
