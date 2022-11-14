@@ -47,16 +47,14 @@ public class ListadeCompras extends AppCompatActivity implements Controller.cont
         });
         ((ImageButton) findViewById(R.id.imgBtnAddItem)).setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
-                cadastro.addItemToDB( usuarioLogado, nomeLista,
-                        ((EditText) findViewById(R.id.etNomeItemAdd)).getText().toString(),
-                        ((EditText) findViewById(R.id.etQntdItemAdd)).getText().toString(),
-                        0 );
-                /*
-                Intent in = new Intent( view.getContext(), CadastrarItemActivity.class );
-                in.putExtra("USUARIOLOGADO", usuarioLogado);
-                in.putExtra("NOMELISTA", nomeLista);
-                view.getContext().startActivity(in);
-                */
+                String nomeItem = ((EditText) findViewById(R.id.etNomeItemAdd)).getText().toString();
+                if ( nomeItem.equals("") ){
+                    msg.messageToast("DIGITE O NOME DO ITEM");
+                }else {
+                    cadastro.addItemToDB( usuarioLogado, nomeLista, nomeItem,
+                            ((EditText) findViewById(R.id.etQntdItemAdd)).getText().toString(),
+                            0 );
+                }
             }//fim onClick
         });//fim clickListener
         adapters.setAdapterItemList(
