@@ -28,14 +28,6 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".views.CadastrarItemActivity"
-            android:exported="false"
-            android:parentActivityName=".views.ListadeCompras">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
             android:name=".views.ListadeCompras"
             android:exported="false"
             android:parentActivityName=".views.ListaActivity">
