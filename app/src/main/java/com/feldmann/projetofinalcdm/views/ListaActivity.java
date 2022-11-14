@@ -39,13 +39,6 @@ public class ListaActivity extends AppCompatActivity implements Controller.contr
         ((FloatingActionButton) findViewById(R.id.addNewList)).setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) { cadastro.addListToDB( usuario, createNewNomeLista() ); }
         });
-        /*
-        ((ImageButton) findViewById(R.id.imgBtnAddList)).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                cadastro.addListToDB( usuario, createNewNomeLista() );
-            }
-        }); */
         ListasRepository.setAdapterListas( (RecyclerView) findViewById(R.id.RVListas), usuario );
 
         view.selectTableDB( "listas" );
