@@ -45,6 +45,7 @@
                     android:ems="10"
                     android:backgroundTint="@color/white"
                     android:gravity="center"
+                    android:textColorHint="@color/cinza"
                     android:hint="Ex: Frango"
                     android:inputType="textPersonName" />
             </FrameLayout>
@@ -81,6 +82,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:ems="10"
+                    android:textColorHint="@color/cinza"
                     android:backgroundTint="@color/white"
                     android:gravity="center"
                     android:hint="Ex: 3 pct"

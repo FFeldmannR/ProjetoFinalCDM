@@ -49,6 +49,7 @@
                     android:layout_gravity="center"
                     android:backgroundTint="@color/white"
                     android:ems="10"
+                    android:textColorHint="@color/cinza"
                     android:gravity="center"
                     android:hint="Nome da Lista"
                     android:inputType="textPersonName" />
