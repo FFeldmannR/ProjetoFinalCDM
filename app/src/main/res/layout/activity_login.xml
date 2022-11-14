@@ -5,48 +5,71 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".views.LoginActivity"
-    android:background="@color/white"
+    android:background="@color/DodgerBlue"
     android:padding="10dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:paddingTop="100dp"
+        android:paddingTop="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <EditText
-            android:id="@+id/etLoginL"
+        <ImageView
+            android:id="@+id/imageView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
             android:layout_gravity="center"
-            android:gravity="center"
-            android:hint="@string/nome"
-            android:ems="10"
-            android:inputType="textPersonName" />
+            android:layout_marginBottom="20dp"
+            app:srcCompat="@mipmap/icone" />
 
-        <EditText
-            android:id="@+id/etSenhaL"
+        <FrameLayout
+            android:id="@+id/FLetLogin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
             android:layout_gravity="center"
-            android:gravity="center"
-            android:hint="@string/senha"
-            android:ems="10"
-            android:inputType="textPassword" />
+            android:background="@color/white"
+            android:layout_marginBottom="20dp">
+
+            <EditText
+                android:id="@+id/etLoginL"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="@string/nome"
+                android:gravity="center"
+                android:ems="10"
+                android:inputType="textPersonName" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@color/white"
+            android:layout_marginBottom="30dp" >
+
+            <EditText
+                android:id="@+id/etSenhaL"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:gravity="center"
+                android:hint="@string/senha"
+                android:inputType="textPassword" />
+        </FrameLayout>
 
         <Button
             android:id="@+id/btnEntrar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
+            android:layout_marginBottom="10dp"
             android:layout_gravity="center"
             android:gravity="center"
+            android:textColor="@color/white"
+            android:backgroundTint="@color/azul"
             android:ems="10"
             android:text="@string/btnEntrar" />
 
@@ -56,20 +79,12 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
             android:layout_gravity="center"
+            android:textColor="@color/black"
+            android:backgroundTint="@color/limeGreen"
             android:gravity="center"
             android:ems="10"
             android:text="@string/btnCadastrar" />
 
-        <!--
-        <TextView
-            android:id="@+id/tvEMS"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:ems="10"
-            android:text="@string/EMS" />
-            -->
 
     </LinearLayout>
 
