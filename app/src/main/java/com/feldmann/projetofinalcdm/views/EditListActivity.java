@@ -34,19 +34,13 @@ public class EditListActivity extends AppCompatActivity implements Controller.co
         EditText etNomeLista = ((EditText) findViewById(R.id.etNomeListaEdit));
         etNomeLista.setText(nomeLista);
         //
-        Button btnSalvar = ((Button) findViewById(R.id.btnSalvarList));
-        btnSalvar.setBackgroundColor(Color.GREEN);
-        btnSalvar.setTextColor(Color.BLACK);
-        btnSalvar.setOnClickListener(new View.OnClickListener() {
+        ((Button) findViewById(R.id.btnSalvarList)).setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
                 lista.updateList( usuarioLogado, nomeLista, etNomeLista.getText().toString() );
             }//fim onClick
         });//fim clickListener
-        Button btnDeletar = ((Button) findViewById(R.id.btnDeleteList));
-        btnDeletar.setBackgroundColor(Color.RED);
-        btnDeletar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        ((Button) findViewById(R.id.btnDeleteList)).setOnClickListener(new View.OnClickListener() {
+            @Override public void onClick(View v) {
                 lista.deleteList( usuarioLogado, nomeLista );
             }
         });
