@@ -51,12 +51,6 @@ public class ListadeCompras extends AppCompatActivity implements Controller.cont
                         ((EditText) findViewById(R.id.etNomeItemAdd)).getText().toString(),
                         ((EditText) findViewById(R.id.etQntdItemAdd)).getText().toString(),
                         0 );
-                /*
-                Intent in = new Intent( view.getContext(), CadastrarItemActivity.class );
-                in.putExtra("USUARIOLOGADO", usuarioLogado);
-                in.putExtra("NOMELISTA", nomeLista);
-                view.getContext().startActivity(in);
-                */
             }//fim onClick
         });//fim clickListener
         adapters.setAdapterItemList(
