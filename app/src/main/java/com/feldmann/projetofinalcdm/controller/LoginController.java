@@ -7,34 +7,47 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.view.View;
 import android.widget.TextView;
+
+import com.feldmann.projetofinalcdm.R;
 import com.feldmann.projetofinalcdm.repository.DBListas;
 import com.feldmann.projetofinalcdm.views.ListaActivity;
 //
 public class LoginController implements Controller.controllerLogin{
-    private Context context;
-    private DBListas db;
+    private final Context context;
+    private final DBListas db;
     private static Controller.msg msg;
     //
     public LoginController(Context context) {
         this.context = context;
         this.db = new DBListas( context );
-        this.msg = new MsgController(context, this.getClass().getName().toString() );
+        msg = new MsgController(context, this.getClass().getName().toString() );
     }//fim contrutor
-    @Override public void Login(String login, String senha) {
-        verificaUser(login, senha);
+    @Override public void Login( String login, String senha, TextView tvIncorreto ) {
+        verificaUser( login, senha, tvIncorreto );
     }//fim Login
-    private void verificaUser(String login, String senha){
+    private void verificaUser( String login, String senha, TextView tvIncorreto ){
         Cursor cursor = db.getReadableDatabase().rawQuery("SELECT * FROM users", null);
         //
         if (cursor.moveToFirst()){
             do {
-                if (login.equals(cursor.getString(1)) && senha.equals(cursor.getString(2))){
-                    //válido
-                    Intent toListActivity = new Intent(context, ListaActivity.class);
-                    toListActivity.putExtra("NOMEUSER", login );
-                    msg.messageToast("Bem Vindo(a) "+login );
-                    context.startActivity(toListActivity);
-                    break;
+                if ( login.equals(cursor.getString(1)) ){
+                    //usuario existe
+                    if ( senha.equals(cursor.getString(2)) ){
+                        //senha existe
+                        Intent toListActivity = new Intent(context, ListaActivity.class);
+                        toListActivity.putExtra("NOMEUSER", login );
+                        msg.messageToast("Bem Vindo(a) "+login );
+                        context.startActivity(toListActivity);
+                        break;
+                    }else{
+                        //senha incorreta
+                        tvIncorreto.setTextColor(Color.RED);
+                        tvIncorreto.setText(context.getResources().getString(R.string.senhaIncorreta));
+                    }
+                }else {
+                    //usuario nao existe
+                    tvIncorreto.setTextColor(Color.RED);
+                    tvIncorreto.setText(context.getResources().getString(R.string.usuarioIncorreto));
                 }
             }while (cursor.moveToNext());
         }else{
