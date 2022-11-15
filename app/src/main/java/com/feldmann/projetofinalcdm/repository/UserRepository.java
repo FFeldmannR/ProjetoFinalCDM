@@ -2,6 +2,7 @@ package com.feldmann.projetofinalcdm.repository;
 //
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.SQLException;
 import com.feldmann.projetofinalcdm.controller.Controller;
 import com.feldmann.projetofinalcdm.controller.MsgController;
@@ -20,14 +21,28 @@ public class UserRepository {
         return instance;
     }//fim getInstance
     public static void createUserinDB(String nomeUser, String senhaUser){
-        try{
-            ContentValues ctv = new ContentValues();
-            ctv.put("nome", nomeUser );
-            ctv.put("senha", senhaUser );
-            db.getWritableDatabase().insert("users", null, ctv);
-            msg.messageToast(nomeUser + " ADICIONADO");
-        }catch (SQLException sqlE){
-            msg.logD("ERRO AO ADICIONAR USUARIO\n"+sqlE.getMessage());
-        }//fim try catch
+        Cursor c = db.getReadableDatabase().rawQuery("SELECT * FROM users", null);
+        if (c.moveToFirst()){
+            //
+            do {
+                if ( nomeUser.equals( c.getString(1) ) ){
+                    msg.messageToast("USUARIO JA EXISTE");
+                }else{
+                    try{
+                        ContentValues ctv = new ContentValues();
+                        ctv.put("nome", nomeUser );
+                        ctv.put("senha", senhaUser );
+                        db.getWritableDatabase().insert("users", null, ctv);
+                        msg.messageToast(nomeUser + " ADICIONADO");
+                    }catch (SQLException sqlE){
+                        msg.logD("ERRO AO ADICIONAR USUARIO\n"+sqlE.getMessage());
+                    }//fim try catch
+                    break;
+                }
+            }while (c.moveToNext());
+        }else{
+            msg.logD("NÃO EXISTEM USUARIOS CADASTRADOS");
+        }
+        c.close();
     }//fim createUserinDB
 }//fim classe
