@@ -8,6 +8,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
+
 import com.feldmann.projetofinalcdm.R;
 import com.feldmann.projetofinalcdm.controller.*;
 //
@@ -26,19 +28,21 @@ public class CadastroActivity extends AppCompatActivity implements Controller.co
         super.onResume();
         msg.logD("onResume");
         this.toolBar();
-        ((Button) findViewById(R.id.btnCadastrarC)).setOnClickListener(new View.OnClickListener() {
+        ((FrameLayout) findViewById(R.id.FLbtnCadastroC)).setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
-                cadastro.addUserToDB(
-                        ((EditText) findViewById(R.id.etLoginC)).getText().toString(),
-                        ((EditText) findViewById(R.id.etSenhaC)).getText().toString()
-                );//fim addUserToDB
+                String etLoginC = ((EditText) findViewById(R.id.etLoginC)).getText().toString();
+                String etSenhaC = ((EditText) findViewById(R.id.etSenhaC)).getText().toString();
+                if ( !etLoginC.equals("") && !etSenhaC.equals("") ){ //se um dos campos NÃO for nulo
+                    cadastro.addUserToDB( etLoginC, etSenhaC );//fim addUserToDB
+                    msg.messageToast("SUCESSO");
+                }else{ msg.messageToast("CAMPOS DE LOGIN E/OU SENHA ESTÃO VAZIOS"); }
             }//fim onClick
         });//fim clickListener
     }//fim onResume
     @Override protected void onDestroy() {
         super.onDestroy();
         msg.logD("onDestroy");
-    }
+    }//fim onDestroy
     @Override public void instanceController() {
         this.view = new ViewController(this, this);
         this.msg = new MsgController(view.getContext(), this.getClass().getName().toString() );
