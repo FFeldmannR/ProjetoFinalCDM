@@ -36,7 +36,7 @@ public class LoginActivity extends AppCompatActivity implements Controller.contr
         if (nomeUser != null){
             ((EditText) findViewById(R.id.etLoginL)).setText(nomeUser);
         }
-        ((Button) findViewById(R.id.btnEntrar)).setOnClickListener(new View.OnClickListener() {
+        ((FrameLayout) findViewById(R.id.FLLoginL)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 login.Login(
@@ -46,17 +46,13 @@ public class LoginActivity extends AppCompatActivity implements Controller.contr
             }//fim onClick
         });//fim clickListener
                 // BOTAO CADASTRAR
-        ((Button) findViewById(R.id.btnCadastrarL)).setOnClickListener(new View.OnClickListener() {
+        ((FrameLayout) findViewById(R.id.FLcadastrarL)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent in = new Intent(view.getContext(), CadastroActivity.class);
                 view.getContext().startActivity(in);
             }
         });
-        /*
-                //BOTAO ESQUECI MINHA SENHA
-        login.setTvEMS(((TextView) findViewById(R.id.tvEMS)));
-        */
         //
         view.selectTableDB( "users" );
     }//fim onResume
