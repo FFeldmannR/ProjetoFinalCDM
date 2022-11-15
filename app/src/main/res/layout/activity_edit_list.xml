@@ -31,7 +31,7 @@
                 android:layout_gravity="center"
                 android:ems="10"
                 android:gravity="center"
-                android:text="Nome da Lista"
+                android:text="@string/nomeLista"
                 android:textColor="@color/white"
                 android:textStyle="bold" />
 
@@ -47,11 +47,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:textColor="@color/black"
                     android:backgroundTint="@color/white"
                     android:ems="10"
                     android:textColorHint="@color/cinza"
                     android:gravity="center"
-                    android:hint="Nome da Lista"
+                    android:hint="@string/exNomeLista"
                     android:inputType="textPersonName" />
             </FrameLayout>
 
@@ -73,7 +74,7 @@
                 android:backgroundTint="@color/limeGreen"
                 android:ems="10"
                 android:gravity="center"
-                android:text="Salvar" />
+                android:text="@string/btnSalvar" />
 
             <Button
                 android:id="@+id/btnDeleteList"
@@ -83,7 +84,7 @@
                 android:backgroundTint="@color/vermelho"
                 android:ems="10"
                 android:gravity="center"
-                android:text="Deletar" />
+                android:text="@string/btnDeletar" />
         </LinearLayout>
 
     </LinearLayout>
