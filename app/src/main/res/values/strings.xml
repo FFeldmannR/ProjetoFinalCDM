@@ -2,18 +2,22 @@
     <string name="app_name">Lista de Compras</string>
     <string name="nome">Nome</string>
     <string name="senha">Senha</string>
-    <string name="btnEntrar">Entrar</string>
-    <string name="btnCadastrar">Cadastrar</string>
-    <string name="EMS">Esqueci minha senha</string>
-    <!-- MODELOS -->
-    <!-- LISTA LAYOUT -->
-    <string name="nomeLista">NOME_LISTA</string>
-    <string name="progressoList">X %</string>
-    <!-- ITEM LAYOUT -->
+
+    <string name="nomeLista">Nome da Lista</string>
     <string name="nomeItem">Nome do Item</string>
     <string name="quantidade">Quantidade</string>
-    <!--  -->
+
+    <string name="cadastroIncorreto">Usuario ou senha incorretos</string>
     <string name="usuarioJaExiste">Usuario já existe</string>
     <string name="usuarioIncorreto">Usuario incorreto</string>
     <string name="senhaIncorreta">Senha incorreta</string>
+
+    <string name="exNomeItem">Ex. Frango</string>
+    <string name="exNomeLista">Ex. Mercado</string>
+    <string name="exQntd">Ex. 3 pct</string>
+
+    <string name="btnEntrar">Entrar</string>
+    <string name="btnCadastrar">Cadastrar</string>
+    <string name="btnSalvar">Salvar</string>
+    <string name="btnDeletar">Deletar</string>
 </resources>
