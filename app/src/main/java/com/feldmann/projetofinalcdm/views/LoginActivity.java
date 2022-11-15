@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.*;
 import com.feldmann.projetofinalcdm.R;
 import com.feldmann.projetofinalcdm.controller.*;
@@ -36,21 +35,19 @@ public class LoginActivity extends AppCompatActivity implements Controller.contr
         if (nomeUser != null){
             ((EditText) findViewById(R.id.etLoginL)).setText(nomeUser);
         }
+
+                // BOTAO LOGIN
         ((FrameLayout) findViewById(R.id.FLLoginL)).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                login.Login(
-                        ((EditText) findViewById(R.id.etLoginL)).getText().toString(),
-                        ((EditText) findViewById(R.id.etSenhaL)).getText().toString()
-                );//fim Login
+            @Override public void onClick(View v) {
+                login.Login( ((EditText) findViewById(R.id.etLoginL)).getText().toString(),
+                             ((EditText) findViewById(R.id.etSenhaL)).getText().toString() );//fim Login
             }//fim onClick
         });//fim clickListener
+
                 // BOTAO CADASTRAR
         ((FrameLayout) findViewById(R.id.FLcadastrarL)).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent in = new Intent(view.getContext(), CadastroActivity.class);
-                view.getContext().startActivity(in);
+            @Override public void onClick(View v) {
+                view.getContext().startActivity( new Intent(view.getContext(), CadastroActivity.class) );
             }
         });
         //
