@@ -14,5 +14,6 @@
     <string name="quantidade">Quantidade</string>
     <!--  -->
     <string name="usuarioJaExiste">Usuario já existe</string>
+    <string name="usuarioIncorreto">Usuario incorreto</string>
     <string name="senhaIncorreta">Senha incorreta</string>
 </resources>
