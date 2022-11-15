@@ -2,21 +2,26 @@ package com.feldmann.projetofinalcdm.repository;
 //
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.SQLException;
 import com.feldmann.projetofinalcdm.controller.Controller;
 import com.feldmann.projetofinalcdm.controller.MsgController;
 import com.feldmann.projetofinalcdm.model.Compras;
+import com.feldmann.projetofinalcdm.views.ListadeCompras;
+
 import java.util.ArrayList;
 import java.util.List;
 //
 public class ComprasRepository {
+    private static Context context;
     private static ComprasRepository instance = null;
     private static List<Compras> compras;
     private static Controller.msg msg;
     private static DBListas db;
     //
     public ComprasRepository(Context contexto) {
+        this.context = contexto;
         this.msg = new MsgController(contexto, this.getClass().getName() );
         this.db = new DBListas(contexto);
         if (instance == null){ compras = new ArrayList<>(); }
@@ -59,17 +64,25 @@ public class ComprasRepository {
     public static void createItem(String usuarioLogado,
                                   String nomeLista, String nomeItem,
                                   String qntdItem, int completed){
-        try{
-            ContentValues ctv = new ContentValues();
-            ctv.put("donoLista", usuarioLogado);
-            ctv.put("nomeLista", nomeLista);
-            ctv.put("nomeItem", nomeItem );
-            ctv.put("quantidade", qntdItem );
-            ctv.put("completed", completed);
-            db.getWritableDatabase().insert("compras", null, ctv);
-        }catch (SQLException sqlE){
-            msg.logD("ERRO AO CRIAR ITEM\n"+sqlE.getMessage() );
-        }//fim try catch
+        if ( nomeItem.equals("") ){
+            msg.messageToast("DIGITE NOME DO ITEM");
+        }else{
+            try{
+                ContentValues ctv = new ContentValues();
+                ctv.put("donoLista", usuarioLogado);
+                ctv.put("nomeLista", nomeLista);
+                ctv.put("nomeItem", nomeItem );
+                ctv.put("quantidade", qntdItem );
+                ctv.put("completed", completed);
+                db.getWritableDatabase().insert("compras", null, ctv);
+                Intent in = new Intent( context, ListadeCompras.class );
+                in.putExtra("USUARIO", usuarioLogado );
+                in.putExtra("NOMELISTA", nomeLista );
+                context.startActivity(in);
+            }catch (SQLException sqlE){
+                msg.logD("ERRO AO CRIAR ITEM\n"+sqlE.getMessage() );
+            }//fim try catch
+        }//fim if else
     }//fim createItem
     public static void updateItem(String novoNomeItem, String novaQuantidade, int idItem){
         try{
