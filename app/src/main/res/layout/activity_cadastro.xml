@@ -39,6 +39,7 @@
         </FrameLayout>
 
         <FrameLayout
+            android:id="@+id/FLetSenhaC"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -59,17 +60,25 @@
                 android:inputType="textPassword" />
         </FrameLayout>
 
-        <Button
-            android:id="@+id/btnCadastrarC"
+        <FrameLayout
+            android:id="@+id/FLbtnCadastroC"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:gravity="center"
-            android:textColor="@color/black"
-            android:backgroundTint="@color/limeGreen"
-            android:ems="10"
-            android:text="@string/btnCadastrar" />
+            android:background="@drawable/customborder"
+            android:backgroundTint="@color/limeGreen">
 
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:text="@string/btnCadastrar"
+                android:textStyle="bold"
+                android:textColor="@color/black" />
+
+        </FrameLayout>
     </LinearLayout>
-
 </androidx.constraintlayout.widget.ConstraintLayout>
