@@ -69,7 +69,7 @@
             android:layout_gravity="center"
             android:layout_marginBottom="10dp"
             android:textColor="@color/DodgerBlue"
-            android:text="Usuario ou senha incorretos" />
+            android:text="@string/cadastroIncorreto" />
 
         <FrameLayout
             android:id="@+id/FLbtnCadastroC"
