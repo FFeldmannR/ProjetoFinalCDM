@@ -34,7 +34,6 @@ public class CadastroActivity extends AppCompatActivity implements Controller.co
                 String etSenhaC = ((EditText) findViewById(R.id.etSenhaC)).getText().toString();
                 if ( !etLoginC.equals("") && !etSenhaC.equals("") ){ //se um dos campos NÃO for nulo
                     cadastro.addUserToDB( etLoginC, etSenhaC );//fim addUserToDB
-                    msg.messageToast("SUCESSO");
                 }else{ msg.messageToast("CAMPOS DE LOGIN E/OU SENHA ESTÃO VAZIOS"); }
             }//fim onClick
         });//fim clickListener
