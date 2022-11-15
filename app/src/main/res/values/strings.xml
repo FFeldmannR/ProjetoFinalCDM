@@ -13,4 +13,6 @@
     <string name="nomeItem">Nome do Item</string>
     <string name="quantidade">Quantidade</string>
     <!--  -->
+    <string name="usuarioJaExiste">Usuario já existe</string>
+    <string name="senhaIncorreta">Senha incorreta</string>
 </resources>
