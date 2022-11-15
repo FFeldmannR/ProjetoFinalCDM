@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import com.feldmann.projetofinalcdm.R;
 import com.feldmann.projetofinalcdm.controller.*;
@@ -47,7 +48,8 @@ public class ListadeCompras extends AppCompatActivity implements Controller.cont
         ((FloatingActionButton) findViewById(R.id.addNewItem)).setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
                 cadastro.addItemToDB( usuarioLogado, nomeLista,
-                        createNewNomeItem(), "0",
+                        ((EditText) findViewById(R.id.etNomeItemAdd)).getText().toString(),
+                        ((EditText) findViewById(R.id.etQntdItemAdd)).getText().toString(),
                         0 );
             }
         });
