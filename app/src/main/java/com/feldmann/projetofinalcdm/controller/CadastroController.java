@@ -2,6 +2,8 @@ package com.feldmann.projetofinalcdm.controller;
 //
 import android.content.Context;
 import android.content.Intent;
+import android.widget.TextView;
+
 import com.feldmann.projetofinalcdm.repository.*;
 import com.feldmann.projetofinalcdm.views.*;
 //
@@ -20,11 +22,8 @@ public class CadastroController implements Controller.controllerCadastro{
         in.putExtra("NOMELISTA", nomeLista );
         context.startActivity(in);
     }
-    @Override public void addUserToDB( String nomeUser, String senhaUser ) {
-        UserRepository.createUserinDB( nomeUser, senhaUser );
-        Intent in = new Intent( context, LoginActivity.class );
-        in.putExtra("NOMEUSER", nomeUser );
-        context.startActivity(in);
+    @Override public void addUserToDB( String nomeUser, String senhaUser, TextView tvIncorreto ) {
+        UserRepository.createUserinDB( nomeUser, senhaUser, tvIncorreto );
     }//fim addToDB
     @Override public void addListToDB( String donoLista, String nomeLista ) {
         ListasRepository.createList( donoLista, nomeLista );
