@@ -17,10 +17,6 @@ public class CadastroController implements Controller.controllerCadastro{
     }
     @Override public void addItemToDB(String usuarioLogado, String nomeLista, String nomeItem, String qntdItem, int completed) {
         ComprasRepository.createItem( usuarioLogado, nomeLista, nomeItem, qntdItem, completed );
-        Intent in = new Intent( context, ListadeCompras.class );
-        in.putExtra("USUARIO", usuarioLogado );
-        in.putExtra("NOMELISTA", nomeLista );
-        context.startActivity(in);
     }
     @Override public void addUserToDB( String nomeUser, String senhaUser, TextView tvIncorreto ) {
         UserRepository.createUserinDB( nomeUser, senhaUser, tvIncorreto );
