@@ -76,8 +76,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginBottom="10dp"
-            android:textColor="@color/DodgerBlue"
-            android:text="Usuario ou senha incorretos" />
+            android:textColor="@color/DodgerBlue" />
 
         <FrameLayout
             android:id="@+id/FLLoginL"
