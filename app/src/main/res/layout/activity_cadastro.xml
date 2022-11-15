@@ -31,6 +31,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
+                android:textColor="@color/black"
                 android:hint="@string/nome"
                 android:textColorHint="@color/cinza"
                 android:backgroundTint="@color/white"
@@ -45,7 +46,7 @@
             android:layout_gravity="center"
             android:background="@drawable/customborder"
             android:backgroundTint="@color/white"
-            android:layout_marginBottom="30dp" >
+            android:layout_marginBottom="10dp" >
 
             <EditText
                 android:id="@+id/etSenhaC"
@@ -53,12 +54,22 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:gravity="center"
+                android:textColor="@color/black"
                 android:textColorHint="@color/cinza"
                 android:backgroundTint="@color/white"
                 android:hint="@string/senha"
                 android:ems="10"
                 android:inputType="textPassword" />
         </FrameLayout>
+
+        <TextView
+            android:id="@+id/tvCadastroIncorreto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="10dp"
+            android:textColor="@color/DodgerBlue"
+            android:text="Usuario ou senha incorretos" />
 
         <FrameLayout
             android:id="@+id/FLbtnCadastroC"
