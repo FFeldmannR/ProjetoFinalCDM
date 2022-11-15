@@ -20,15 +20,6 @@ public class LoginController implements Controller.controllerLogin{
         this.db = new DBListas( context );
         this.msg = new MsgController(context, this.getClass().getName().toString() );
     }//fim contrutor
-    @Override public void setTvEMS(TextView tvEMS) { //EMS = Esqueci Minha Senha
-        tvEMS.setTextColor(Color.GRAY);
-        tvEMS.setTypeface(null, Typeface.BOLD);
-        tvEMS.setOnClickListener(new View.OnClickListener() {
-            @Override public void onClick(View v) {
-                msg.messageToast("BOTAO AINDA NAO FUNCIONA");
-            }//fim onClick
-        });//fim clickListener
-    }//fim setTvEMS
     @Override public void Login(String login, String senha) {
         verificaUser(login, senha);
     }//fim Login

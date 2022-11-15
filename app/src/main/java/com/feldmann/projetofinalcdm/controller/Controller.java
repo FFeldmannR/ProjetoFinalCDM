@@ -30,7 +30,6 @@ public class Controller {
         public String criarTabelaCompras();
     }
     public interface controllerLogin{
-        public void setTvEMS(TextView tvEMS);
         public void Login(String login, String senha);
     }
     public interface controllerCadastro{
