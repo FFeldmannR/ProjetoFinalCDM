@@ -40,7 +40,8 @@ public class LoginActivity extends AppCompatActivity implements Controller.contr
         ((FrameLayout) findViewById(R.id.FLLoginL)).setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
                 login.Login( ((EditText) findViewById(R.id.etLoginL)).getText().toString(),
-                             ((EditText) findViewById(R.id.etSenhaL)).getText().toString() );//fim Login
+                             ((EditText) findViewById(R.id.etSenhaL)).getText().toString(),
+                             ((TextView) findViewById(R.id.tvLoginIncorreto)) );//fim Login
             }//fim onClick
         });//fim clickListener
 
