@@ -28,7 +28,7 @@
                 android:ems="10"
                 android:gravity="center"
                 android:textStyle="bold"
-                android:text="Nome do Item"
+                android:text="@string/nomeItem"
                 android:textColor="@color/white" />
 
             <FrameLayout
@@ -46,7 +46,7 @@
                     android:backgroundTint="@color/white"
                     android:gravity="center"
                     android:textColorHint="@color/cinza"
-                    android:hint="Ex: Frango"
+                    android:hint="@string/exNomeItem"
                     android:inputType="textPersonName" />
             </FrameLayout>
 
@@ -67,7 +67,7 @@
                 android:textColor="@color/white"
                 android:textStyle="bold"
                 android:gravity="center"
-                android:text="Quantidade" />
+                android:text="@string/quantidade" />
 
             <FrameLayout
                 android:layout_width="wrap_content"
@@ -85,7 +85,7 @@
                     android:textColorHint="@color/cinza"
                     android:backgroundTint="@color/white"
                     android:gravity="center"
-                    android:hint="Ex: 3 pct"
+                    android:hint="@string/exQntd"
                     android:inputType="textPersonName" />
             </FrameLayout>
 
@@ -107,7 +107,7 @@
                 android:backgroundTint="@color/limeGreen"
                 android:ems="10"
                 android:gravity="center"
-                android:text="Salvar" />
+                android:text="@string/btnSalvar" />
 
             <Button
                 android:id="@+id/btnDeleteItem"
@@ -117,7 +117,7 @@
                 android:backgroundTint="@color/vermelho"
                 android:ems="10"
                 android:gravity="center"
-                android:text="Deletar" />
+                android:text="@string/btnDeletar" />
         </LinearLayout>
 
     </LinearLayout>
