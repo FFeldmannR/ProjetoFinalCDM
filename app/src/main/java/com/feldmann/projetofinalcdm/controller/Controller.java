@@ -6,8 +6,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.widget.*;
 import androidx.recyclerview.widget.RecyclerView;
 import com.feldmann.projetofinalcdm.model.Compras;
-import com.feldmann.projetofinalcdm.model.Listas;
-
 import java.util.List;
 //
 public class Controller {

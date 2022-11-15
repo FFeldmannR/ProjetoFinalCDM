@@ -4,9 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.database.Cursor;
 import android.util.Log;
-
 import com.feldmann.projetofinalcdm.repository.DBListas;
-
 //
 public class ViewController implements Controller.view{
     private Context context;
