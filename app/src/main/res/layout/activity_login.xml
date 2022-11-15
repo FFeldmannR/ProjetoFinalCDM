@@ -69,29 +69,44 @@
                 android:inputType="textPassword" />
         </FrameLayout>
 
-        <Button
-            android:id="@+id/btnEntrar"
+        <FrameLayout
+            android:id="@+id/FLLoginL"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
+            android:background="@drawable/customborder"
             android:layout_gravity="center"
-            android:gravity="center"
-            android:textColor="@color/white"
-            android:backgroundTint="@color/azul"
-            android:ems="10"
-            android:text="@string/btnEntrar" />
+            android:backgroundTint="@color/azul">
 
-        <Button
-            android:id="@+id/btnCadastrarL"
+            <TextView
+                android:id="@+id/tvBtnEntrarL"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:text="@string/btnEntrar" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/FLcadastrarL"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
             android:layout_gravity="center"
-            android:textColor="@color/black"
-            android:backgroundTint="@color/limeGreen"
-            android:gravity="center"
-            android:ems="10"
-            android:text="@string/btnCadastrar" />
+            android:layout_marginTop="20dp"
+            android:background="@drawable/customborder"
+            android:backgroundTint="@color/limeGreen">
+
+            <TextView
+                android:id="@+id/tvBtnCadastrarL"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:ems="10"
+                android:text="@string/btnCadastrar"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
+        </FrameLayout>
 
 
     </LinearLayout>
