@@ -88,14 +88,16 @@
             android:layout_weight="3">
 
             <EditText
-                android:id="@+id/editTextTextPersonName"
+                android:id="@+id/etNomeItemAdd"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/white"
                 android:gravity="center"
                 android:ems="10"
+                android:textColor="@color/black"
                 android:inputType="textPersonName"
-                android:text="@string/nomeItem" />
+                android:textColorHint="@color/cinza"
+                android:hint="@string/nomeItem" />
         </FrameLayout>
 
         <FrameLayout
@@ -108,14 +110,16 @@
             android:layout_weight="3">
 
             <EditText
-                android:id="@+id/editTextTextPersonName2"
+                android:id="@+id/etQntdItemAdd"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/white"
                 android:gravity="center"
                 android:ems="10"
+                android:textColorHint="@color/cinza"
+                android:textColor="@color/black"
                 android:inputType="textPersonName"
-                android:text="@string/quantidade" />
+                android:hint="@string/quantidade" />
         </FrameLayout>
 
         <FrameLayout
