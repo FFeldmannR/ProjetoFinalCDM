@@ -36,7 +36,7 @@ public class Controller {
         public void addItemToDB( String usuarioLogado, String nomeLista,
                                 String nomeItem, String qntdItem,
                                 int completed );
-        public void addUserToDB(String nomeUser, String senhaUser, TextView tvIncorreto);
+        public void addUserToDB(String nomeUser, String senhaUser );
         public void addListToDB( String donoLista, String nomeLista );
     }
     public interface controllerComprasAdapter{

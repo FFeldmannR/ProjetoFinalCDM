@@ -29,37 +29,18 @@ public class UserRepository {
         instance = new UserRepository( context );
         return instance;
     }//fim getInstance
-    public static void createUserinDB(String nomeUser, String senhaUser, TextView tvIncorreto){
-        Cursor c = db.getReadableDatabase().rawQuery("SELECT * FROM users", null);
-        if (c.moveToFirst()){
-            //
-            do {
-                if ( nomeUser.equals( c.getString(1) ) ){
-                    tvIncorreto.setText(context.getResources().getString(R.string.usuarioJaExiste));
-                }else{
-                    if ( senhaUser.equals( c.getString(2) ) ){
-                        try{
-                            ContentValues ctv = new ContentValues();
-                            ctv.put("nome", nomeUser );
-                            ctv.put("senha", senhaUser );
-                            db.getWritableDatabase().insert("users", null, ctv);
-                            msg.messageToast(nomeUser + " ADICIONADO");
-                            Intent in = new Intent( context, LoginActivity.class );
-                            in.putExtra("NOMEUSER", nomeUser );
-                            context.startActivity(in);
-                        }catch (SQLException sqlE){
-                            msg.logD("ERRO AO ADICIONAR USUARIO\n"+sqlE.getMessage());
-                        }//fim try catch
-                        break;
-                    }else {
-                        tvIncorreto.setTextColor( Color.RED );
-                        tvIncorreto.setText(context.getResources().getString(R.string.senhaIncorreta));
-                    }
-                }
-            }while (c.moveToNext());
-        }else{
-            msg.logD("NÃO EXISTEM USUARIOS CADASTRADOS");
-        }
-        c.close();
+    public static void createUserinDB(String nomeUser, String senhaUser ){
+        try{
+            ContentValues ctv = new ContentValues();
+            ctv.put("nome", nomeUser );
+            ctv.put("senha", senhaUser );
+            db.getWritableDatabase().insert("users", null, ctv);
+            msg.messageToast(nomeUser + " ADICIONADO");
+            Intent in = new Intent( context, LoginActivity.class );
+            in.putExtra("NOMEUSER", nomeUser );
+            context.startActivity(in);
+        }catch (SQLException sqlE){
+            msg.logD("ERRO AO ADICIONAR USUARIO\n"+sqlE.getMessage());
+        }//fim try catch
     }//fim createUserinDB
 }//fim classe
