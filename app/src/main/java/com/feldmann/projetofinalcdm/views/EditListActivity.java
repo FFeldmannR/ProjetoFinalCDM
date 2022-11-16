@@ -9,6 +9,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
+
 import com.feldmann.projetofinalcdm.R;
 import com.feldmann.projetofinalcdm.controller.*;
 //
@@ -36,7 +38,7 @@ public class EditListActivity extends AppCompatActivity implements Controller.co
         //
         ((Button) findViewById(R.id.btnSalvarList)).setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
-                lista.updateList( usuarioLogado, nomeLista, etNomeLista.getText().toString() );
+                lista.updateList( usuarioLogado, nomeLista, etNomeLista.getText().toString(), ((TextView) findViewById(R.id.tvNomeListaErrado)) );
             }//fim onClick
         });//fim clickListener
         ((Button) findViewById(R.id.btnDeleteList)).setOnClickListener(new View.OnClickListener() {

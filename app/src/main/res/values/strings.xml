@@ -11,6 +11,10 @@
     <string name="usuarioJaExiste">Usuario já existe</string>
     <string name="usuarioIncorreto">Usuario incorreto</string>
     <string name="senhaIncorreta">Senha incorreta</string>
+    <string name="usuarioVazio">Nome está vazio</string>
+    <string name="usuarioPequeno">Usuario deve ter mais de 4 caracteres ou mais</string>
+    <string name="senhaVazia">Senha está vazia</string>
+    <string name="senhaPequena">Senha deve ter 8 caracteres ou mais</string>
 
     <string name="exNomeItem">Ex. Frango</string>
     <string name="exNomeLista">Ex. Mercado</string>

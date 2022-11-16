@@ -2,29 +2,36 @@ package com.feldmann.projetofinalcdm.repository;
 //
 import android.content.ContentValues;
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.SQLException;
+import android.graphics.Color;
+import android.widget.TextView;
+
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.feldmann.projetofinalcdm.adapters.ListaAdapter;
 import com.feldmann.projetofinalcdm.controller.Controller;
 import com.feldmann.projetofinalcdm.controller.MsgController;
 import com.feldmann.projetofinalcdm.model.Listas;
+import com.feldmann.projetofinalcdm.views.ListadeCompras;
+
 import java.util.ArrayList;
 import java.util.List;
 //
 public class ListasRepository {
-    private Context contexto;
+    private static Context context;
     private static ListasRepository instance = null;
     private static DBListas db;
     private static List<Listas> listas;
     private static Controller.msg msg;
     //
     public ListasRepository(Context context) {
-        msg = new MsgController(context, this.getClass().getName().toString() );
-        this.contexto = context;
+        this.context = context;
         db = new DBListas( context );
         if (listas == null){ listas = new ArrayList<>(); }
+        msg = new MsgController(context, this.getClass().getName().toString() );
+
     }
     //
     public static ListasRepository getInstanceListas(Context context, String userLogado) {
@@ -64,23 +71,40 @@ public class ListasRepository {
             msg.logD("ERRO AO CRIAR LISTA\n"+sqlE.getMessage() );
         }//fim try catch
     }//fim insertNewListToDB
-    public static void updateList( String donoLista, String nomeLista, String novoNomeLista ){
-        try{
-            db.getWritableDatabase().execSQL(
-                    "UPDATE listas"+
-                    " SET nomeLista='"+novoNomeLista+"'"+
-                    " WHERE donoLista='"+donoLista+"'"+
-                    " AND nomeLista='"+nomeLista+"'"
-            );
-            db.getWritableDatabase().execSQL(
-                    "UPDATE compras"+
-                    " SET nomeLista='"+novoNomeLista+"'"+
-                    " WHERE donoLista='"+donoLista+"'"+
-                    " AND nomeLista='"+nomeLista+"'"
-            );
-        }catch (SQLException sqlE){
-            msg.logD("ERRO AO ATUALIZAR LISTA\n"+sqlE.getMessage() );
-        }//fim try catch
+    public static void updateList(String donoLista, String nomeLista, String novoNomeLista, TextView tvNomeListaErrado ){
+        Cursor cursor = db.getReadableDatabase().rawQuery("SELECT * FROM listas", null);
+        if ( cursor.moveToFirst() ){
+            do {
+                //
+                if ( novoNomeLista.equals( cursor.getString(2) ) ){
+                    //NOME DA LISTA JA EXISTE
+                    tvNomeListaErrado.setText("Nome da lista já existe");
+                    tvNomeListaErrado.setTextColor( Color.RED );
+                }else{
+                    try{
+                        db.getWritableDatabase().execSQL(
+                                "UPDATE listas"+
+                                " SET nomeLista='"+novoNomeLista+"'"+
+                                " WHERE donoLista='"+donoLista+"'"+
+                                " AND nomeLista='"+nomeLista+"'" );
+                        db.getWritableDatabase().execSQL(
+                                "UPDATE compras"+
+                                " SET nomeLista='"+novoNomeLista+"'"+
+                                " WHERE donoLista='"+donoLista+"'"+
+                                " AND nomeLista='"+nomeLista+"'" );
+                        Intent intent = new Intent( context, ListadeCompras.class );
+                        intent.putExtra("USUARIO", donoLista );
+                        intent.putExtra("NOMELISTA", novoNomeLista );
+                        context.startActivity( intent );
+                    }catch (SQLException sqlE){
+                        msg.logD("ERRO AO ATUALIZAR LISTA\n"+sqlE.getMessage() );
+                    }//fim try catch
+                }//fim if else
+            }while ( cursor.moveToNext() );
+        }else{
+            msg.logD("NAO EXISTE DADOS NESSA TABELA");
+        }
+        cursor.close();
     }//fim updateList
     public static void deleteList( String donoLista, String nomeLista ){
         try{
@@ -100,6 +124,6 @@ public class ListasRepository {
         msg.logD("setAdapterListas");
         ListaAdapter listaAdapter = new ListaAdapter( getListas(), usuarioLogado );
         rv.setAdapter(listaAdapter);
-        rv.setLayoutManager( new LinearLayoutManager(instance.contexto ) );
+        rv.setLayoutManager( new LinearLayoutManager( context ) );
     }
 }//fim classe

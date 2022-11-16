@@ -31,11 +31,10 @@ public class CadastroActivity extends AppCompatActivity implements Controller.co
         this.toolBar();
         ((FrameLayout) findViewById(R.id.FLbtnCadastroC)).setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
-                String etLoginC = ((EditText) findViewById(R.id.etLoginC)).getText().toString();
-                String etSenhaC = ((EditText) findViewById(R.id.etSenhaC)).getText().toString();
-                if ( !etLoginC.equals("") && !etSenhaC.equals("") ){ //se um dos campos NÃO for nulo
-                    cadastro.addUserToDB( etLoginC, etSenhaC, ((TextView) findViewById(R.id.tvCadastroIncorreto)) );//fim addUserToDB
-                }else{ msg.messageToast("CAMPOS DE LOGIN E/OU SENHA ESTÃO VAZIOS"); }
+                cadastro.addUserToDB(
+                        ((EditText) findViewById(R.id.etLoginC)).getText().toString(),
+                        ((EditText) findViewById(R.id.etSenhaC)).getText().toString(),
+                        ((TextView) findViewById(R.id.tvCadastroIncorreto)) );//fim addUserToDB
             }//fim onClick
         });//fim clickListener
     }//fim onResume
