@@ -32,9 +32,7 @@ public class LoginActivity extends AppCompatActivity implements Controller.contr
         String nomeUser = null;
         try { nomeUser = getIntent().getStringExtra("NOMEUSER");
         }catch (Exception ignored){ }
-        if (nomeUser != null){
-            ((EditText) findViewById(R.id.etLoginL)).setText(nomeUser);
-        }
+        if (nomeUser != null){ ((EditText) findViewById(R.id.etLoginL)).setText(nomeUser); }
 
                 // BOTAO LOGIN
         ((FrameLayout) findViewById(R.id.FLLoginL)).setOnClickListener(new View.OnClickListener() {
