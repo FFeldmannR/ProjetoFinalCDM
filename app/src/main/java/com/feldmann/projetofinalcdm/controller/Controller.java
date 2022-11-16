@@ -51,7 +51,7 @@ public class Controller {
         public void deleteItem(Compras objCompras);
     }
     public interface controllerEditList{
-        public void updateList( String donoLista, String nomeLista, String novoNomeLista );
+        public void updateList( String donoLista, String nomeLista, String novoNomeLista, TextView tvNomeListaErrado );
         public void deleteList( String donoLista, String nomeLista );
     }
     public interface controllerAdapters{
