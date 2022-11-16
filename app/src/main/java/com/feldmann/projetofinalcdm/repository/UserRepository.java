@@ -30,17 +30,19 @@ public class UserRepository {
         return instance;
     }//fim getInstance
     public static void createUserinDB(String nomeUser, String senhaUser ){
-        try{
-            ContentValues ctv = new ContentValues();
-            ctv.put("nome", nomeUser );
-            ctv.put("senha", senhaUser );
-            db.getWritableDatabase().insert("users", null, ctv);
-            msg.messageToast(nomeUser + " ADICIONADO");
-            Intent in = new Intent( context, LoginActivity.class );
-            in.putExtra("NOMEUSER", nomeUser );
-            context.startActivity(in);
-        }catch (SQLException sqlE){
-            msg.logD("ERRO AO ADICIONAR USUARIO\n"+sqlE.getMessage());
-        }//fim try catch
+        if ( nomeUser.equals("") && senhaUser.equals("") ){
+            try{
+                ContentValues ctv = new ContentValues();
+                ctv.put("nome", nomeUser );
+                ctv.put("senha", senhaUser );
+                db.getWritableDatabase().insert("users", null, ctv);
+                msg.messageToast(nomeUser + " ADICIONADO");
+                Intent in = new Intent( context, LoginActivity.class );
+                in.putExtra("NOMEUSER", nomeUser );
+                context.startActivity(in);
+            }catch (SQLException sqlE){
+                msg.logD("ERRO AO ADICIONAR USUARIO\n"+sqlE.getMessage());
+            }//fim try catch
+        }
     }//fim createUserinDB
 }//fim classe
