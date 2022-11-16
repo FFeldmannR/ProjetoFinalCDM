@@ -1,23 +1,13 @@
 package com.feldmann.projetofinalcdm.repository;
 //
-import android.content.ContentValues;
-import android.content.Context;
-import android.content.Intent;
-import android.database.Cursor;
-import android.database.SQLException;
+import android.content.*;
+import android.database.*;
 import android.graphics.Color;
 import android.widget.TextView;
-
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import com.feldmann.projetofinalcdm.adapters.ListaAdapter;
-import com.feldmann.projetofinalcdm.controller.Controller;
-import com.feldmann.projetofinalcdm.controller.MsgController;
+import com.feldmann.projetofinalcdm.controller.*;
 import com.feldmann.projetofinalcdm.model.Listas;
 import com.feldmann.projetofinalcdm.views.ListadeCompras;
-
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 //
 public class ListasRepository {
     private static Context context;
@@ -31,7 +21,6 @@ public class ListasRepository {
         db = new DBListas( context );
         if (listas == null){ listas = new ArrayList<>(); }
         msg = new MsgController(context, this.getClass().getName().toString() );
-
     }
     //
     public static ListasRepository getInstanceListas(Context context, String userLogado) {
@@ -119,11 +108,5 @@ public class ListasRepository {
         }catch (SQLException e){
             msg.logD("ERRO AO DELETAR LISTA:\n"+e.getMessage() );
         }
-    }
-    public static void setAdapterListas(RecyclerView rv, String usuarioLogado){
-        msg.logD("setAdapterListas");
-        ListaAdapter listaAdapter = new ListaAdapter( getListas(), usuarioLogado );
-        rv.setAdapter(listaAdapter);
-        rv.setLayoutManager( new LinearLayoutManager( context ) );
     }
 }//fim classe
