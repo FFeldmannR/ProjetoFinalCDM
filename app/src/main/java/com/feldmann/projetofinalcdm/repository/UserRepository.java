@@ -35,7 +35,6 @@ public class UserRepository {
             //
             do {
                 if ( nomeUser.equals( c.getString(1) ) ){
-                    tvIncorreto.setTextColor(Color.RED);
                     tvIncorreto.setText(context.getResources().getString(R.string.usuarioJaExiste));
                 }else{
                     if ( senhaUser.equals( c.getString(2) ) ){
@@ -52,10 +51,10 @@ public class UserRepository {
                             msg.logD("ERRO AO ADICIONAR USUARIO\n"+sqlE.getMessage());
                         }//fim try catch
                         break;
-                    }/*else {
-                        tvIncorreto.setTextColor(Color.RED);
+                    }else {
+                        tvIncorreto.setTextColor( Color.RED );
                         tvIncorreto.setText(context.getResources().getString(R.string.senhaIncorreta));
-                    }*/
+                    }
                 }
             }while (c.moveToNext());
         }else{
