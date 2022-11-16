@@ -31,6 +31,8 @@ public class UserRepository {
     }//fim getInstance
     public static void createUserinDB(String nomeUser, String senhaUser ){
         if ( nomeUser.equals("") && senhaUser.equals("") ){
+            msg.logD("CAMPOS NULOS");
+        }else {
             try{
                 ContentValues ctv = new ContentValues();
                 ctv.put("nome", nomeUser );
