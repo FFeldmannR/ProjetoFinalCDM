@@ -18,8 +18,8 @@ public class CadastroController implements Controller.controllerCadastro{
     @Override public void addItemToDB(String usuarioLogado, String nomeLista, String nomeItem, String qntdItem, int completed) {
         ComprasRepository.createItem( usuarioLogado, nomeLista, nomeItem, qntdItem, completed );
     }
-    @Override public void addUserToDB( String nomeUser, String senhaUser ) {
-        UserRepository.createUserinDB( nomeUser, senhaUser );
+    @Override public void addUserToDB( String nomeUser, String senhaUser, TextView tvCadastroIncorreto ) {
+        UserRepository.createUserinDB( nomeUser, senhaUser, tvCadastroIncorreto );
     }//fim addToDB
     @Override public void addListToDB( String donoLista, String nomeLista ) {
         ListasRepository.createList( donoLista, nomeLista );
