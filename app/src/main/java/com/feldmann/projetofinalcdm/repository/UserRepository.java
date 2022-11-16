@@ -29,11 +29,42 @@ public class UserRepository {
         instance = new UserRepository( context );
         return instance;
     }//fim getInstance
-    public static void createUserinDB(String nomeUser, String senhaUser ){
-        if ( nomeUser.equals("") && senhaUser.equals("") ){
-            msg.logD("CAMPOS NULOS");
+    public static void createUserinDB(String nomeUser, String senhaUser, TextView tvCadastroIncorreto ) {
+        Cursor c = db.getReadableDatabase().rawQuery("SELECT * FROM users", null);
+        if (c.moveToFirst()){
+            do {
+                if ( nomeUser.equals( c.getString(1) ) ){
+                    tvCadastroIncorreto.setTextColor( Color.RED );
+                    tvCadastroIncorreto.setText( context.getResources().getString(R.string.usuarioJaExiste) );
+                }else {
+                    cadastra( nomeUser, senhaUser, tvCadastroIncorreto );
+                }
+            }while (c.moveToNext());
+        }else{
+            cadastra( nomeUser, senhaUser, tvCadastroIncorreto );
+        }
+    }//fim createUserinDB
+    private static void cadastra( String nomeUser, String senhaUser, TextView tvCadastroIncorreto ){
+        if ( nomeUser.equals("") ) {
+            msg.logD("usuario é nulo");
+            tvCadastroIncorreto.setTextColor(Color.RED);
+            tvCadastroIncorreto.setText(context.getResources().getString(R.string.usuarioVazio));
+        }else if ( senhaUser.equals("") ) {
+            msg.logD("senha é nulo");
+            tvCadastroIncorreto.setTextColor( Color.RED );
+            tvCadastroIncorreto.setText( context.getResources().getString(R.string.senhaVazia) );
+        }else if ( nomeUser.length() < 3 ) {
+            msg.logD("usuario < 3");
+            tvCadastroIncorreto.setTextColor( Color.RED );
+            tvCadastroIncorreto.setText( context.getResources().getString(R.string.usuarioPequeno));
+        }else if ( senhaUser.length() <= 8) {
+            msg.logD("senha <= 8");
+            tvCadastroIncorreto.setTextColor( Color.RED );
+            tvCadastroIncorreto.setText( context.getResources().getString(R.string.senhaPequena) );
         }else {
+            msg.logD("PODE CADASTRAR");
             try{
+                msg.logD("CADASTRAR");
                 ContentValues ctv = new ContentValues();
                 ctv.put("nome", nomeUser );
                 ctv.put("senha", senhaUser );
@@ -45,6 +76,6 @@ public class UserRepository {
             }catch (SQLException sqlE){
                 msg.logD("ERRO AO ADICIONAR USUARIO\n"+sqlE.getMessage());
             }//fim try catch
-        }
-    }//fim createUserinDB
+        }//fim if else
+    }
 }//fim classe
