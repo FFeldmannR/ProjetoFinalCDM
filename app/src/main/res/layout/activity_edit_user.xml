@@ -44,7 +44,7 @@
                 android:backgroundTint="@color/white">
 
                 <EditText
-                    android:id="@+id/etNomeListaEdit"
+                    android:id="@+id/etNomeUserEdit"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -74,7 +74,7 @@
             android:orientation="vertical">
 
             <FrameLayout
-                android:id="@+id/FLbtnSalvarList"
+                android:id="@+id/FLbtnSalvarUser"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/customborder"
@@ -95,7 +95,7 @@
             </FrameLayout>
 
             <FrameLayout
-                android:id="@+id/FLbtnDeleteList"
+                android:id="@+id/FLbtnDeleteUser"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/customborder"
