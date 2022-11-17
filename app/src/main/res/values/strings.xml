@@ -10,6 +10,7 @@
 
     <string name="cadastroIncorreto">Usuario ou senha incorretos</string>
     <string name="usuarioJaExiste">Usuario já existe</string>
+    <string name="listaJaExiste">Lista já existe</string>
     <string name="usuarioIncorreto">Usuario incorreto</string>
     <string name="senhaIncorreta">Senha incorreta</string>
     <string name="usuarioVazio">Nome está vazio</string>
