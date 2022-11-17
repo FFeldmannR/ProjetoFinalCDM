@@ -14,6 +14,13 @@
         android:theme="@style/Theme.ProjetoFinalCDM"
         tools:targetApi="31">
         <activity
+            android:name=".views.EditUserActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".views.EditListActivity"
             android:exported="false">
             <meta-data
@@ -64,12 +71,18 @@
             android:label="Lista de Compras">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-                <data android:host="www.feldmann.com" android:path="/listadecompras" android:scheme="http" />
+
+                <data
+                    android:host="www.feldmann.com"
+                    android:path="/listadecompras"
+                    android:scheme="http" />
             </intent-filter>
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
