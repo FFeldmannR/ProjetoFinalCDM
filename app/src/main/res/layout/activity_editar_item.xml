@@ -74,6 +74,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/customborder"
+                android:layout_marginBottom="50dp"
                 android:backgroundTint="@color/white">
 
                 <EditText
@@ -94,30 +95,49 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
             android:layout_gravity="center"
             android:orientation="vertical">
 
-            <Button
-                android:id="@+id/btnSalvarEdit"
+            <FrameLayout
+                android:id="@+id/FLbtnSalvarItem"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
+                android:background="@drawable/customborder"
                 android:layout_marginBottom="20dp"
                 android:backgroundTint="@color/limeGreen"
-                android:ems="10"
-                android:gravity="center"
-                android:text="@string/btnSalvar" />
+                android:layout_gravity="center">
 
-            <Button
-                android:id="@+id/btnDeleteItem"
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:ems="10"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/btnSalvar" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/FLbtnDeleteItem"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
+                android:background="@drawable/customborder"
                 android:backgroundTint="@color/vermelho"
-                android:ems="10"
-                android:gravity="center"
-                android:text="@string/btnDeletar" />
+                android:layout_gravity="center">
+
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:ems="10"
+                    android:textColor="@color/white"
+                    android:text="@string/btnDeletar" />
+            </FrameLayout>
         </LinearLayout>
 
     </LinearLayout>
