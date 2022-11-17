@@ -53,4 +53,8 @@ public class Controller {
         public void setAdapterItemList ( RecyclerView rv, List<Compras> compras, String lista );
         public void setAdapterLists ( RecyclerView rv, List<Listas> listas, String usuarioLogado );
     }
+    public interface controllerUsers {
+        public void updateUser ( String nomeUser, String novoNomeUser, TextView tvUserIncorreto );
+        public void deleteUser ( String nomeUser );
+    }
 }//fim classe

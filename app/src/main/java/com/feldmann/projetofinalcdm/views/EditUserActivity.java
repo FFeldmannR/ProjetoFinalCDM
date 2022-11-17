@@ -13,6 +13,7 @@ public class EditUserActivity extends AppCompatActivity implements Controller.co
     private Controller.msg msg;
     private Controller.view view;
     private String usuarioLogado;
+    private UserController user;
     //
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,13 +32,15 @@ public class EditUserActivity extends AppCompatActivity implements Controller.co
         ((FrameLayout) findViewById(R.id.FLbtnSalvarUser)).setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
                 msg.logD("Click no botao salvar usuario");
-                //
+                user.updateUser ( usuarioLogado,
+                        ((EditText) findViewById(R.id.etNomeUserEdit)).getText().toString(),
+                        ((TextView) findViewById(R.id.tvNomeUserErrado)) );
             }
         });
         ((FrameLayout) findViewById(R.id.FLbtnDeleteUser)).setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
                 msg.logD("Click no botao deletar usuario");
-                //
+                user.deleteUser ( usuarioLogado );
             }
         });
     }//fim onResume
@@ -46,8 +49,9 @@ public class EditUserActivity extends AppCompatActivity implements Controller.co
         msg.logD("onDestroy");
     }
     @Override public void instanceController() {
-        this.view = new ViewController(this, this);
-        this.msg = new MsgController( view.getContext(), this.getClass().getName() );
+        this.view = new ViewController (this, this );
+        this.msg = new MsgController ( view.getContext(), this.getClass().getName() );
+        this.user = new UserController ();
     }//fim instanceController
     // METODOS PARA OS BOTOES VOLTAR
     private void toolBar(String title){

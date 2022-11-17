@@ -11,8 +11,9 @@ import android.widget.TextView;
 import com.feldmann.projetofinalcdm.R;
 import com.feldmann.projetofinalcdm.controller.Controller;
 import com.feldmann.projetofinalcdm.controller.MsgController;
+import com.feldmann.projetofinalcdm.views.ListaActivity;
+import com.feldmann.projetofinalcdm.views.ListadeCompras;
 import com.feldmann.projetofinalcdm.views.LoginActivity;
-
 //
 public class UserRepository {
     private static Context context;
@@ -29,6 +30,61 @@ public class UserRepository {
         instance = new UserRepository( context );
         return instance;
     }//fim getInstance
+    public static void updateUser ( String nomeUser, String novoNomeUser, TextView tvUserIncorreto ){
+        Cursor cursor = db.getReadableDatabase().rawQuery("SELECT * FROM listas", null);
+        if ( cursor.moveToFirst() ){
+            do {
+                //
+                if ( novoNomeUser.equals( cursor.getString(1) ) ){
+                    //NOME DO USER JA EXISTE
+                    tvUserIncorreto.setText( context.getResources().getString( R.string.usuarioJaExiste ) );
+                    tvUserIncorreto.setTextColor( Color.RED );
+                }else{
+                    try{
+                        db.getWritableDatabase().execSQL(
+                                "UPDATE users"+
+                                " SET nome='"+novoNomeUser+"'"+
+                                " WHERE nome='"+nomeUser+"'" );
+                        db.getWritableDatabase().execSQL(
+                                "UPDATE listas"+
+                                " SET donoLista='"+novoNomeUser+"'"+
+                                " WHERE donoLista='"+nomeUser+"'" );
+                        db.getWritableDatabase().execSQL(
+                                "UPDATE compras"+
+                                " SET donoLista='"+novoNomeUser+"'"+
+                                " WHERE donoLista='"+nomeUser+"'" );
+                        msg.messageToast("Nome alterado para '"+novoNomeUser+"'");
+                        Intent intent = new Intent( context, ListaActivity.class );
+                        intent.putExtra("USUARIO", novoNomeUser );
+                        context.startActivity( intent );
+                    }catch (SQLException sqlE){
+                        msg.logD("ERRO AO ATUALIZAR USER\n"+sqlE.getMessage() );
+                    }//fim try catch
+                }//fim if else
+            }while ( cursor.moveToNext() );
+        }else{
+            msg.logD("NAO EXISTE DADOS NESSA TABELA");
+        }
+        cursor.close();
+    }
+    public static void deleteUser ( String nomeUser ){
+        try{
+            db.getWritableDatabase().execSQL(
+                    "DELETE FROM users"+
+                    " WHERE nome='"+nomeUser+"'" );
+            db.getWritableDatabase().execSQL(
+                    "DELETE FROM listas"+
+                    " WHERE donoLista='"+nomeUser+"'" );
+            db.getWritableDatabase().execSQL(
+                    "DELETE FROM compras"+
+                    " WHERE donoLista='"+nomeUser+"'" );
+            //
+            Intent in = new Intent( context, LoginActivity.class );
+            context.startActivity(in);
+        }catch (SQLException e){
+            msg.logD("ERRO AO DELETAR LISTA:\n"+e.getMessage() );
+        }
+    }
     public static void createUserinDB(String nomeUser, String senhaUser, TextView tvCadastroIncorreto ) {
         Cursor c = db.getReadableDatabase().rawQuery("SELECT * FROM users", null);
         if (c.moveToFirst()){
