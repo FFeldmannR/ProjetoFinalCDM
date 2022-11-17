@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.feldmann.projetofinalcdm.R;
@@ -36,12 +37,12 @@ public class EditListActivity extends AppCompatActivity implements Controller.co
         EditText etNomeLista = ((EditText) findViewById(R.id.etNomeListaEdit));
         etNomeLista.setText(nomeLista);
         //
-        ((Button) findViewById(R.id.btnSalvarList)).setOnClickListener(new View.OnClickListener() {
+        ((FrameLayout) findViewById(R.id.FLbtnSalvarList)).setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
                 lista.updateList( usuarioLogado, nomeLista, etNomeLista.getText().toString(), ((TextView) findViewById(R.id.tvNomeListaErrado)) );
             }//fim onClick
         });//fim clickListener
-        ((Button) findViewById(R.id.btnDeleteList)).setOnClickListener(new View.OnClickListener() {
+        ((FrameLayout) findViewById(R.id.FLbtnDeleteList)).setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
                 lista.deleteList( usuarioLogado, nomeLista );
             }

@@ -11,6 +11,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
+
 import com.feldmann.projetofinalcdm.*;
 import com.feldmann.projetofinalcdm.controller.ComprasAdapterController;
 import com.feldmann.projetofinalcdm.controller.Controller;
@@ -44,18 +46,13 @@ public class EditarItemActivity extends AppCompatActivity implements Controller.
         etQntdItem.setText( obj.getQuantidade() );
 
             // METODO PARA O BOTAO SALVAR
-        Button btnSalvar = ((Button) findViewById(R.id.btnSalvarEdit));
-        btnSalvar.setBackgroundColor(Color.GREEN);
-        btnSalvar.setTextColor(Color.BLACK);
-        btnSalvar.setOnClickListener(new View.OnClickListener() {
+        ((FrameLayout) findViewById(R.id.FLbtnSalvarItem)).setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
                 edit.updateItem(etNomeItem.getText().toString(), etQntdItem.getText().toString(), obj );
             }//fim onClick
         });//fim clickListener
             // METODOS DO BOTAO DELETAR
-        Button btnDeletar = ((Button) findViewById(R.id.btnDeleteItem));
-        btnDeletar.setBackgroundColor(Color.RED); //seta a cor do botao delete para vermelho
-        btnDeletar.setOnClickListener(new View.OnClickListener() {
+        ((FrameLayout) findViewById(R.id.FLbtnDeleteItem)).setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
                 edit.deleteItem( obj );
             }//fim onClick
