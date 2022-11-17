@@ -18,8 +18,8 @@ public class EditUserActivity extends AppCompatActivity implements Controller.co
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_user);
-        msg.logD("onCreate");
         this.instanceController();
+        msg.logD("onCreate");
         usuarioLogado = getIntent().getStringExtra("USUARIOLOGADO");
     }
     @Override protected void onResume() {
@@ -51,7 +51,7 @@ public class EditUserActivity extends AppCompatActivity implements Controller.co
     @Override public void instanceController() {
         this.view = new ViewController (this, this );
         this.msg = new MsgController ( view.getContext(), this.getClass().getName() );
-        this.user = new UserController ();
+        this.user = new UserController ( view.getContext() );
     }//fim instanceController
     // METODOS PARA OS BOTOES VOLTAR
     private void toolBar(String title){

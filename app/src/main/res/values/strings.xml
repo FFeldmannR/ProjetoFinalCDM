@@ -16,7 +16,7 @@
     <string name="usuarioVazio">Nome está vazio</string>
     <string name="usuarioPequeno">Usuario deve ter mais de 4 caracteres ou mais</string>
     <string name="senhaVazia">Senha está vazia</string>
-    <string name="senhaPequena">Senha deve ter 8 caracteres ou mais</string>
+    <string name="senhaPequena">Senha deve ter 5 caracteres ou mais</string>
 
     <string name="exNomeUser">Digite seu nome</string>
     <string name="exNomeItem">Ex. Frango</string>

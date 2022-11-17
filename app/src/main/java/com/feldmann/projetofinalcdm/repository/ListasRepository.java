@@ -4,6 +4,8 @@ import android.content.*;
 import android.database.*;
 import android.graphics.Color;
 import android.widget.TextView;
+
+import com.feldmann.projetofinalcdm.R;
 import com.feldmann.projetofinalcdm.controller.*;
 import com.feldmann.projetofinalcdm.model.Listas;
 import com.feldmann.projetofinalcdm.views.ListadeCompras;
@@ -67,7 +69,7 @@ public class ListasRepository {
                 //
                 if ( novoNomeLista.equals( cursor.getString(2) ) ){
                     //NOME DA LISTA JA EXISTE
-                    tvNomeListaErrado.setText("Nome da lista já existe");
+                    tvNomeListaErrado.setText( context.getResources().getString(R.string.listaJaExiste) );
                     tvNomeListaErrado.setTextColor( Color.RED );
                 }else{
                     try{

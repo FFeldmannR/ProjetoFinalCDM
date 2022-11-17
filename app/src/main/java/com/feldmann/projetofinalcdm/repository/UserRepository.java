@@ -14,6 +14,8 @@ import com.feldmann.projetofinalcdm.controller.MsgController;
 import com.feldmann.projetofinalcdm.views.ListaActivity;
 import com.feldmann.projetofinalcdm.views.ListadeCompras;
 import com.feldmann.projetofinalcdm.views.LoginActivity;
+import com.feldmann.projetofinalcdm.views.MainActivity;
+
 //
 public class UserRepository {
     private static Context context;
@@ -78,9 +80,6 @@ public class UserRepository {
             db.getWritableDatabase().execSQL(
                     "DELETE FROM compras"+
                     " WHERE donoLista='"+nomeUser+"'" );
-            //
-            Intent in = new Intent( context, LoginActivity.class );
-            context.startActivity(in);
         }catch (SQLException e){
             msg.logD("ERRO AO DELETAR LISTA:\n"+e.getMessage() );
         }
@@ -113,8 +112,8 @@ public class UserRepository {
             msg.logD("usuario < 3");
             tvCadastroIncorreto.setTextColor( Color.RED );
             tvCadastroIncorreto.setText( context.getResources().getString(R.string.usuarioPequeno));
-        }else if ( senhaUser.length() <= 8) {
-            msg.logD("senha <= 8");
+        }else if ( senhaUser.length() < 5) {
+            msg.logD("senha < 5");
             tvCadastroIncorreto.setTextColor( Color.RED );
             tvCadastroIncorreto.setText( context.getResources().getString(R.string.senhaPequena) );
         }else {
