@@ -6,6 +6,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.*;
+import android.widget.ImageButton;
+
 import com.feldmann.projetofinalcdm.R;
 import com.feldmann.projetofinalcdm.controller.*;
 import com.feldmann.projetofinalcdm.repository.ListasRepository;
@@ -30,6 +32,12 @@ public class ListaActivity extends AppCompatActivity implements Controller.contr
         String usuario = getIntent().getStringExtra("NOMEUSER");
         setTitle( usuario );
         ListasRepository.getInstanceListas( view.getContext(), usuario );
+
+        ((ImageButton) findViewById(R.id.imgBtnConfigUser)).setOnClickListener(new View.OnClickListener() {
+            @Override public void onClick(View v) {
+                //
+            }
+        });
         ((FloatingActionButton) findViewById(R.id.addNewList)).setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v)
             { cadastro.addListToDB( usuario, "Lista "+( ( ListasRepository.getListas().size() )+1) ); }
