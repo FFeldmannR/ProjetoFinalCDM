@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.*;
 import android.widget.ImageButton;
-
 import com.feldmann.projetofinalcdm.R;
 import com.feldmann.projetofinalcdm.controller.*;
 import com.feldmann.projetofinalcdm.repository.ListasRepository;
@@ -35,7 +34,9 @@ public class ListaActivity extends AppCompatActivity implements Controller.contr
 
         ((ImageButton) findViewById(R.id.imgBtnConfigUser)).setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
-                //
+                Intent in = new Intent ( view.getContext(), EditUserActivity.class );
+                in.putExtra("USUARIOLOGADO", usuario);
+                view.getContext().startActivity( in );
             }
         });
         ((FloatingActionButton) findViewById(R.id.addNewList)).setOnClickListener(new View.OnClickListener() {
