@@ -1,29 +1,29 @@
 package com.feldmann.projetofinalcdm.controller;
 //
 import android.content.Context;
-import android.database.sqlite.SQLiteDatabase;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import com.feldmann.projetofinalcdm.adapters.ComprasAdapter;
-import com.feldmann.projetofinalcdm.model.Compras;
-import com.feldmann.projetofinalcdm.repository.DBListas;
-
+import androidx.recyclerview.widget.*;
+import com.feldmann.projetofinalcdm.adapters.*;
+import com.feldmann.projetofinalcdm.model.*;
 import java.util.List;
 //
-public class AdapterController implements Controller.controllerAdapters{
+public class AdapterController implements Controller.controllerAdapters {
     private final Context context;
     private final Controller.msg msg;
-    private DBListas db;
     //
-    public AdapterController(Context context) {
+    public AdapterController ( Context context ) {
         this.context = context;
-        this.db = new DBListas( context );
-        this.msg = new MsgController( context, this.getClass().getName() );
+        this.msg = new MsgController ( context, this.getClass().getName() );
     }//fim construtor
-    @Override public void setAdapterItemList(RecyclerView rv, List<Compras> comprasList, String lista){
-        msg.logD("setAdapterListas");
-        ComprasAdapter comprasAdapter = new ComprasAdapter( comprasList, db.getWritableDatabase(), lista );
-        rv.setAdapter(comprasAdapter);
-        rv.setLayoutManager( new LinearLayoutManager( context ) );
+    @Override public void setAdapterItemList ( RecyclerView rv, List<Compras> compras, String lista ) {
+        msg.logD ("setAdapterListas" );
+        ComprasAdapter comprasAdapter = new ComprasAdapter ( context, compras, lista );
+        rv.setAdapter ( comprasAdapter );
+        rv.setLayoutManager ( new LinearLayoutManager( context ) );
     }//fim setAdapterItemList
+    @Override public void setAdapterLists ( RecyclerView rv, List<Listas> listas, String usuarioLogado ) {
+        msg.logD("setAdapterListas" );
+        ListaAdapter listaAdapter = new ListaAdapter ( listas, usuarioLogado );
+        rv.setAdapter ( listaAdapter );
+        rv.setLayoutManager ( new LinearLayoutManager ( context ) );
+    }
 }//fim classe

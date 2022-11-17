@@ -5,10 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.EditText;
-import android.widget.ImageButton;
+import android.view.*;
+import android.widget.*;
 import com.feldmann.projetofinalcdm.R;
 import com.feldmann.projetofinalcdm.controller.*;
 import com.feldmann.projetofinalcdm.repository.*;
@@ -56,8 +54,7 @@ public class ListadeCompras extends AppCompatActivity implements Controller.cont
         adapters.setAdapterItemList(
                 (RecyclerView) findViewById(R.id.RVCompras),
                 ComprasRepository.getCompras(),
-                nomeLista
-        );
+                nomeLista );
 
         view.selectTableDB( "compras" );
     }//fim onResume
@@ -71,9 +68,6 @@ public class ListadeCompras extends AppCompatActivity implements Controller.cont
         this.adapters = new AdapterController( view.getContext() );
         this.cadastro = new CadastroController(view.getContext() );
     }//fim instanceController
-    private String createNewNomeItem(){
-        return "Item "+Integer.toString( ( ComprasRepository.getCompras().size() ) +1 );
-    }
             // METODOS PARA OS BOTOES VOLTAR
     private void toolBar(){
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);

@@ -5,22 +5,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.ImageButton;
+import android.view.*;
 import com.feldmann.projetofinalcdm.R;
-import com.feldmann.projetofinalcdm.controller.CadastroController;
-import com.feldmann.projetofinalcdm.controller.Controller;
-import com.feldmann.projetofinalcdm.controller.MsgController;
-import com.feldmann.projetofinalcdm.controller.ViewController;
+import com.feldmann.projetofinalcdm.controller.*;
 import com.feldmann.projetofinalcdm.repository.ListasRepository;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
 //
 public class ListaActivity extends AppCompatActivity implements Controller.controllerInstance{
     private Controller.msg msg;
     private Controller.view view;
     private Controller.controllerCadastro cadastro;
+    private Controller.controllerAdapters adapters;
     //
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,14 +28,14 @@ public class ListaActivity extends AppCompatActivity implements Controller.contr
         msg.logD("onResume");
         this.toolBar();
         String usuario = getIntent().getStringExtra("NOMEUSER");
-        setTitle(usuario);
-
-        ListasRepository.getInstanceListas(view.getContext(), usuario );
+        setTitle( usuario );
+        ListasRepository.getInstanceListas( view.getContext(), usuario );
         ((FloatingActionButton) findViewById(R.id.addNewList)).setOnClickListener(new View.OnClickListener() {
-            @Override public void onClick(View v) { cadastro.addListToDB( usuario, createNewNomeLista() ); }
+            @Override public void onClick(View v)
+            { cadastro.addListToDB( usuario, "Lista "+( ( ListasRepository.getListas().size() )+1) ); }
         });
-        ListasRepository.setAdapterListas( (RecyclerView) findViewById(R.id.RVListas), usuario );
-
+        adapters.setAdapterLists( (RecyclerView) findViewById(R.id.RVListas), ListasRepository.getListas(), usuario );
+        //
         view.selectTableDB( "listas" );
     }//fim onResume
     @Override protected void onDestroy() {
@@ -49,21 +44,19 @@ public class ListaActivity extends AppCompatActivity implements Controller.contr
     }//fim onDestroy
     @Override public void instanceController() {
         this.view = new ViewController(this, this);
-        this.msg = new MsgController(view.getContext(), this.getClass().getName() );
+        this.msg = new MsgController( view.getContext(), this.getClass().getName() );
         this.cadastro = new CadastroController( view.getContext() );
+        this.adapters = new AdapterController( view.getContext() );
     }//fim instanceController
-    private String createNewNomeLista(){
-        return "Lista "+Integer.toString( ( ListasRepository.getListas().size() ) +1 );
-    }
             // METODOS PARA OS BOTOES VOLTAR
     private void toolBar(){
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
     }//fim toolBar()
     @Override public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()){
+        switch ( item.getItemId() ){
             case android.R.id.home:
-                Intent intent = new Intent(this, LoginActivity.class);
+                Intent intent = new Intent(this, LoginActivity.class );
                 startActivity( intent );
                 finishAffinity();
                 break;
@@ -72,11 +65,11 @@ public class ListaActivity extends AppCompatActivity implements Controller.contr
     }//fim onOptionsItemSelected
     @Override public void onBackPressed() {
         try {
-            Intent intent = new Intent(this, LoginActivity.class);
+            Intent intent = new Intent(this, LoginActivity.class );
             startActivity( intent );
             finishAffinity();
         }catch (Exception e){
-            msg.logD("FALHA AO VOLTAR\nERRO::: "+e.getMessage());
+            msg.logD("FALHA AO VOLTAR\nERRO::: "+e.getMessage() );
         }//fim try catch
     }//fim onBackPressed
 }//fim class
