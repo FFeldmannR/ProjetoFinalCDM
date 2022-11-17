@@ -17,19 +17,20 @@ public class ListaActivity extends AppCompatActivity implements Controller.contr
     private Controller.view view;
     private Controller.controllerCadastro cadastro;
     private Controller.controllerAdapters adapters;
+    private String usuario;
     //
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_listas);
         this.instanceController();
+        usuario = getIntent().getStringExtra("NOMEUSER");
         msg.logD("onCreate");
     }//fim onCreate
     @Override protected void onResume() {
         super.onResume();
         msg.logD("onResume");
-        this.toolBar();
-        String usuario = getIntent().getStringExtra("NOMEUSER");
-        setTitle( usuario );
+        this.toolBar( usuario );
+
         ListasRepository.getInstanceListas( view.getContext(), usuario );
 
         ((ImageButton) findViewById(R.id.imgBtnConfigUser)).setOnClickListener(new View.OnClickListener() {
@@ -58,7 +59,8 @@ public class ListaActivity extends AppCompatActivity implements Controller.contr
         this.adapters = new AdapterController( view.getContext() );
     }//fim instanceController
             // METODOS PARA OS BOTOES VOLTAR
-    private void toolBar(){
+    private void toolBar(String title){
+        setTitle( title );
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
     }//fim toolBar()

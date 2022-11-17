@@ -3,15 +3,12 @@ package com.feldmann.projetofinalcdm.views;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.TextView;
-
 import com.feldmann.projetofinalcdm.R;
 import com.feldmann.projetofinalcdm.controller.*;
 //
@@ -25,14 +22,14 @@ public class EditListActivity extends AppCompatActivity implements Controller.co
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_list);
         this.instanceController();
+        usuarioLogado = getIntent().getStringExtra("USUARIOLOGADO");
+        nomeLista = getIntent().getStringExtra("NOMELISTA");
         msg.logD("onCreate");
     }//fim onCreate
     @Override protected void onResume() {
         super.onResume();
-        this.toolBar();
         msg.logD("onResume");
-        usuarioLogado = getIntent().getStringExtra("USUARIOLOGADO");
-        nomeLista = getIntent().getStringExtra("NOMELISTA");
+        this.toolBar("Editar lista: "+nomeLista);
         //
         EditText etNomeLista = ((EditText) findViewById(R.id.etNomeListaEdit));
         etNomeLista.setText(nomeLista);
@@ -58,7 +55,8 @@ public class EditListActivity extends AppCompatActivity implements Controller.co
         this.lista = new ListasController( view.getContext() );
     }//fim instanceController
             // METODOS PARA OS BOTOES VOLTAR
-    private void toolBar(){
+    private void toolBar(String title){
+        setTitle(title);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
     }//fim toolBar()
