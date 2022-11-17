@@ -4,15 +4,10 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.EditText;
-import android.widget.FrameLayout;
-
+import android.view.*;
+import android.widget.*;
 import com.feldmann.projetofinalcdm.R;
-import com.feldmann.projetofinalcdm.controller.Controller;
-import com.feldmann.projetofinalcdm.controller.MsgController;
-import com.feldmann.projetofinalcdm.controller.ViewController;
+import com.feldmann.projetofinalcdm.controller.*;
 //
 public class EditUserActivity extends AppCompatActivity implements Controller.controllerInstance {
     private Controller.msg msg;
@@ -22,24 +17,26 @@ public class EditUserActivity extends AppCompatActivity implements Controller.co
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_user);
-        this.instanceController();
         msg.logD("onCreate");
+        this.instanceController();
+        usuarioLogado = getIntent().getStringExtra("USUARIOLOGADO");
     }
     @Override protected void onResume() {
         super.onResume();
         msg.logD("onResume");
-        usuarioLogado = getIntent().getStringExtra("USUARIOLOGADO");
         this.toolBar("Editar usuario: "+usuarioLogado );
         EditText etNomeUser = ((EditText) findViewById(R.id.etNomeUserEdit));
         etNomeUser.setText( usuarioLogado );
         //
         ((FrameLayout) findViewById(R.id.FLbtnSalvarUser)).setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
+                msg.logD("Click no botao salvar usuario");
                 //
             }
         });
         ((FrameLayout) findViewById(R.id.FLbtnDeleteUser)).setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
+                msg.logD("Click no botao deletar usuario");
                 //
             }
         });

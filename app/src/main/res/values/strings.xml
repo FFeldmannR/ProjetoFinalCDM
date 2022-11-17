@@ -3,6 +3,7 @@
     <string name="nome">Nome</string>
     <string name="senha">Senha</string>
 
+    <string name="nomeUser">Nome do Usuario</string>
     <string name="nomeLista">Nome da Lista</string>
     <string name="nomeItem">Nome do Item</string>
     <string name="quantidade">Quantidade</string>
@@ -16,6 +17,7 @@
     <string name="senhaVazia">Senha está vazia</string>
     <string name="senhaPequena">Senha deve ter 8 caracteres ou mais</string>
 
+    <string name="exNomeUser">Digite seu nome</string>
     <string name="exNomeItem">Ex. Frango</string>
     <string name="exNomeLista">Ex. Mercado</string>
     <string name="exQntd">Ex. 3 pct</string>
