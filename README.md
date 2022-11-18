@@ -20,7 +20,7 @@ com todas suas listas e os itens delas.
 Ao clicar em uma lista criada, ira para a tela da propria lista, 
 que lá o usuario poderá criar os itens dessa lista, inserindo obrigatoriamente o nome do item,
 e ao clicar no botao 'mais', adicionará o item.
-Em cada item terá o nome do item, a quantidade e um checkbox para marcar
+Em cada item terá o nome do item, a quantidade e um checkbox para marcar, para indicar se ja pegou o item.
 Na parte superior da tela, no botão de configurações da lista,
 irá para uma tela para editar o nome da lista ou deletar somente essa lista de compras.
 
