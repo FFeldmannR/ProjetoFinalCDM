@@ -24,18 +24,6 @@ Em cada item terá o nome do item, a quantidade e um checkbox para marcar, para 
 Na parte superior da tela, no botão de configurações da lista,
 irá para uma tela para editar o nome da lista ou deletar somente essa lista de compras.
 
-
-# Na tela de login terá:
-- uma imagem mostrando o logo do App
-- um campo de texto para digitar o nome do usuario,
-- um campo de texto para digitar a senha do usuario, 
-- um botao para fazer o login que irá fazer a validação dos dados inseridos,
-- um botao de cadastro, para fazer o cadastro de um novo usuario
-# Na tela de cadastro terá:
-- um campo de texto para digitar o nome do usuario,
-- um campo de texto para digitar a senha do usuario,
-- um botao de cadastro, para fazer o cadastro de um novo usuario
-
 #### Requisitos do Projeto
 - Sistema de login de usuarios
 - RecyclerView
