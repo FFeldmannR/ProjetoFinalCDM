@@ -4,7 +4,6 @@ import android.content.*;
 import android.database.*;
 import android.graphics.Color;
 import android.widget.TextView;
-
 import com.feldmann.projetofinalcdm.R;
 import com.feldmann.projetofinalcdm.controller.*;
 import com.feldmann.projetofinalcdm.model.Listas;
@@ -27,7 +26,6 @@ public class ListasRepository {
     //
     public static ListasRepository getInstanceListas(Context context, String userLogado) {
         instance = new ListasRepository(context);
-        listas.removeAll(getListas());
         //
         Cursor cursor = db.getWritableDatabase().rawQuery("SELECT * FROM listas", null);
         if (cursor.moveToFirst()){
@@ -58,15 +56,12 @@ public class ListasRepository {
             ctv.put("nomeLista", nomeLista);
             db.getWritableDatabase().insert("listas", null, ctv);
             msg.logD(nomeLista+" adicionada em listas");
-        }catch (SQLException sqlE){
-            msg.logD("ERRO AO CRIAR LISTA\n"+sqlE.getMessage() );
-        }//fim try catch
+        }catch (SQLException sqlE){ msg.logD("ERRO AO CRIAR LISTA\n"+sqlE.getMessage() ); }//fim try catch
     }//fim insertNewListToDB
     public static void updateList(String donoLista, String nomeLista, String novoNomeLista, TextView tvNomeListaErrado ){
         Cursor cursor = db.getReadableDatabase().rawQuery("SELECT * FROM listas", null);
         if ( cursor.moveToFirst() ){
             do {
-                //
                 if ( novoNomeLista.equals( cursor.getString(2) ) ){
                     //NOME DA LISTA JA EXISTE
                     tvNomeListaErrado.setText( context.getResources().getString(R.string.listaJaExiste) );
@@ -87,9 +82,7 @@ public class ListasRepository {
                         intent.putExtra("USUARIO", donoLista );
                         intent.putExtra("NOMELISTA", novoNomeLista );
                         context.startActivity( intent );
-                    }catch (SQLException sqlE){
-                        msg.logD("ERRO AO ATUALIZAR LISTA\n"+sqlE.getMessage() );
-                    }//fim try catch
+                    }catch (SQLException sqlE){ msg.logD("ERRO AO ATUALIZAR LISTA\n"+sqlE.getMessage() ); }//fim try catch
                 }//fim if else
             }while ( cursor.moveToNext() );
         }else{
@@ -107,8 +100,6 @@ public class ListasRepository {
                     "DELETE FROM compras"+
                     " WHERE donoLista='"+donoLista+"'"+
                     " AND nomeLista='"+nomeLista+"'" );
-        }catch (SQLException e){
-            msg.logD("ERRO AO DELETAR LISTA:\n"+e.getMessage() );
-        }
+        }catch (SQLException e){ msg.logD("ERRO AO DELETAR LISTA:\n"+e.getMessage() ); }
     }
 }//fim classe

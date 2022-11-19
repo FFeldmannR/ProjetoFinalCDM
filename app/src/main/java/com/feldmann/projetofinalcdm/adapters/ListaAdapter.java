@@ -40,7 +40,7 @@ public class ListaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
     public void addList ( Listas listas ) {
         this.listas.add( listas );
         this.notifyDataSetChanged();
-    }
+    }//fim addList
     @Override public int getItemCount () { return listas.size(); }
     //
     private void buttonEffect ( Context context, RecyclerView.ViewHolder holder ) {

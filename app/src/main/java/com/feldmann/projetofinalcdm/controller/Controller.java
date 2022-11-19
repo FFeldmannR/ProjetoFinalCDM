@@ -6,6 +6,7 @@ import android.widget.*;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.feldmann.projetofinalcdm.adapters.ComprasAdapter;
+import com.feldmann.projetofinalcdm.adapters.ListaAdapter;
 import com.feldmann.projetofinalcdm.model.*;
 import java.util.List;
 //
@@ -35,7 +36,7 @@ public class Controller {
                                 String nomeItem, String qntdItem,
                                 int completed, ComprasAdapter adapter );
         public void addUserToDB ( String nomeUser, String senhaUser, TextView tvCadastroIncorreto );
-        public void addListToDB ( String donoLista, String nomeLista );
+        public void addListToDB ( String donoLista, String nomeLista, ListaAdapter adapter );
     }
     public interface controllerComprasAdapter {
         public void selectList ( Compras objCompras );

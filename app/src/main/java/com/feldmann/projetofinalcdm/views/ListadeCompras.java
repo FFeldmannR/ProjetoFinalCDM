@@ -67,7 +67,7 @@ public class ListadeCompras extends AppCompatActivity implements Controller.cont
         this.view = new ViewController(this, this);
         this.msg = new MsgController(view.getContext(), this.getClass().getName() );
         this.adapters = new AdapterController( view.getContext() );
-        this.cadastro = new CadastroController(view.getContext() );
+        this.cadastro = new CadastroController();
     }//fim instanceController
             // METODOS PARA OS BOTOES VOLTAR
     private void toolBar(){

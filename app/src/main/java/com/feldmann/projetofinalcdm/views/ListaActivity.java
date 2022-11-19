@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.view.*;
 import android.widget.ImageButton;
 import com.feldmann.projetofinalcdm.R;
+import com.feldmann.projetofinalcdm.adapters.ComprasAdapter;
+import com.feldmann.projetofinalcdm.adapters.ListaAdapter;
 import com.feldmann.projetofinalcdm.controller.*;
 import com.feldmann.projetofinalcdm.repository.ListasRepository;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -41,8 +43,12 @@ public class ListaActivity extends AppCompatActivity implements Controller.contr
             }
         });
         ((FloatingActionButton) findViewById(R.id.addNewList)).setOnClickListener(new View.OnClickListener() {
-            @Override public void onClick(View v)
-            { cadastro.addListToDB( usuario, "Lista "+( ( ListasRepository.getListas().size() )+1) ); }
+            @Override public void onClick(View v) {
+                cadastro.addListToDB(
+                        usuario, "Lista "+( ( ListasRepository.getListas().size() )+1),
+                        ((ListaAdapter)((RecyclerView) findViewById(R.id.RVListas)).getAdapter())
+                );
+            }
         });
         adapters.setAdapterLists( (RecyclerView) findViewById(R.id.RVListas), ListasRepository.getListas(), usuario );
         //
@@ -55,7 +61,7 @@ public class ListaActivity extends AppCompatActivity implements Controller.contr
     @Override public void instanceController() {
         this.view = new ViewController(this, this);
         this.msg = new MsgController( view.getContext(), this.getClass().getName() );
-        this.cadastro = new CadastroController( view.getContext() );
+        this.cadastro = new CadastroController();
         this.adapters = new AdapterController( view.getContext() );
     }//fim instanceController
             // METODOS PARA OS BOTOES VOLTAR
