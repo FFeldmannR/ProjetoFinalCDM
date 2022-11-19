@@ -19,7 +19,7 @@ public class ComprasRepository {
     private static Controller.msg msg;
     private static DBListas db;
     //
-    public ComprasRepository(Context contexto) {
+    public ComprasRepository( Context contexto ) {
         msg = new MsgController(contexto, this.getClass().getName() );
         db = new DBListas(contexto);
         if (instance == null){ compras = new ArrayList<>(); }

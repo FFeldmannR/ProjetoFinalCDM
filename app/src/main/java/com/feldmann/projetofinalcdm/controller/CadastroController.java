@@ -19,9 +19,8 @@ public class CadastroController implements Controller.controllerCadastro {
         ListasRepository.createList ( donoLista, nomeLista );
         adapter.addList( new Listas( (ListasRepository.getListas().size()+1), donoLista, nomeLista ) );
     }//fim addListToDB
-    @Override public void addItemToDB (String usuarioLogado, String nomeLista, String nomeItem, String qntdItem, int completed, ComprasAdapter adapter ) {
+    @Override public void addItemToDB ( String usuarioLogado, String nomeLista, String nomeItem, String qntdItem, int completed, ComprasAdapter adapter ) {
         ComprasRepository.createItem ( usuarioLogado, nomeLista, nomeItem, qntdItem, completed );
         adapter.addItem( new Compras( (ComprasRepository.getCompras().size()+1), usuarioLogado, nomeLista, nomeItem, qntdItem, completed) );
     }//fim addItemToDB
-
 }//fim class
