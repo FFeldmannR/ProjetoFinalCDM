@@ -36,10 +36,13 @@ public class ComprasAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                 ( (LinearLayout)((ComprasViewHolder) holder).itemView.findViewById(R.id.LLinfoItem) ),
                 holder, objCompras );
     }//fim bindView
-    @Override public int getItemCount() {
-        return comprasList.size();
+    public void addItem ( Compras compras ) {
+        this.comprasList.add( compras );
+        this.notifyDataSetChanged();
     }
+    @Override public int getItemCount() { return comprasList.size(); }
 }// fim classe
+
 class ComprasViewHolder extends RecyclerView.ViewHolder{
     public View view;
     public ComprasViewHolder(@NonNull View itemView){

@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.Context;
 import android.widget.*;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.feldmann.projetofinalcdm.adapters.ComprasAdapter;
 import com.feldmann.projetofinalcdm.model.*;
 import java.util.List;
 //
@@ -31,7 +33,7 @@ public class Controller {
     public interface controllerCadastro {
         public void addItemToDB ( String usuarioLogado, String nomeLista,
                                 String nomeItem, String qntdItem,
-                                int completed );
+                                int completed, ComprasAdapter adapter );
         public void addUserToDB ( String nomeUser, String senhaUser, TextView tvCadastroIncorreto );
         public void addListToDB ( String donoLista, String nomeLista );
     }

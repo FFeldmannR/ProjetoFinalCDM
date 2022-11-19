@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.*;
 import android.widget.*;
 import com.feldmann.projetofinalcdm.R;
+import com.feldmann.projetofinalcdm.adapters.ComprasAdapter;
 import com.feldmann.projetofinalcdm.controller.*;
 import com.feldmann.projetofinalcdm.repository.*;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -48,7 +49,7 @@ public class ListadeCompras extends AppCompatActivity implements Controller.cont
                 cadastro.addItemToDB( usuarioLogado, nomeLista,
                         ((EditText) findViewById(R.id.etNomeItemAdd)).getText().toString(),
                         ((EditText) findViewById(R.id.etQntdItemAdd)).getText().toString(),
-                        0 );
+                        0 , ((ComprasAdapter)((RecyclerView) findViewById(R.id.RVCompras)).getAdapter()) );
             }
         });
         adapters.setAdapterItemList(

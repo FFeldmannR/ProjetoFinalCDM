@@ -28,7 +28,7 @@ public class ComprasRepository {
     }//fim construtor
     public static ComprasRepository getInstanceCompras(Context context, String nomeLista, String usuarioLogado){
         instance = new ComprasRepository(context);
-        compras.removeAll( getCompras() );
+        //compras.removeAll( getCompras() );
         //
         Cursor cursor = db.getWritableDatabase().rawQuery("SELECT * FROM compras", null);
         if (cursor.moveToFirst()){
@@ -75,10 +75,12 @@ public class ComprasRepository {
                 ctv.put("quantidade", qntdItem );
                 ctv.put("completed", completed);
                 db.getWritableDatabase().insert("compras", null, ctv);
+                /*
                 Intent in = new Intent( context, ListadeCompras.class );
                 in.putExtra("USUARIO", usuarioLogado );
                 in.putExtra("NOMELISTA", nomeLista );
                 context.startActivity(in);
+                */
             }catch (SQLException sqlE){
                 msg.logD("ERRO AO CRIAR ITEM\n"+sqlE.getMessage() );
             }//fim try catch

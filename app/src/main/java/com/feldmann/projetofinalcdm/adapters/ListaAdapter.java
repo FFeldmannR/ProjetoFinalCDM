@@ -8,6 +8,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.feldmann.projetofinalcdm.R;
+import com.feldmann.projetofinalcdm.model.Compras;
 import com.feldmann.projetofinalcdm.model.Listas;
 import com.feldmann.projetofinalcdm.views.ListadeCompras;
 import java.util.List;
@@ -36,9 +37,11 @@ public class ListaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> 
             }//fim onClick
         });//fim clickListener
     }//fim bindView
-    @Override public int getItemCount () {
-        return listas.size();
+    public void addList ( Listas listas ) {
+        this.listas.add( listas );
+        this.notifyDataSetChanged();
     }
+    @Override public int getItemCount () { return listas.size(); }
     //
     private void buttonEffect ( Context context, RecyclerView.ViewHolder holder ) {
         if ( Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB ) {
