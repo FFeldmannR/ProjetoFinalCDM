@@ -26,6 +26,7 @@ public class ComprasRepository {
     }//fim construtor
     public static ComprasRepository getInstanceCompras(Context context, String nomeLista, String usuarioLogado){
         instance = new ComprasRepository(context);
+        compras.removeAll( getCompras() );
         //
         Cursor cursor = db.getWritableDatabase().rawQuery("SELECT * FROM compras", null);
         if (cursor.moveToFirst()){
@@ -38,14 +39,14 @@ public class ComprasRepository {
                 String nomeItemDB = cursor.getString(3);
                 String quantidadeDB = cursor.getString(4);
                 int completedDB = Integer.parseInt( cursor.getString(5) );
-                if ( nomeLista.equals( nomeListaDB ) && usuarioLogado.equals( donoListaDB ) ){
+                if ( nomeLista.equals( nomeListaDB ) && usuarioLogado.equals( donoListaDB )){
                     compras.add(new Compras(
-                            idDB,           // _id (INTEGER)
-                            donoListaDB,    // donoLista (TEXT)
-                            nomeListaDB,    // nomeLista (TEXT)
-                            nomeItemDB,     // nomeItem (TEXT)
-                            quantidadeDB,   // quantidade (TEXT)
-                            completedDB     // completed (INTEGER)
+                                    idDB,           // _id (INTEGER)
+                                    donoListaDB,    // donoLista (TEXT)
+                                    nomeListaDB,    // nomeLista (TEXT)
+                                    nomeItemDB,     // nomeItem (TEXT)
+                                    quantidadeDB,   // quantidade (TEXT)
+                                    completedDB     // completed (INTEGER)
                             )
                     );//fim compras.add
                 }//fim if

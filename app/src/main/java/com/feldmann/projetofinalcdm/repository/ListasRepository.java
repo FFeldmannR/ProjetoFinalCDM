@@ -26,6 +26,7 @@ public class ListasRepository {
     //
     public static ListasRepository getInstanceListas(Context context, String userLogado) {
         instance = new ListasRepository(context);
+        listas.removeAll( getListas() );
         //
         Cursor cursor = db.getWritableDatabase().rawQuery("SELECT * FROM listas", null);
         if (cursor.moveToFirst()){
