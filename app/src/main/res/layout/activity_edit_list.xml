@@ -39,7 +39,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:background="@drawable/customborder"
+                android:background="@drawable/border_radius"
                 android:backgroundTint="@color/white">
 
                 <EditText
@@ -76,7 +76,7 @@
                 android:id="@+id/FLbtnSalvarList"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/customborder"
+                android:background="@drawable/border_radius"
                 android:layout_marginBottom="20dp"
                 android:backgroundTint="@color/limeGreen"
                 android:layout_gravity="center">
@@ -97,7 +97,7 @@
                 android:id="@+id/FLbtnDeleteList"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/customborder"
+                android:background="@drawable/border_radius"
                 android:backgroundTint="@color/vermelho"
                 android:layout_gravity="center">
 

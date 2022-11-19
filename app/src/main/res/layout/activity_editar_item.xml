@@ -35,7 +35,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:background="@drawable/customborder"
+                android:background="@drawable/border_radius"
                 android:backgroundTint="@color/white">
 
                 <EditText
@@ -46,6 +46,7 @@
                     android:backgroundTint="@color/white"
                     android:gravity="center"
                     android:textColorHint="@color/cinza"
+                    android:textColor="@color/black"
                     android:hint="@string/exNomeItem"
                     android:inputType="textPersonName" />
             </FrameLayout>
@@ -73,7 +74,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:background="@drawable/customborder"
+                android:background="@drawable/border_radius"
                 android:layout_marginBottom="50dp"
                 android:backgroundTint="@color/white">
 
@@ -86,6 +87,7 @@
                     android:textColorHint="@color/cinza"
                     android:backgroundTint="@color/white"
                     android:gravity="center"
+                    android:textColor="@color/black"
                     android:hint="@string/exQntd"
                     android:inputType="textPersonName" />
             </FrameLayout>
@@ -102,7 +104,7 @@
                 android:id="@+id/FLbtnSalvarItem"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/customborder"
+                android:background="@drawable/border_radius"
                 android:layout_marginBottom="20dp"
                 android:backgroundTint="@color/limeGreen"
                 android:layout_gravity="center">
@@ -123,7 +125,7 @@
                 android:id="@+id/FLbtnDeleteItem"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/customborder"
+                android:background="@drawable/border_radius"
                 android:backgroundTint="@color/vermelho"
                 android:layout_gravity="center">
 
