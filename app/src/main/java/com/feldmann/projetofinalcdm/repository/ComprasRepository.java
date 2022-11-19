@@ -20,8 +20,8 @@ public class ComprasRepository {
     private static DBListas db;
     //
     public ComprasRepository(Context contexto) {
-        this.msg = new MsgController(contexto, this.getClass().getName() );
-        this.db = new DBListas(contexto);
+        msg = new MsgController(contexto, this.getClass().getName() );
+        db = new DBListas(contexto);
         if (instance == null){ compras = new ArrayList<>(); }
     }//fim construtor
     public static ComprasRepository getInstanceCompras(Context context, String nomeLista, String usuarioLogado){
