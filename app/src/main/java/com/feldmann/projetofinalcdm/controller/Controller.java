@@ -32,11 +32,11 @@ public class Controller {
         public void Login ( String login, String senha, TextView tvIncorreto );
     }
     public interface controllerCadastro {
+        public void addUserToDB ( String nomeUser, String senhaUser, TextView tvCadastroIncorreto );
+        public void addListToDB ( String donoLista, String nomeLista, ListaAdapter adapter );
         public void addItemToDB ( String usuarioLogado, String nomeLista,
                                 String nomeItem, String qntdItem,
                                 int completed, ComprasAdapter adapter );
-        public void addUserToDB ( String nomeUser, String senhaUser, TextView tvCadastroIncorreto );
-        public void addListToDB ( String donoLista, String nomeLista, ListaAdapter adapter );
     }
     public interface controllerComprasAdapter {
         public void selectList ( Compras objCompras );
