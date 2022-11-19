@@ -14,21 +14,18 @@ import java.util.ArrayList;
 import java.util.List;
 //
 public class ComprasRepository {
-    private static Context context;
     private static ComprasRepository instance = null;
     private static List<Compras> compras;
     private static Controller.msg msg;
     private static DBListas db;
     //
     public ComprasRepository(Context contexto) {
-        this.context = contexto;
         this.msg = new MsgController(contexto, this.getClass().getName() );
         this.db = new DBListas(contexto);
         if (instance == null){ compras = new ArrayList<>(); }
     }//fim construtor
     public static ComprasRepository getInstanceCompras(Context context, String nomeLista, String usuarioLogado){
         instance = new ComprasRepository(context);
-        //compras.removeAll( getCompras() );
         //
         Cursor cursor = db.getWritableDatabase().rawQuery("SELECT * FROM compras", null);
         if (cursor.moveToFirst()){
@@ -75,15 +72,7 @@ public class ComprasRepository {
                 ctv.put("quantidade", qntdItem );
                 ctv.put("completed", completed);
                 db.getWritableDatabase().insert("compras", null, ctv);
-                /*
-                Intent in = new Intent( context, ListadeCompras.class );
-                in.putExtra("USUARIO", usuarioLogado );
-                in.putExtra("NOMELISTA", nomeLista );
-                context.startActivity(in);
-                */
-            }catch (SQLException sqlE){
-                msg.logD("ERRO AO CRIAR ITEM\n"+sqlE.getMessage() );
-            }//fim try catch
+            }catch (SQLException sqlE){ msg.logD("ERRO AO CRIAR ITEM\n"+sqlE.getMessage() ); }//fim try catch
         }//fim if else
     }//fim createItem
     public static void updateItem(String novoNomeItem, String novaQuantidade, int idItem){
@@ -93,9 +82,7 @@ public class ComprasRepository {
                     " SET nomeItem='"+novoNomeItem+"'"+
                     " , quantidade='"+novaQuantidade+"'"+
                     " WHERE _id='"+idItem+"'" );
-        }catch (SQLException sqlE){
-            msg.logD("ERRO AO ATUALIZAR\n"+sqlE.getMessage() );
-        }
+        }catch (SQLException sqlE){ msg.logD("ERRO AO ATUALIZAR\n"+sqlE.getMessage() ); }
     }
     public static void deleteItem(Compras compras) {
         try{
