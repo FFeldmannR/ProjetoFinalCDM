@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.ContextMenu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.*;
@@ -67,10 +68,8 @@ public class LoginActivity extends AppCompatActivity implements Controller.contr
         getSupportActionBar().setHomeButtonEnabled(true);
     }//fim toolBar()
     @Override public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()){
-            case android.R.id.home:
-                finishAffinity();
-                break;
+        if (item.getItemId() == android.R.id.home) {
+            finishAffinity();
         }//fim switch
         return true;
     }//fim onOptionsItemSelected

@@ -73,14 +73,12 @@ public class EditarItemActivity extends AppCompatActivity implements Controller.
         getSupportActionBar().setHomeButtonEnabled(true);
     }//fim toolBar()
     @Override public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()){
-            case android.R.id.home:
-                Intent intent = new Intent(this, ListadeCompras.class);
-                intent.putExtra("USUARIO", obj.getDonoLista() );
-                intent.putExtra("NOMELISTA", obj.getNomeLista() );
-                startActivity( intent );
-                finishAffinity();
-                break;
+        if (item.getItemId() == android.R.id.home) {
+            Intent intent = new Intent(this, ListadeCompras.class);
+            intent.putExtra("USUARIO", obj.getDonoLista());
+            intent.putExtra("NOMELISTA", obj.getNomeLista());
+            startActivity(intent);
+            finishAffinity();
         }//fim switch
         return true;
     }//fim onOptionsItemSelected

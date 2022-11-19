@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.view.*;
 import android.widget.ImageButton;
 import com.feldmann.projetofinalcdm.R;
-import com.feldmann.projetofinalcdm.adapters.ComprasAdapter;
 import com.feldmann.projetofinalcdm.adapters.ListaAdapter;
 import com.feldmann.projetofinalcdm.controller.*;
 import com.feldmann.projetofinalcdm.repository.ListasRepository;
@@ -70,13 +69,14 @@ public class ListaActivity extends AppCompatActivity implements Controller.contr
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
     }//fim toolBar()
+
+
+
     @Override public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch ( item.getItemId() ){
-            case android.R.id.home:
-                Intent intent = new Intent(this, LoginActivity.class );
-                startActivity( intent );
-                finishAffinity();
-                break;
+        if (item.getItemId() == android.R.id.home) {
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivity(intent);
+            finishAffinity();
         }//fim switch
         return true;
     }//fim onOptionsItemSelected

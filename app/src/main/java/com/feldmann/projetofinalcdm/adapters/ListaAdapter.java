@@ -1,5 +1,6 @@
 package com.feldmann.projetofinalcdm.adapters;
 //
+import android.app.Activity;
 import android.content.*;
 import android.os.Build;
 import android.util.TypedValue;
@@ -14,10 +15,10 @@ import com.feldmann.projetofinalcdm.views.ListadeCompras;
 import java.util.List;
 //
 public class ListaAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-    private List<Listas> listas;
-    private String usuarioLogado;
+    private final List<Listas> listas;
+    private final String usuarioLogado;
     //
-    public ListaAdapter ( List<Listas> listas, String usuarioLogado ) {
+    public ListaAdapter (List<Listas> listas, String usuarioLogado ) {
         this.listas = listas;
         this.usuarioLogado = usuarioLogado;
     }

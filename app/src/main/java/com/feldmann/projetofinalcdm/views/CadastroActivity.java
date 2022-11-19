@@ -53,17 +53,14 @@ public class CadastroActivity extends AppCompatActivity implements Controller.co
         getSupportActionBar().setHomeButtonEnabled(true);
     }
     @Override public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()){
-            case android.R.id.home:
-                startActivity(new Intent(this, LoginActivity.class) );
-                finishAffinity();
-                break;
+        if (item.getItemId() == android.R.id.home) {
+            startActivity(new Intent(this, LoginActivity.class));
+            finishAffinity();
         }
         return true;
     }
     @Override public void onBackPressed() {
         startActivity(new Intent(this, LoginActivity.class));
         finishAffinity();
-        return;
     }
 }//fim class
