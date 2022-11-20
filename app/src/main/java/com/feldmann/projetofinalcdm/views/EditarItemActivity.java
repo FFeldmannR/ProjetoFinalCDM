@@ -36,8 +36,8 @@ public class EditarItemActivity extends AppCompatActivity implements Controller.
     @Override protected void onResume() {
         super.onResume();
         msg.logD("onResume");
-        this.toolBar();
-        obj = getIntent().getParcelableExtra("OBJCOMPRAS");
+        this.toolBar(obj);
+
 
             // METODOS PARA OS CAMPOS DE TEXTO
         EditText etNomeItem = (EditText) findViewById(R.id.etNomeItemEdit);
@@ -63,12 +63,14 @@ public class EditarItemActivity extends AppCompatActivity implements Controller.
         msg.logD("onDestroy");
     }//fim onDestroy
     @Override public void instanceController() {
-        this.view = new ViewController(this, this);
+        this.view = new ViewController(this );
         this.msg = new MsgController(view.getContext(), this.getClass().getName() );
         this.edit = new EditItemController( view.getContext() );
+        obj = getIntent().getParcelableExtra("OBJCOMPRAS");
     }// instanceController
             // METODOS PARA OS BOTOES VOLTAR
-    private void toolBar(){
+    private void toolBar(Compras compras){
+        setTitle( "Editar Item: "+compras.getNomeItem() );
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
     }//fim toolBar()

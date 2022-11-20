@@ -1,6 +1,5 @@
 package com.feldmann.projetofinalcdm.controller;
 //
-import android.app.Activity;
 import android.content.Context;
 import androidx.recyclerview.widget.*;
 import com.feldmann.projetofinalcdm.adapters.*;

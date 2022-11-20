@@ -49,7 +49,7 @@ public class EditUserActivity extends AppCompatActivity implements Controller.co
         msg.logD("onDestroy");
     }
     @Override public void instanceController() {
-        this.view = new ViewController (this, this );
+        this.view = new ViewController (this );
         this.msg = new MsgController ( view.getContext(), this.getClass().getName() );
         this.user = new UserController ( view.getContext() );
     }//fim instanceController

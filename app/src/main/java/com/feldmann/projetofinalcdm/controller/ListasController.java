@@ -1,16 +1,13 @@
 package com.feldmann.projetofinalcdm.controller;
 //
-import android.content.Context;
-import android.content.Intent;
+import android.content.*;
 import android.widget.TextView;
-
 import com.feldmann.projetofinalcdm.repository.ListasRepository;
 import com.feldmann.projetofinalcdm.views.ListaActivity;
-import com.feldmann.projetofinalcdm.views.ListadeCompras;
 //
 public class ListasController implements Controller.controllerEditList{
-    private Context context;
-    private Controller.msg msg;
+    private final Context context;
+    private final Controller.msg msg;
     //
     public ListasController(Context context) {
         this.context = context;

@@ -26,7 +26,7 @@ public class LoginActivity extends AppCompatActivity implements Controller.contr
     @Override protected void onResume() {
         super.onResume();
         msg.logD("onResume");
-        this.toolBar();
+        this.toolBar("Login");
         //
         UserRepository.getInstance( view.getContext() );
                 //BOTAO ENTRAR
@@ -58,12 +58,13 @@ public class LoginActivity extends AppCompatActivity implements Controller.contr
         msg.logD("onDestroy");
     }
     @Override public void instanceController() {
-        this.view = new ViewController(this, this);
+        this.view = new ViewController(this );
         this.msg = new MsgController( view.getContext(), this.getClass().getName() );
         this.login = new LoginController( view.getContext() );
     }//fim instanceController
             // METODOS PARA OS BOTOES VOLTAR
-    private void toolBar(){
+    private void toolBar(String title){
+        setTitle(title);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
     }//fim toolBar()

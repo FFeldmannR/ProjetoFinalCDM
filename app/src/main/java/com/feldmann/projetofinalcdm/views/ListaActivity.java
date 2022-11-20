@@ -30,7 +30,7 @@ public class ListaActivity extends AppCompatActivity implements Controller.contr
     @Override protected void onResume() {
         super.onResume();
         msg.logD("onResume");
-        this.toolBar( usuario );
+        this.toolBar( "Usuario: "+usuario );
 
         ListasRepository.getInstanceListas( view.getContext(), usuario );
 
@@ -58,7 +58,7 @@ public class ListaActivity extends AppCompatActivity implements Controller.contr
         msg.logD("onDestroy");
     }//fim onDestroy
     @Override public void instanceController() {
-        this.view = new ViewController(this, this);
+        this.view = new ViewController(this );
         this.msg = new MsgController( view.getContext(), this.getClass().getName() );
         this.cadastro = new CadastroController();
         this.adapters = new AdapterController( view.getContext() );

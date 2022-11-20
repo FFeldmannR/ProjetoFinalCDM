@@ -1,23 +1,17 @@
 package com.feldmann.projetofinalcdm.controller;
 //
-import android.app.Activity;
 import android.content.Context;
 import android.database.Cursor;
 import android.util.Log;
 import com.feldmann.projetofinalcdm.repository.DBListas;
 //
 public class ViewController implements Controller.view{
-    private Context context;
-    private Activity activity;
-    private DBListas db;
+    private final Context context;
+    private final DBListas db;
     //
-    public ViewController(Context context, Activity activity) {
+    public ViewController ( Context context ) {
         this.context = context;
-        this.activity = activity;
         this.db = new DBListas( context );
-    }
-    @Override public Activity getActivity() {
-        return this.activity;
     }
     @Override public Context getContext() {
         return this.context;

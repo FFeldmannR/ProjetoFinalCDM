@@ -29,10 +29,7 @@ public class ListadeCompras extends AppCompatActivity implements Controller.cont
     @Override protected void onResume() {
         super.onResume();
         msg.logD("onResume");
-        this.toolBar();
-        usuarioLogado = getIntent().getStringExtra("USUARIO");
-        nomeLista = getIntent().getStringExtra("NOMELISTA");
-        setTitle(nomeLista);
+        this.toolBar("Lista: "+nomeLista);
         //
         ComprasRepository.getInstanceCompras( view.getContext(), nomeLista, usuarioLogado );
             //METODO PARA IR PARA ACTIVITY DE CRIAR ITEM
@@ -64,13 +61,16 @@ public class ListadeCompras extends AppCompatActivity implements Controller.cont
         msg.logD("onDestroy");
     }//fim onDestroy
     @Override public void instanceController() {
-        this.view = new ViewController(this, this);
+        this.view = new ViewController(this );
         this.msg = new MsgController(view.getContext(), this.getClass().getName() );
         this.adapters = new AdapterController( view.getContext() );
         this.cadastro = new CadastroController();
+        usuarioLogado = getIntent().getStringExtra("USUARIO");
+        nomeLista = getIntent().getStringExtra("NOMELISTA");
     }//fim instanceController
             // METODOS PARA OS BOTOES VOLTAR
-    private void toolBar(){
+    private void toolBar(String title){
+        setTitle(title);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
     }//fim toolBar()

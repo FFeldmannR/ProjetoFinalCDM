@@ -1,13 +1,9 @@
 package com.feldmann.projetofinalcdm.controller;
 //
-import android.content.Context;
-import android.content.Intent;
+import android.content.*;
 import android.database.Cursor;
 import android.graphics.Color;
-import android.graphics.Typeface;
-import android.view.View;
 import android.widget.TextView;
-
 import com.feldmann.projetofinalcdm.R;
 import com.feldmann.projetofinalcdm.repository.DBListas;
 import com.feldmann.projetofinalcdm.views.ListaActivity;

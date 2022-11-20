@@ -1,12 +1,10 @@
 package com.feldmann.projetofinalcdm.repository;
 //
 import android.content.Context;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
+import android.database.sqlite.*;
 import android.util.Log;
 import androidx.annotation.Nullable;
-import com.feldmann.projetofinalcdm.controller.Controller;
-import com.feldmann.projetofinalcdm.controller.DataBaseController;
+import com.feldmann.projetofinalcdm.controller.*;
 //
 public class DBListas extends SQLiteOpenHelper {
     private static final String NOME_BANCO = "listas.db";

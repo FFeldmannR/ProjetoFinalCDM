@@ -1,13 +1,13 @@
 package com.feldmann.projetofinalcdm.controller;
-
+//
 import android.content.Context;
 import android.content.Intent;
 import android.widget.TextView;
 import com.feldmann.projetofinalcdm.repository.UserRepository;
 import com.feldmann.projetofinalcdm.views.MainActivity;
-
+//
 public class UserController implements Controller.controllerUsers {
-    private Context context;
+    private final Context context;
     //
     public UserController(Context context) {
         this.context = context;

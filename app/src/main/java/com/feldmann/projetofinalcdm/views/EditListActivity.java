@@ -4,11 +4,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.EditText;
-import android.widget.FrameLayout;
-import android.widget.TextView;
+import android.view.*;
+import android.widget.*;
 import com.feldmann.projetofinalcdm.R;
 import com.feldmann.projetofinalcdm.controller.*;
 //
@@ -17,7 +14,7 @@ public class EditListActivity extends AppCompatActivity implements Controller.co
     private Controller.view view;
     private Controller.controllerEditList lista;
     private String usuarioLogado, nomeLista;
-
+    //
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_list);
@@ -50,7 +47,7 @@ public class EditListActivity extends AppCompatActivity implements Controller.co
         msg.logD("onDestroy");
     }//fim onDestroy
     @Override public void instanceController() {
-        this.view = new ViewController(this, this);
+        this.view = new ViewController(this );
         this.msg = new MsgController( view.getContext(), this.getClass().getName() );
         this.lista = new ListasController( view.getContext() );
     }//fim instanceController

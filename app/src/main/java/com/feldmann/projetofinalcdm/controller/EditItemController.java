@@ -2,22 +2,19 @@ package com.feldmann.projetofinalcdm.controller;
 //
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
-import android.widget.Toast;
 import com.feldmann.projetofinalcdm.model.Compras;
 import com.feldmann.projetofinalcdm.repository.ComprasRepository;
 import com.feldmann.projetofinalcdm.views.ListadeCompras;
 //
 public class EditItemController implements Controller.controllerEditItem{
-    private Context context;
-    private Controller.msg msg;
+    private final Context context;
+    private final Controller.msg msg;
     //
     public EditItemController(Context context) {
         this.context = context;
         msg = new MsgController(context, this.getClass().getName() );
     }
     @Override public void updateItem(String novoNomeItem, String novaQuantidade, Compras objCompras) {
-        Log.d("EDIT_ITEM", "antesdoBotao/SET: "+novoNomeItem+" | "+novaQuantidade+" WHERE "+objCompras.getDonoLista()+" | "+ objCompras.getNomeLista() );
         if (novoNomeItem == null || novaQuantidade == null){
             msg.messageToast("Um dos campos está vazio");
         }else{

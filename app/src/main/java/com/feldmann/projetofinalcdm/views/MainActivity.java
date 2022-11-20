@@ -4,9 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import com.feldmann.projetofinalcdm.R;
-import com.feldmann.projetofinalcdm.controller.Controller;
-import com.feldmann.projetofinalcdm.controller.MsgController;
-import com.feldmann.projetofinalcdm.controller.ViewController;
+import com.feldmann.projetofinalcdm.controller.*;
 //
 public class MainActivity extends AppCompatActivity implements Controller.controllerInstance{
     private Controller.msg msg;
@@ -17,14 +15,14 @@ public class MainActivity extends AppCompatActivity implements Controller.contro
         setContentView(R.layout.activity_main);
         this.instanceController();
         msg.logD("onCreate");
-        view.getActivity().startActivity( new Intent(view.getActivity(), LoginActivity.class) );
+        view.getContext().startActivity( new Intent ( view.getContext(), LoginActivity.class ) );
     }//fim onCreate
     @Override protected void onDestroy() {
         super.onDestroy();
         msg.logD("onDestroy");
     }//fim onDestroy
     @Override public void instanceController(){
-        this.view = new ViewController(this, this);
-        this.msg = new MsgController(view.getContext(), this.getClass().getName().toString() );
+        this.view = new ViewController(this );
+        this.msg = new MsgController(view.getContext(), this.getClass().getName() );
     }//fim instanceController
 }//fim class

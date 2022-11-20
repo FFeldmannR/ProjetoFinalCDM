@@ -1,21 +1,12 @@
 package com.feldmann.projetofinalcdm.repository;
 //
-import android.content.ContentValues;
-import android.content.Context;
-import android.content.Intent;
-import android.database.Cursor;
-import android.database.SQLException;
+import android.content.*;
+import android.database.*;
 import android.graphics.Color;
 import android.widget.TextView;
-
 import com.feldmann.projetofinalcdm.R;
-import com.feldmann.projetofinalcdm.controller.Controller;
-import com.feldmann.projetofinalcdm.controller.MsgController;
-import com.feldmann.projetofinalcdm.views.ListaActivity;
-import com.feldmann.projetofinalcdm.views.ListadeCompras;
-import com.feldmann.projetofinalcdm.views.LoginActivity;
-import com.feldmann.projetofinalcdm.views.MainActivity;
-
+import com.feldmann.projetofinalcdm.controller.*;
+import com.feldmann.projetofinalcdm.views.*;
 //
 public class UserRepository {
     private static Context context;

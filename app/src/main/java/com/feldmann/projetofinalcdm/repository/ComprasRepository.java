@@ -34,15 +34,13 @@ public class ComprasRepository {
                 //verifica qual a lista atual, para preencher o
                 // arraylist apenas com as compras dessa lista
                 if ( nomeLista.equals( cursor.getString(2) ) && usuarioLogado.equals( cursor.getString(1) )){
-                    compras.add(
-                            new Compras(
-                                    ( Integer.parseInt(cursor.getString(0)) ), // _id (INTEGER)
-                                    cursor.getString(1),                       // donoLista (TEXT)
-                                    cursor.getString(2),                       // nomeLista (TEXT)
-                                    cursor.getString(3),                       // nomeItem (TEXT)
-                                    cursor.getString(4),                       // quantidade (TEXT)
-                                    ( Integer.parseInt(cursor.getString(5)) )  // completed (INTEGER)
-                            )
+                    compras.add( new Compras(
+                            ( Integer.parseInt(cursor.getString(0)) ),
+                            cursor.getString(1),
+                            cursor.getString(2),
+                            cursor.getString(3),
+                            cursor.getString(4),
+                            ( Integer.parseInt(cursor.getString(5)) ) )
                     );//fim compras.add
                 }//fim if
             }while (cursor.moveToNext());

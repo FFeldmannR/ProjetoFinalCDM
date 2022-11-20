@@ -1,17 +1,12 @@
 package com.feldmann.projetofinalcdm.controller;
 //
 import android.widget.TextView;
-import com.feldmann.projetofinalcdm.adapters.ComprasAdapter;
-import com.feldmann.projetofinalcdm.adapters.ListaAdapter;
-import com.feldmann.projetofinalcdm.model.Compras;
-import com.feldmann.projetofinalcdm.model.Listas;
+import com.feldmann.projetofinalcdm.adapters.*;
+import com.feldmann.projetofinalcdm.model.*;
 import com.feldmann.projetofinalcdm.repository.*;
 //
 public class CadastroController implements Controller.controllerCadastro {
-    //
-    public CadastroController() {
-        //
-    }
+    public CadastroController() {}
     @Override public void addUserToDB ( String nomeUser, String senhaUser, TextView tvCadastroIncorreto ) {
         UserRepository.createUserinDB ( nomeUser, senhaUser, tvCadastroIncorreto );
     }//fim addUserToDB
