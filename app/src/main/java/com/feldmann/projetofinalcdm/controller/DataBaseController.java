@@ -13,7 +13,8 @@ public class DataBaseController implements Controller.controllerDataBase{
         String sqlStatement = "CREATE TABLE IF NOT EXISTS listas("+
                 "_id INTEGER PRIMARY KEY AUTOINCREMENT, "+
                 "donoLista TEXT, " +
-                "nomeLista TEXT" +
+                "nomeLista TEXT, " +
+                "progressoLista INTEGER " +
                 ");";
         return sqlStatement;
     }

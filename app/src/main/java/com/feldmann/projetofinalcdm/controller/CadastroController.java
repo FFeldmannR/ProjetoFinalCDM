@@ -12,7 +12,7 @@ public class CadastroController implements Controller.controllerCadastro {
     }//fim addUserToDB
     @Override public void addListToDB ( String donoLista, String nomeLista, ListaAdapter adapter ) {
         ListasRepository.createList ( donoLista, nomeLista );
-        adapter.addList( new Listas( (ListasRepository.getListas().size()+1), donoLista, nomeLista ) );
+        adapter.addList( new Listas( (ListasRepository.getListas().size()+1), donoLista, nomeLista, 0 ) );
     }//fim addListToDB
     @Override public void addItemToDB ( String usuarioLogado, String nomeLista, String nomeItem, String qntdItem, int completed, ComprasAdapter adapter ) {
         ComprasRepository.createItem ( usuarioLogado, nomeLista, nomeItem, qntdItem, completed );
