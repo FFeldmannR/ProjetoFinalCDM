@@ -1,6 +1,7 @@
 package com.feldmann.projetofinalcdm.views;
 //
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
@@ -43,10 +44,13 @@ public class ListadeCompras extends AppCompatActivity implements Controller.cont
         });
         ((FloatingActionButton) findViewById(R.id.addNewItem)).setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
+
+                /*
                 cadastro.addItemToDB( usuarioLogado, nomeLista,
                         ((EditText) findViewById(R.id.etNomeItemAdd)).getText().toString(),
                         ((EditText) findViewById(R.id.etQntdItemAdd)).getText().toString(),
                         0 , ((ComprasAdapter)((RecyclerView) findViewById(R.id.RVCompras)).getAdapter()) );
+                */
             }
         });
         adapters.setAdapterItemList(
@@ -68,6 +72,27 @@ public class ListadeCompras extends AppCompatActivity implements Controller.cont
         usuarioLogado = getIntent().getStringExtra("USUARIO");
         nomeLista = getIntent().getStringExtra("NOMELISTA");
     }//fim instanceController
+
+    private void popUpDialog(){
+        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder( view.getContext() );
+        //AlertDialog dialog;
+        View view = getLayoutInflater().inflate(R.layout.popup, null);
+        // insert nome item
+        // insert qntd item
+        // insert valor item
+        dialogBuilder.setView( view );
+        dialogBuilder.create().show();
+
+        //btn salvar
+        //btn cancelar
+        ((FrameLayout) findViewById(R.id.FLbtnCancelarItemDialog)).setOnClickListener(new View.OnClickListener() {
+            @Override public void onClick(View v) {
+                //
+                dialogBuilder.can
+            }
+        });
+    }//
+
             // METODOS PARA OS BOTOES VOLTAR
     private void toolBar(String title){
         setTitle(title);
