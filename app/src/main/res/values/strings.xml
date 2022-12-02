@@ -7,6 +7,7 @@
     <string name="nomeLista">Nome da Lista</string>
     <string name="nomeItem">Nome do Item</string>
     <string name="quantidade">Quantidade</string>
+    <string name="valor">Valor</string>
 
     <string name="cadastroIncorreto">Usuario ou senha incorretos</string>
     <string name="usuarioJaExiste">Usuario já existe</string>
@@ -22,6 +23,7 @@
     <string name="exNomeItem">Ex. Frango</string>
     <string name="exNomeLista">Ex. Mercado</string>
     <string name="exQntd">Ex. 3 pct</string>
+    <string name="exValor">Ex. 2,50</string>
 
     <string name="btnEntrar">Entrar</string>
     <string name="btnCadastrar">Cadastrar</string>
